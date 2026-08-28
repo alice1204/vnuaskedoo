@@ -27,6 +27,21 @@ const scheduleList =
         "schedule-list"
     );
 
+const scheduleGrid =
+    document.getElementById(
+        "schedule-grid"
+    );
+
+const tabListView =
+    document.getElementById(
+        "tab-list-view"
+    );
+
+const tabGridView =
+    document.getElementById(
+        "tab-grid-view"
+    );
+
 const totalCredits =
     document.getElementById(
         "total-credits"
@@ -145,6 +160,110 @@ function getReasonClass(reason) {
 }
 
 
+function parseTimeSlot(timeText) {
+    const pattern = /^T(\d+)\((\d+)-(\d+)\)$/;
+    const match = timeText.trim().match(pattern);
+
+    if (!match) {
+        return null;
+    }
+
+    return {
+        day: parseInt(match[1], 10),
+        startPeriod: parseInt(match[2], 10),
+        endPeriod: parseInt(match[3], 10),
+    };
+}
+
+
+function renderTimetableGrid(schedule) {
+    scheduleGrid.innerHTML = "";
+
+    const container = document.createElement("div");
+    container.className = "schedule-grid-container";
+
+    const grid = document.createElement("div");
+    grid.className = "timetable-grid";
+
+    // Header: Góc trên bên trái + Thứ 2 đến Thứ 7
+    const corner = document.createElement("div");
+    corner.className = "timetable-header";
+    corner.textContent = "Tiết / Thứ";
+    grid.appendChild(corner);
+
+    const days = [
+        { key: 2, label: "Thứ 2" },
+        { key: 3, label: "Thứ 3" },
+        { key: 4, label: "Thứ 4" },
+        { key: 5, label: "Thứ 5" },
+        { key: 6, label: "Thứ 6" },
+        { key: 7, label: "Thứ 7" },
+    ];
+
+    days.forEach((d) => {
+        const dayHeader = document.createElement("div");
+        dayHeader.className = "timetable-header";
+        dayHeader.textContent = d.label;
+        grid.appendChild(dayHeader);
+    });
+
+    // 12 Tiết học và các ô nền
+    for (let p = 1; p <= 12; p++) {
+        const periodHeader = document.createElement("div");
+        periodHeader.className = "timetable-period";
+        periodHeader.innerHTML = `<span>Tiết ${p}</span>`;
+        grid.appendChild(periodHeader);
+
+        for (let d = 2; d <= 7; d++) {
+            const cell = document.createElement("div");
+            cell.className = "timetable-cell";
+            if (p === 5 || p === 10) {
+                cell.classList.add("session-border");
+            }
+            cell.style.gridColumn = `${d}`;
+            cell.style.gridRow = `${p + 1}`;
+            grid.appendChild(cell);
+        }
+    }
+
+    // Đổ các môn học vào ô tương ứng
+    schedule.forEach((item) => {
+        if (!item.times || !Array.isArray(item.times)) {
+            return;
+        }
+
+        item.times.forEach((timeStr) => {
+            const slot = parseTimeSlot(timeStr);
+            if (!slot || slot.day < 2 || slot.day > 7) {
+                return;
+            }
+
+            const eventBlock = document.createElement("div");
+            const reasonType = item.reason || "normal";
+            eventBlock.className = `timetable-event ${reasonType}`;
+
+            // Cột theo Thứ (2 -> 7)
+            eventBlock.style.gridColumn = `${slot.day}`;
+            // Hàng theo Tiết (Tiết 1 -> row 2, kết thúc ở tiết endPeriod + 1)
+            eventBlock.style.gridRow = `${slot.startPeriod + 1} / ${slot.endPeriod + 2}`;
+
+            eventBlock.title = `${item.course_code} - ${item.course_name}\nLớp: ${item.class_id} (${item.credits} TC)\nThời gian: ${timeStr}\nTrạng thái: ${getReasonText(item.reason)}`;
+
+            eventBlock.innerHTML = `
+                <div class="timetable-event-code">${item.course_code}</div>
+                <div class="timetable-event-name" title="${item.course_name}">${item.course_name}</div>
+                <div class="timetable-event-meta">Lớp ${item.class_id} · T${slot.startPeriod}-${slot.endPeriod}</div>
+            `;
+
+            grid.appendChild(eventBlock);
+        });
+    });
+
+    container.appendChild(grid);
+    scheduleGrid.appendChild(container);
+}
+
+
 function renderSchedule(result) {
 
     scheduleList.innerHTML = "";
@@ -206,6 +325,9 @@ function renderSchedule(result) {
             element
         );
     }
+
+    // Render phiên bản Lưới trực quan
+    renderTimetableGrid(result.schedule);
 
     emptyState.classList.add(
         "hidden"
@@ -486,6 +608,20 @@ async function explainSchedule() {
 /* =========================
    EVENTS
 ========================= */
+
+tabListView.addEventListener("click", () => {
+    tabListView.classList.add("active");
+    tabGridView.classList.remove("active");
+    scheduleList.classList.remove("hidden");
+    scheduleGrid.classList.add("hidden");
+});
+
+tabGridView.addEventListener("click", () => {
+    tabGridView.classList.add("active");
+    tabListView.classList.remove("active");
+    scheduleGrid.classList.remove("hidden");
+    scheduleList.classList.add("hidden");
+});
 
 generateButton.addEventListener(
     "click",

@@ -444,6 +444,155 @@ button:disabled {
     display: none !important;
 }
 
+/* =========================
+   TABS & TIMETABLE GRID
+========================= */
+
+.view-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 12px;
+}
+
+.tab-button {
+    padding: 9px 18px;
+    background: #f3f4f6;
+    color: #4b5563;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tab-button:hover {
+    background: #e5e7eb;
+    color: #1f2937;
+}
+
+.tab-button.active {
+    background: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+}
+
+.schedule-grid-container {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background: #ffffff;
+    margin-bottom: 20px;
+}
+
+.timetable-grid {
+    display: grid;
+    grid-template-columns: 75px repeat(6, minmax(115px, 1fr));
+    grid-template-rows: 42px repeat(12, 44px);
+    min-width: 780px;
+    gap: 1px;
+    background-color: #e5e7eb;
+    position: relative;
+}
+
+.timetable-header,
+.timetable-period {
+    background: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 13px;
+    color: #475569;
+    user-select: none;
+}
+
+.timetable-period small {
+    font-size: 10px;
+    color: #94a3b8;
+    font-weight: normal;
+}
+
+.timetable-cell {
+    background: #ffffff;
+    transition: background-color 0.15s ease;
+}
+
+.timetable-cell:hover {
+    background-color: #f8fafc;
+}
+
+/* Phân chia buổi sáng / chiều */
+.timetable-cell.session-border {
+    border-bottom: 2px dashed #cbd5e1;
+}
+
+.timetable-event {
+    margin: 2px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    line-height: 1.35;
+    z-index: 2;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    cursor: default;
+}
+
+.timetable-event:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    z-index: 5;
+}
+
+.timetable-event-code {
+    font-weight: 700;
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+
+.timetable-event-name {
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.timetable-event-meta {
+    font-size: 10px;
+    opacity: 0.85;
+    margin-top: 2px;
+}
+
+/* Màu sắc thẻ môn học theo loại */
+.timetable-event.normal {
+    background: #eff6ff;
+    color: #1e40af;
+    border-left: 4px solid #3b82f6;
+}
+
+.timetable-event.retake {
+    background: #fef2f2;
+    color: #991b1b;
+    border-left: 4px solid #ef4444;
+}
+
+.timetable-event.early {
+    background: #fffbeb;
+    color: #92400e;
+    border-left: 4px solid #f59e0b;
+}
+
 
 @media (max-width: 900px) {
 
