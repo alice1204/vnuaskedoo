@@ -3,29 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Scheduler</title>
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
     <div class="app">
-
         <header class="topbar">
-
             <div>
                 <h1>Student Scheduler</h1>
-
                 <p>
                     Hệ thống hỗ trợ đề xuất
                     thời khóa biểu
@@ -33,140 +20,59 @@
             </div>
 
             <div class="student-info">
-
-                <strong id="student-name">
-                    Đang tải...
-                </strong>
-
-                <span id="student-major">
-                </span>
-
-                <span id="student-semester">
-                </span>
-
+                <strong id="student-name">Đang tải...</strong>
+                <span id="student-major"></span>
+                <span id="student-semester"></span>
             </div>
-
         </header>
-
 
         <main class="main-layout">
 
             <!-- Control panel -->
             <section class="card control-panel">
-
                 <h2>Tùy chọn học kỳ</h2>
-
                 <div class="form-group">
-
                     <label for="target-credits">
                         Số tín chỉ mong muốn
                     </label>
 
-                    <input
-                        id="target-credits"
-                        type="number"
-                        min="15"
-                        max="25"
-                        value="18"
-                    >
-
-                    <small>
-                        Từ 15 đến 25 tín chỉ
-                    </small>
-
+                    <input id="target-credits" type="number" min="15" max="25" value="18">
+                    <small>Từ 15 đến 25 tín chỉ</small>
                 </div>
 
 
                 <div class="form-group checkbox-group">
-
                     <label>
-
-                        <input
-                            id="allow-early"
-                            type="checkbox"
-                            checked
-                        >
-
+                        <input id="allow-early" type="checkbox" checked>
                         Cho phép học trước
                     </label>
-
-                    <small>
-                        Hệ thống có thể đề xuất
-                        môn của học kỳ tiếp theo
-                        nếu đủ điều kiện.
-                    </small>
-
+                    <small>Hệ thống có thể đề xuất môn của học kỳ tiếp theo nếu đủ điều kiện.</small>
                 </div>
 
-
-                <button
-                    id="generate-button"
-                    class="primary-button"
-                >
-                    Tạo thời khóa biểu
-                </button>
-
-
-                <div
-                    id="status-box"
-                    class="status-box hidden"
-                >
-                </div>
-
+                <button id="generate-button" class="primary-button">Tạo thời khóa biểu</button>
+                <div id="status-box" class="status-box hidden"></div>
             </section>
-
 
             <!-- Schedule -->
             <section class="card schedule-panel">
-
                 <div class="schedule-header">
-
                     <div>
-                        <h2>
-                            Thời khóa biểu đề xuất
-                        </h2>
-
-                        <p>
-                            Lịch được tạo dựa trên
-                            tình trạng học tập hiện tại.
-                        </p>
+                        <h2>Thời khóa biểu đề xuất</h2>
+                        <p>Lịch được tạo dựa trên tình trạng học tập hiện tại.</p>
                     </div>
 
                     <div class="credit-badge">
-
-                        <span id="total-credits">
-                            0
-                        </span>
-
-                        <small>
-                            tín chỉ
-                        </small>
-
+                        <span id="total-credits">0</span>
+                        <small>tín chỉ</small>
                     </div>
-
                 </div>
 
-
-                <div
-                    id="empty-state"
-                    class="empty-state"
-                >
-                    <h3>
-                        Chưa có thời khóa biểu
-                    </h3>
-
-                    <p>
-                        Nhấn “Tạo thời khóa biểu”
-                        để hệ thống đề xuất lịch học.
-                    </p>
+                <div id="empty-state" class="empty-state">
+                    <h3> Chưa có thời khóa biểu</h3>
+                    <p>Nhấn “Tạo thời khóa biểu” để hệ thống đề xuất lịch học.</p>
                 </div>
 
-
-                <div
-                    id="schedule-content"
-                    class="hidden"
-                >
-
+                <div id="schedule-content" class="hidden">
                     <div class="view-tabs">
                         <button id="tab-list-view" class="tab-button active" type="button">
                             Dạng danh sách
@@ -175,42 +81,14 @@
                             Lịch trực quan
                         </button>
                     </div>
-
-                    <div
-                        id="schedule-list"
-                        class="schedule-list"
-                    >
-                    </div>
-
-                    <div
-                        id="schedule-grid"
-                        class="schedule-grid hidden"
-                    >
-                    </div>
-
-
-                    <button
-                        id="explain-button"
-                        class="secondary-button"
-                    >
-                        Giải thích bằng AI
-                    </button>
-
-
-                    <div
-                        id="ai-explanation"
-                        class="ai-box hidden"
-                    >
-                    </div>
-
+                    <div id="schedule-list" class="schedule-list"></div>
+                    <div id="schedule-grid" class="schedule-grid hidden"></div>
+                    <button id="explain-button" class="secondary-button">Giải thích bằng AI</button>
+                    <div id="ai-explanation" class="ai-box hidden"></div>
                 </div>
-
             </section>
-
         </main>
-
     </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="app.js"></script>
