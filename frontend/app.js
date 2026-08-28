@@ -456,9 +456,7 @@ async function explainSchedule() {
             );
         }
 
-
-        aiExplanation.textContent =
-            data.explanation;
+        aiExplanation.innerHTML = marked.parse(data.explanation);
 
         aiExplanation.classList.remove(
             "hidden"

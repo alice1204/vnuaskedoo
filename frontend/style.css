@@ -416,9 +416,27 @@ button:disabled {
 
     border-radius: 10px;
 
-    line-height: 1.7;
+    line-height: 1.6;
+}
 
-    white-space: pre-line;
+.ai-box p {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.ai-box p:last-child {
+    margin-bottom: 0;
+}
+
+.ai-box ol,
+.ai-box ul {
+    margin-top: 6px;
+    margin-bottom: 10px;
+    padding-left: 22px;
+}
+
+.ai-box li {
+    margin-bottom: 6px;
 }
 
 
