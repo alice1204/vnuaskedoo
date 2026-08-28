@@ -176,33 +176,221 @@ function parseTimeSlot(timeText) {
 }
 
 
+let currentDayMobile = 2;
+
+const DAYS_LIST = [
+    { key: 2, label: "Thứ Hai", shortLabel: "T2" },
+    { key: 3, label: "Thứ Ba", shortLabel: "T3" },
+    { key: 4, label: "Thứ Tư", shortLabel: "T4" },
+    { key: 5, label: "Thứ Năm", shortLabel: "T5" },
+    { key: 6, label: "Thứ Sáu", shortLabel: "T6" },
+    { key: 7, label: "Thứ Bảy", shortLabel: "T7" },
+];
+
+
+function getDaySummary(dayKey, schedule) {
+    const dayClasses = [];
+    schedule.forEach((item) => {
+        if (item.times && Array.isArray(item.times)) {
+            item.times.forEach((t) => {
+                const slot = parseTimeSlot(t);
+                if (slot && slot.day === dayKey) {
+                    dayClasses.push({ ...item, slot });
+                }
+            });
+        }
+    });
+
+    if (dayClasses.length === 0) {
+        return { count: 0, text: "Hôm nay nghỉ học", hasClasses: false };
+    }
+
+    const minPeriod = Math.min(...dayClasses.map((c) => c.slot.startPeriod));
+    const maxPeriod = Math.max(...dayClasses.map((c) => c.slot.endPeriod));
+    return {
+        count: dayClasses.length,
+        text: `${dayClasses.length} môn học · Tiết ${minPeriod} - ${maxPeriod}`,
+        hasClasses: true,
+    };
+}
+
+
+function updateMobileDayView(dayNumber) {
+    const grid = document.querySelector(".timetable-grid");
+    if (!grid) {
+        return;
+    }
+
+    grid.querySelectorAll(".active-day-col").forEach((el) => {
+        el.classList.remove("active-day-col");
+    });
+
+    grid.querySelectorAll(`.day-${dayNumber}`).forEach((el) => {
+        el.classList.add("active-day-col");
+    });
+}
+
+
+function checkScreenSize() {
+    const grid = document.querySelector(".timetable-grid");
+    if (!grid) {
+        return;
+    }
+
+    if (window.innerWidth <= 768) {
+        grid.classList.add("single-day-mode");
+        updateMobileDayView(currentDayMobile);
+    } else {
+        grid.classList.remove("single-day-mode");
+        grid.querySelectorAll(".active-day-col").forEach((el) => {
+            el.classList.remove("active-day-col");
+        });
+    }
+}
+
+
 function renderTimetableGrid(schedule) {
     scheduleGrid.innerHTML = "";
 
+    // Tìm các ngày có môn học
+    const daysWithClasses = new Set();
+    schedule.forEach((item) => {
+        if (item.times && Array.isArray(item.times)) {
+            item.times.forEach((t) => {
+                const slot = parseTimeSlot(t);
+                if (slot) {
+                    daysWithClasses.add(slot.day);
+                }
+            });
+        }
+    });
+
+    // Nếu ngày hiện tại không có môn mà có ngày khác có môn, chọn ngày đầu tiên có môn
+    if (!daysWithClasses.has(currentDayMobile) && daysWithClasses.size > 0) {
+        currentDayMobile = Array.from(daysWithClasses).sort()[0];
+    }
+
+    // 1. Tạo thanh điều hướng Day Stepper trên Mobile
+    const stepperWrapper = document.createElement("div");
+    stepperWrapper.className = "mobile-day-stepper-wrapper";
+
+    const stepper = document.createElement("div");
+    stepper.className = "mobile-day-stepper";
+
+    const prevBtn = document.createElement("button");
+    prevBtn.className = "stepper-btn";
+    prevBtn.type = "button";
+    prevBtn.innerHTML = "‹";
+    prevBtn.setAttribute("aria-label", "Ngày trước");
+
+    const stepperInfo = document.createElement("div");
+    stepperInfo.className = "stepper-info";
+
+    const dayTitle = document.createElement("div");
+    dayTitle.className = "stepper-day-title";
+
+    const dayMeta = document.createElement("div");
+    dayMeta.className = "stepper-day-meta";
+
+    stepperInfo.appendChild(dayTitle);
+    stepperInfo.appendChild(dayMeta);
+
+    const nextBtn = document.createElement("button");
+    nextBtn.className = "stepper-btn";
+    nextBtn.type = "button";
+    nextBtn.innerHTML = "›";
+    nextBtn.setAttribute("aria-label", "Ngày sau");
+
+    stepper.appendChild(prevBtn);
+    stepper.appendChild(stepperInfo);
+    stepper.appendChild(nextBtn);
+    stepperWrapper.appendChild(stepper);
+
+    // Dải 6 nút capsule nhanh bên dưới Stepper
+    const dotsContainer = document.createElement("div");
+    dotsContainer.className = "stepper-dots";
+
+    const dotButtons = [];
+    DAYS_LIST.forEach((d) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        const hasClasses = daysWithClasses.has(d.key);
+        dot.className = `stepper-dot ${d.key === currentDayMobile ? "active" : ""}`;
+        dot.innerHTML = `
+            <span>${d.shortLabel}</span>
+            ${hasClasses ? '<span class="stepper-dot-indicator"></span>' : ""}
+        `;
+
+        dot.addEventListener("click", () => {
+            currentDayMobile = d.key;
+            refreshStepperUI(d.key);
+        });
+
+        dotsContainer.appendChild(dot);
+        dotButtons.push({ key: d.key, element: dot });
+    });
+
+    stepperWrapper.appendChild(dotsContainer);
+    scheduleGrid.appendChild(stepperWrapper);
+
+    function refreshStepperUI(dayKey) {
+        const dayObj = DAYS_LIST.find((d) => d.key === dayKey);
+        const summary = getDaySummary(dayKey, schedule);
+
+        dayTitle.textContent = dayObj ? dayObj.label : `Thứ ${dayKey}`;
+        dayMeta.textContent = summary.text;
+
+        if (summary.hasClasses) {
+            dayMeta.className = "stepper-day-meta has-classes";
+        } else {
+            dayMeta.className = "stepper-day-meta";
+        }
+
+        prevBtn.disabled = dayKey <= 2;
+        nextBtn.disabled = dayKey >= 7;
+
+        dotButtons.forEach((item) => {
+            if (item.key === dayKey) {
+                item.element.classList.add("active");
+            } else {
+                item.element.classList.remove("active");
+            }
+        });
+
+        updateMobileDayView(dayKey);
+    }
+
+    prevBtn.addEventListener("click", () => {
+        if (currentDayMobile > 2) {
+            currentDayMobile--;
+            refreshStepperUI(currentDayMobile);
+        }
+    });
+
+    nextBtn.addEventListener("click", () => {
+        if (currentDayMobile < 7) {
+            currentDayMobile++;
+            refreshStepperUI(currentDayMobile);
+        }
+    });
+
+    // 2. Tạo Lưới Grid
     const container = document.createElement("div");
     container.className = "schedule-grid-container";
 
     const grid = document.createElement("div");
     grid.className = "timetable-grid";
 
-    // Header: Góc trên bên trái + Thứ 2 đến Thứ 7
+    // Header góc trên bên trái
     const corner = document.createElement("div");
-    corner.className = "timetable-header";
+    corner.className = "timetable-header period-col";
     corner.textContent = "Tiết";
     grid.appendChild(corner);
 
-    const days = [
-        { key: 2, label: "Thứ 2" },
-        { key: 3, label: "Thứ 3" },
-        { key: 4, label: "Thứ 4" },
-        { key: 5, label: "Thứ 5" },
-        { key: 6, label: "Thứ 6" },
-        { key: 7, label: "Thứ 7" },
-    ];
-
-    days.forEach((d) => {
+    // Header Thứ 2 đến Thứ 7
+    DAYS_LIST.forEach((d) => {
         const dayHeader = document.createElement("div");
-        dayHeader.className = "timetable-header";
+        dayHeader.className = `timetable-header day-${d.key}`;
         dayHeader.textContent = d.label;
         grid.appendChild(dayHeader);
     });
@@ -210,13 +398,13 @@ function renderTimetableGrid(schedule) {
     // 12 Tiết học và các ô nền
     for (let p = 1; p <= 12; p++) {
         const periodHeader = document.createElement("div");
-        periodHeader.className = "timetable-period";
+        periodHeader.className = "timetable-period period-col";
         periodHeader.innerHTML = `<span>Tiết ${p}</span>`;
         grid.appendChild(periodHeader);
 
         for (let d = 2; d <= 7; d++) {
             const cell = document.createElement("div");
-            cell.className = "timetable-cell";
+            cell.className = `timetable-cell day-${d}`;
             if (p === 5 || p === 10) {
                 cell.classList.add("session-border");
             }
@@ -226,7 +414,7 @@ function renderTimetableGrid(schedule) {
         }
     }
 
-    // Đổ các môn học vào ô tương ứng
+    // 3. Đổ các môn học vào ô tương ứng
     schedule.forEach((item) => {
         if (!item.times || !Array.isArray(item.times)) {
             return;
@@ -240,11 +428,11 @@ function renderTimetableGrid(schedule) {
 
             const eventBlock = document.createElement("div");
             const reasonType = item.reason || "normal";
-            eventBlock.className = `timetable-event ${reasonType}`;
+            eventBlock.className = `timetable-event day-${slot.day} ${reasonType}`;
 
             // Cột theo Thứ (2 -> 7)
             eventBlock.style.gridColumn = `${slot.day}`;
-            // Hàng theo Tiết (Tiết 1 -> row 2, kết thúc ở tiết endPeriod + 1)
+            // Hàng theo Tiết
             eventBlock.style.gridRow = `${slot.startPeriod + 1} / ${slot.endPeriod + 2}`;
 
             eventBlock.title = `${item.course_code} - ${item.course_name}\nLớp: ${item.class_id} (${item.credits} TC)\nThời gian: ${timeStr}\nTrạng thái: ${getReasonText(item.reason)}`;
@@ -261,6 +449,10 @@ function renderTimetableGrid(schedule) {
 
     container.appendChild(grid);
     scheduleGrid.appendChild(container);
+
+    // Cập nhật trạng thái hiển thị ban đầu của Stepper và Grid
+    refreshStepperUI(currentDayMobile);
+    checkScreenSize();
 }
 
 
