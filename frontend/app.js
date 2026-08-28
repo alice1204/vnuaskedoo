@@ -188,7 +188,7 @@ function renderTimetableGrid(schedule) {
     // Header: Góc trên bên trái + Thứ 2 đến Thứ 7
     const corner = document.createElement("div");
     corner.className = "timetable-header";
-    corner.textContent = "Tiết / Thứ";
+    corner.textContent = "Tiết";
     grid.appendChild(corner);
 
     const days = [
