@@ -730,17 +730,18 @@ async function explainSchedule() {
     explainButton.disabled = true;
 
     explainButton.textContent =
-        "AI đang giải thích...";
+        "AI đang viết nhận xét...";
 
-    aiExplanation.classList.add(
+    aiExplanation.classList.remove(
         "hidden"
     );
+    aiExplanation.innerHTML = "<p><em>AI đang kết nối và viết nhận xét...</em></p>";
 
 
     try {
 
         const response = await fetch(
-            `${API_BASE_URL}/schedule/explain`,
+            `${API_BASE_URL}/schedule/explain-stream`,
             {
                 method: "POST",
 
@@ -757,24 +758,26 @@ async function explainSchedule() {
         );
 
 
-        const data =
-            await response.json();
-
-
         if (!response.ok) {
-
-            console.error(data);
-
             throw new Error(
                 "AI không thể tạo giải thích."
             );
         }
 
-        aiExplanation.innerHTML = marked.parse(data.explanation);
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder("utf-8");
+        let accumulatedText = "";
 
-        aiExplanation.classList.remove(
-            "hidden"
-        );
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) {
+                break;
+            }
+
+            const chunk = decoder.decode(value, { stream: true });
+            accumulatedText += chunk;
+            aiExplanation.innerHTML = marked.parse(accumulatedText);
+        }
 
     }
     catch (error) {

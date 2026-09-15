@@ -1,8 +1,8 @@
 import json
 import os
-
 from dotenv import load_dotenv
 from google import genai
+from google.genai import types
 
 
 load_dotenv()
@@ -14,7 +14,7 @@ GEMINI_API_KEY = os.getenv(
 
 GEMINI_MODEL = os.getenv(
     "GEMINI_MODEL",
-    "gemini-3.7-flash"
+    "gemini-3.5-flash-lite",
 )
 
 
@@ -23,38 +23,63 @@ client = genai.Client(
 )
 
 
-def explain_schedule(schedule_result: dict):
+def _build_prompt(schedule_result: dict) -> str:
+    schedule = schedule_result.get("schedule", [])
+    total_credits = schedule_result.get("total_credits", 0)
 
-    schedule_json = json.dumps(
-        schedule_result,
-        ensure_ascii=False,
-    )
+    # 1. Dùng Python lọc và gom nhóm sẵn
+    retake_courses = [
+        f"{item['course_name']} ({item['credits']} TC)"
+        for item in schedule if item.get("reason") == "retake"
+    ]
+    normal_courses = [
+        f"{item['course_name']} ({item['credits']} TC)"
+        for item in schedule if item.get("reason") == "normal"
+    ]
+    early_courses = [
+        f"{item['course_name']} ({item['credits']} TC)"
+        for item in schedule if item.get("reason") == "early"
+    ]
 
-    prompt = f"""
-Bạn là trợ lý học vụ cho sinh viên.
+    # 2. Tạo bản tóm tắt siêu ngắn gọn
+    summary_text = f"""
+Tổng số tín chỉ đăng ký: {total_credits}
+- Môn học lại: {', '.join(retake_courses) if retake_courses else 'Không có'}
+- Môn đúng tiến độ: {', '.join(normal_courses) if normal_courses else 'Không có'}
+- Môn học trước: {', '.join(early_courses) if early_courses else 'Không có'}
+""".strip()
 
-Nhiệm vụ:
-Giải thích ngắn gọn thời khóa biểu
-đã được hệ thống tạo.
+    # 3. Prompt mới: ngắn gọn, rõ ràng
+    return f"""
+Bạn là trợ lý học vụ. Hãy viết một đoạn nhận xét ngắn gọn (dưới 150 từ), giọng điệu thân thiện dành cho sinh viên về thời khóa biểu kỳ này dựa trên dữ liệu sau:
 
-Quy tắc:
-- Không thay đổi môn.
-- Không thay đổi lớp.
-- Không thay đổi thời gian.
-- Không tự thêm thông tin.
-- Nếu reason = retake, nói đây là môn học lại.
-- Nếu reason = normal, nói đây là môn đúng tiến độ.
-- Nếu reason = early, nói đây là môn học trước.
-- Trả lời bằng tiếng Việt.
-- Không quá 200 từ.
+{summary_text}
 
-Dữ liệu:
-{schedule_json}
+Lưu ý: Nêu rõ môn nào được ưu tiên học lại, môn nào đúng tiến độ hoặc học trước. Trả lời bằng tiếng Việt.
 """
 
-    interaction = client.interactions.create(
-        model=GEMINI_MODEL,
-        input=prompt,
-    )
 
-    return interaction.output_text
+def explain_schedule(schedule_result: dict):
+    prompt = _build_prompt(schedule_result)
+    response = client.models.generate_content(
+        model=GEMINI_MODEL,
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            thinking_config=types.ThinkingConfig(thinking_level="minimal")
+        )
+    )
+    return response.text
+
+
+def explain_schedule_stream(schedule_result: dict):
+    prompt = _build_prompt(schedule_result)
+    response_stream = client.models.generate_content_stream(
+        model=GEMINI_MODEL,
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            thinking_config=types.ThinkingConfig(thinking_level="minimal")
+        )
+    )
+    for chunk in response_stream:
+        if chunk.text:
+            yield chunk.text

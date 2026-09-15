@@ -5,6 +5,7 @@ from fastapi import (
 )
 
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 
 from models.schemas import (
     ExplainScheduleRequest,
@@ -22,6 +23,7 @@ from services.scheduler import (
 
 from services.ai_service import (
     explain_schedule,
+    explain_schedule_stream,
 )
 
 from services.student_service import (
@@ -118,3 +120,15 @@ def explain_generated_schedule(
     return {
         "explanation": explanation
     }
+
+
+@app.post("/schedule/explain-stream")
+def explain_generated_schedule_stream(
+    request: ExplainScheduleRequest,
+):
+    return StreamingResponse(
+        explain_schedule_stream(
+            request.schedule_result
+        ),
+        media_type="text/plain; charset=utf-8",
+    )
