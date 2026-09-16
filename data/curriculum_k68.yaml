@@ -1,0 +1,718 @@
+cohort: K68
+major: Công nghệ thông tin
+faculty: Khoa Công nghệ thông tin
+total_compulsory_credits: 109
+total_elective_credits: 17
+total_credits_required: 126
+courses:
+  ML01020:
+    name: Triết học Mác Lênin
+    name_en: Philosophy of Marxism and Leninism
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 1
+    type: compulsory
+    prerequisites: []
+  TH01009:
+    name: Tin học đại cương
+    name_en: Basics of informatics
+    credits: 2
+    theory_credits: 1.5
+    practice_credits: 0.5
+    semester: 1
+    type: compulsory
+    prerequisites: []
+  TH01002:
+    name: Vật lý đại cương A
+    name_en: Physics for informatics
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 1
+    type: compulsory
+    prerequisites: []
+  TH01006:
+    name: Đại số tuyến tính
+    name_en: Linear algebra
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 1
+    type: compulsory
+    prerequisites: []
+  TH01024:
+    name: Toán giải tích
+    name_en: Calculus
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 1
+    type: compulsory
+    prerequisites: []
+  ML01009:
+    name: Pháp luật đại cương
+    name_en: Introduction to laws
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 1
+    type: compulsory
+    prerequisites: []
+  TH02036:
+    name: Nhập môn Công nghệ phần mềm
+    name_en: Introduction to Software Engineering
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 1
+    type: compulsory
+    prerequisites: []
+  SN00010:
+    name: Tiếng Anh bổ trợ
+    name_en: An Introduction to Cefr Based Tests
+    credits: 1
+    theory_credits: 1.0
+    practice_credits: 0.0
+    semester: 1
+    type: conditional
+    prerequisites: []
+  GT01016:
+    name: Giáo dục thể chất đại cương
+    name_en: General physical education
+    credits: 1
+    theory_credits: 0.5
+    practice_credits: 0.5
+    semester: 1
+    type: conditional
+    prerequisites: []
+  SN00011:
+    name: Tiếng Anh 0
+    name_en: English 0
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 2
+    type: conditional
+    prerequisites: []
+  ML01021:
+    name: Kinh tế chính trị Mác - Lênin
+    name_en: Political economy of Marxism and Leninism
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 2
+    type: compulsory
+    prerequisites: []
+  TH01007:
+    name: Xác suất thống kê
+    name_en: Probability and Statistics
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 2
+    type: compulsory
+    prerequisites: []
+  TH01023:
+    name: Toán rời rạc
+    name_en: Discrete mathematics
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 2
+    type: compulsory
+    prerequisites: []
+  TH02044:
+    name: Kiến trúc máy tính
+    name_en: Computer architectures
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 2
+    type: compulsory
+    prerequisites: []
+  TH02001:
+    name: Cơ sở dữ liệu
+    name_en: Databases
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 2
+    type: compulsory
+    prerequisites: []
+  TH02045:
+    name: Kỹ thuật lập trình
+    name_en: Programmin g techniques
+    credits: 4
+    theory_credits: 3.0
+    practice_credits: 1.0
+    semester: 2
+    type: compulsory
+    prerequisites: []
+  SN01032:
+    name: Tiếng Anh 1
+    name_en: English 1
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 3
+    type: compulsory
+    prerequisites:
+    - SN00011
+  TH02037:
+    name: Phân tích và thiết kế hệ thống
+    name_en: System analysis and design
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 3
+    type: compulsory
+    prerequisites: []
+  TH02046:
+    name: Cấu trúc dữ liệu và giải thuật
+    name_en: Data structures and Algorithms
+    credits: 4
+    theory_credits: 3.0
+    practice_credits: 1.0
+    semester: 3
+    type: compulsory
+    prerequisites: []
+  TH03005:
+    name: Hệ quản trị cơ sở dữ liệu
+    name_en: Database management systems
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 3
+    type: compulsory
+    prerequisites: []
+  TH02038:
+    name: Mạng máy tính
+    name_en: Computer networking
+    credits: 3
+    theory_credits: 2.5
+    practice_credits: 0.5
+    semester: 3
+    type: compulsory
+    prerequisites: []
+  TH01025:
+    name: Phương pháp tính
+    name_en: Numerical methods
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 3
+    type: elective
+    prerequisites: []
+  TH02032:
+    name: Phân tích số liệu
+    name_en: Data Analysis
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 3
+    type: elective
+    prerequisites: []
+  KT01020:
+    name: Nguyên lý và kỹ năng khởi nghiệp
+    name_en: Principles and skills of enterpreneur ship
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 3
+    type: elective
+    prerequisites: []
+  SN01016:
+    name: Tâm lý học đại cương
+    name_en: Introduction to Psychology
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 3
+    type: elective
+    prerequisites: []
+  MT01001:
+    name: Hóa học đại cương
+    name_en: Genral chemistry
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 3
+    type: elective
+    prerequisites: []
+  SN01033:
+    name: Tiếng Anh 2
+    name_en: English 2
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 4
+    type: compulsory
+    prerequisites:
+    - SN01032
+  ML01022:
+    name: Chủ nghĩa xã hội khoa học
+    name_en: Socialism
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 4
+    type: compulsory
+    prerequisites: []
+  TH02015:
+    name: Nguyên lý hệ điều hành
+    name_en: Principles of operating systems
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 4
+    type: compulsory
+    prerequisites: []
+  TH03134:
+    name: Phát triển phần mềm ứng dụng
+    name_en: Application software development
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 4
+    type: compulsory
+    prerequisites: []
+  TH03106:
+    name: Lập trình hướng đối tượng
+    name_en: Objectoriented programming
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 4
+    type: compulsory
+    prerequisites: []
+  TH03206:
+    name: Trí tuệ nhân tạo
+    name_en: Artificial intelligence
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 4
+    type: compulsory
+    prerequisites: []
+  SN03039:
+    name: Tiếng Anh chuyên ngành CNTT&amp;TT
+    name_en: English for ICT studies
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 5
+    type: compulsory
+    prerequisites: []
+  ML01005:
+    name: Tư tưởng Hồ Chí Minh
+    name_en: Ho Chi Minh Idcology
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 5
+    type: compulsory
+    prerequisites: []
+  MT01008:
+    name: Sinh thái môi trường
+    name_en: Environment al Ecology
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 5
+    type: compulsory
+    prerequisites: []
+  KQ01211:
+    name: Quản trị học
+    name_en: Principles of Management
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 5
+    type: compulsory
+    prerequisites: []
+  TH03133:
+    name: Phát triển ứng dụng web
+    name_en: Web-based application development
+    credits: 4
+    theory_credits: 3.0
+    practice_credits: 1.0
+    semester: 5
+    type: compulsory
+    prerequisites: []
+  TH03115:
+    name: Phát triển ứng dụng GIS
+    name_en: GIS application development
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 5
+    type: compulsory
+    prerequisites: []
+  ML01023:
+    name: Lịch sử Đảng Cộng sản Việt Nam
+    name_en: Vietnamese Communist Party History
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 6
+    type: compulsory
+    prerequisites: []
+  TH03324:
+    name: An toàn hệ thống thông tin
+    name_en: Information systems security
+    credits: 3
+    theory_credits: 2.5
+    practice_credits: 0.5
+    semester: 6
+    type: compulsory
+    prerequisites: []
+  TH03327:
+    name: Các vấn đề hiện đại của công nghệ thông tin
+    name_en: Emerging Issues &amp; Trends of Information Technology
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 6
+    type: elective
+    prerequisites: []
+    track: Khoa học máy tính
+  TH03101:
+    name: Quản lý dự án phần mềm
+    name_en: Software Project Management
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 6
+    type: elective
+    prerequisites:
+    - TH02036
+    track: Công nghệ phần mềm
+  TH03102:
+    name: Phân tích yêu cầu phần mềm
+    name_en: Software Requirement s Engineering
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 6
+    type: elective
+    prerequisites:
+    - TH02036
+    track: Công nghệ phần mềm
+  TH03103:
+    name: Kiến trúc và thiết kế phần mềm
+    name_en: Software Architecture and Design
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 6
+    type: elective
+    prerequisites:
+    - TH02036
+    track: Công nghệ phần mềm
+  TH03137:
+    name: Kiểm thử và đảm bảo chất lượng phần mềm
+    name_en: Software Testing and Quality Assurance
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 6
+    type: elective
+    prerequisites:
+    - TH02036
+    track: Công nghệ phần mềm
+  TH03112:
+    name: Phát triển ứng dụng di động
+    name_en: Mobile application development
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 6
+    type: elective
+    prerequisites: []
+    track: Công nghệ phần mềm
+  TH03116:
+    name: Thương mại điện tử
+    name_en: e-commerce
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 6
+    type: elective
+    prerequisites: []
+    track: Công nghệ phần mềm
+  TH03136:
+    name: Thiết kế giao diện người dùng
+    name_en: User Interface Design
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 6
+    type: elective
+    prerequisites: []
+    track: Công nghệ phần mềm
+  TH03325:
+    name: Quản lý dự án CNTT
+    name_en: IT project management
+    credits: 2
+    theory_credits: 1.5
+    practice_credits: 0.5
+    semester: 6
+    type: elective
+    prerequisites: []
+    track: Mạng và hệ thống thông tin
+  TH03328:
+    name: Hệ thống thông tin quản lý
+    name_en: Management Informaiton Systems
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 6
+    type: elective
+    prerequisites: []
+    track: Mạng và hệ thống thông tin
+  TH03326:
+    name: Phát triển ứng dụng quản trị doanh nghiệp
+    name_en: Developing applications for enterprise management
+    credits: 3
+    theory_credits: 2.5
+    practice_credits: 0.5
+    semester: 6
+    type: elective
+    prerequisites: []
+    track: Mạng và hệ thống thông tin
+  TH03117:
+    name: Hệ thống hoạch định nguồn lực doanh nghiệp
+    name_en: Enterprise resource planning systems
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 6
+    type: elective
+    prerequisites: []
+    track: Mạng và hệ thống thông tin
+  TH03329:
+    name: Điện toán đám mây
+    name_en: Cloud computing
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 6
+    type: elective
+    prerequisites: []
+    track: Mạng và hệ thống thông tin
+  TH03216:
+    name: Quản trị mạng (Windows Server)
+    name_en: Network administratio n (Windows
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 6
+    type: elective
+    prerequisites: []
+    track: Mạng và hệ thống thông tin
+  TH03217:
+    name: Lập trình mạng
+    name_en: Network programmin g
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 6
+    type: elective
+    prerequisites:
+    - TH02038
+    track: Mạng và hệ thống thông tin
+  TH03236:
+    name: Kỹ thuật dữ liệu
+    name_en: Data engineering
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 6
+    type: elective
+    prerequisites: []
+    track: Khoa học máy tính
+  TH03237:
+    name: Triển khai và vận hành phần mềm
+    name_en: Software Deployment and Operation
+    credits: 2
+    theory_credits: 1.0
+    practice_credits: 1.0
+    semester: 6
+    type: elective
+    prerequisites: []
+    track: Khoa học máy tính
+  TH03238:
+    name: Triển khai, tích hợp và vận hành hệ thống dữ liệu lớn
+    name_en: 'Big Data Systems: Deployment, Integration and Operation'
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 6
+    type: elective
+    prerequisites:
+    - TH03005
+    track: Khoa học máy tính
+  TH03203:
+    name: Chương trình dịch
+    name_en: Compilers
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 6
+    type: elective
+    prerequisites: []
+    track: Khoa học máy tính
+  TH03204:
+    name: Xử lý ảnh
+    name_en: Digital image processing
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 6
+    type: elective
+    prerequisites: []
+    track: Khoa học máy tính
+  TH03205:
+    name: Đồ họa máy tính
+    name_en: Computer graphics
+    credits: 3
+    theory_credits: 2.5
+    practice_credits: 0.5
+    semester: 6
+    type: elective
+    prerequisites: []
+    track: Khoa học máy tính
+  TH03207:
+    name: Học máy
+    name_en: Machine learning
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 6
+    type: elective
+    prerequisites:
+    - TH03206
+    track: Khoa học máy tính
+  TH03996:
+    name: Thực tập chuyên ngành
+    name_en: Internship
+    credits: 10
+    theory_credits: 0.0
+    practice_credits: 10.0
+    semester: 7
+    type: compulsory
+    prerequisites: []
+  PTH03222:
+    name: Ứng dụng CNTT và truyền thông trong quản lý và sản xuất nông nghiệp
+    name_en: Applications of ICT in agricultural production and management
+    credits: 2
+    theory_credits: 1.5
+    practice_credits: 0.5
+    semester: 7
+    type: elective
+    prerequisites: []
+    track: Khoa học máy tính
+  KQ03331:
+    name: Nguyên lý thương mại điện tử
+    name_en: Principles of e-commerce
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 7
+    type: elective
+    prerequisites: []
+    track: Khoa học máy tính
+  CD02148:
+    name: Đồ họa kỹ thuật trên máy tính
+    name_en: Technical graphics on Computer
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 7
+    type: elective
+    prerequisites: []
+    track: Khoa học máy tính
+  CD03913:
+    name: Kỹ thuật Robot
+    name_en: Robotic Engineering
+    credits: 3
+    theory_credits: 2.5
+    practice_credits: 0.5
+    semester: 7
+    type: elective
+    prerequisites: []
+    track: Khoa học máy tính
+  KQ02209:
+    name: Quản trị doanh nghiệp
+    name_en: Corporation Management
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 7
+    type: elective
+    prerequisites: []
+    track: Khoa học máy tính
+  KT02003:
+    name: Nguyên lý kinh tế
+    name_en: Priciples of Economics
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 7
+    type: elective
+    prerequisites: []
+    track: Khoa học máy tính
+  TH04996:
+    name: Khóa luận tốt nghiệp
+    name_en: Graduation thesis
+    credits: 10
+    theory_credits: 0.0
+    practice_credits: 10.0
+    semester: 8
+    type: compulsory
+    prerequisites:
+    - TH03996
+  TH03201:
+    name: Phân tích và thiết kế hệ thống hướng đối tượng
+    name_en: Objectoriented analysis and design
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 8
+    type: elective
+    prerequisites:
+    - TH02037
+    track: Khoa học máy tính
+  TH03316:
+    name: Khai phá dữ liệu trên Python và ứng dụng trong nông nghiệp
+    name_en: Data mining with Python and applications in agriculture
+    credits: 2
+    theory_credits: 1.5
+    practice_credits: 0.5
+    semester: 8
+    type: elective
+    prerequisites: []
+    track: Khoa học máy tính
+  TH03507:
+    name: Quản trị mạng 2 (Linux)
+    name_en: Network administratio n 2 (Linux)
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 8
+    type: elective
+    prerequisites:
+    - TH02038
+    track: Khoa học máy tính
+  TH03110:
+    name: Phát triển ứng dụng web 2
+    name_en: Web-based application development 2
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 8
+    type: elective
+    prerequisites:
+    - TH03133
+    track: Khoa học máy tính

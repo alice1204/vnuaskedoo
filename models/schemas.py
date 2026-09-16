@@ -1,3 +1,4 @@
+﻿from typing import Optional, List, Dict, Any
 from pydantic import (
     BaseModel,
     ConfigDict,
@@ -21,3 +22,14 @@ class ScheduleRequest(BaseModel):
 
 class ExplainScheduleRequest(BaseModel):
     schedule_result: dict
+
+
+class ChatMessageRequest(BaseModel):
+    message: str
+    session_id: Optional[str] = "default_session"
+
+
+class ChatResponse(BaseModel):
+    response: str
+    session_id: str
+    tools_called: Optional[List[str]] = []

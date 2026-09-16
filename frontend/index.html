@@ -26,8 +26,64 @@
             </div>
         </header>
 
-        <main class="main-layout">
+        <nav class="main-nav-tabs">
+            <button id="tab-nav-chat" class="main-tab-btn active" type="button">
+                <span class="tab-icon">🤖</span> Trợ lý Cố vấn Học vụ AI
+            </button>
+            <button id="tab-nav-scheduler" class="main-tab-btn" type="button">
+                <span class="tab-icon">📅</span> Xếp Thời Khóa Biểu
+            </button>
+        </nav>
 
+        <!-- VIEW 1: TRỢ LÝ CỐ VẤN HỌC VỤ AI -->
+        <main id="view-chat" class="tab-view active">
+            <div class="chat-wrapper card">
+                <div class="chat-header">
+                    <div class="bot-avatar">🤖</div>
+                    <div class="bot-meta">
+                        <h2>Cố vấn Học vụ AI - Khoa Công nghệ thông tin</h2>
+                        <p class="status-indicator"><span class="status-dot"></span> Sẵn sàng giải đáp Quy chế, Tiến trình đào tạo K67 - K70 & Môn tương đương K68, K69</p>
+                    </div>
+                </div>
+
+                <div class="quick-prompts">
+                    <span class="quick-title">Gợi ý câu hỏi nhanh:</span>
+                    <div class="chips-list">
+                        <button class="chip-btn" data-query="Môn Xác suất thống kê K68 tương đương môn nào của K67?">Môn tương đương K68</button>
+                        <button class="chip-btn" data-query="Khung tiến trình học kỳ 4 ngành CNTT K69 gồm những môn nào?">Tiến trình K69 kỳ 4</button>
+                        <button class="chip-btn" data-query="Bị cảnh báo học tập bao nhiêu lần thì bị buộc thôi học theo quy chế?">Quy định cảnh báo học tập</button>
+                        <button class="chip-btn" data-query="Xếp giúp mình lịch học 18 tín chỉ kỳ này">Xếp lịch học 18 tín chỉ</button>
+                    </div>
+                </div>
+
+                <div id="chat-messages" class="chat-messages">
+                    <div class="message-row bot-row">
+                        <div class="avatar">🤖</div>
+                        <div class="message-bubble bot-bubble">
+                            <p>Xin chào! Mình là <strong>Trợ lý Cố vấn Học vụ AI</strong> của Học viện.</p>
+                            <p>Mình có thể hỗ trợ bạn:</p>
+                            <ul>
+                                <li>Tra cứu <strong>tiến trình đào tạo</strong> của các khóa từ K67 đến K70.</li>
+                                <li>Tra cứu <strong>học phần tương đương & thay thế</strong> cho sinh viên K68, K69.</li>
+                                <li>Giải đáp chi tiết <strong>Quy chế đào tạo đại học theo tín chỉ</strong> (cảnh báo học tập, buộc thôi học, thang điểm, học bổng, xét tốt nghiệp...).</li>
+                                <li><strong>Gợi ý và xếp thời khóa biểu</strong> phù hợp với tiến độ cá nhân của bạn.</li>
+                            </ul>
+                            <p>Bạn có câu hỏi nào cần giải đáp không?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="chat-form" class="chat-input-container">
+                    <input id="chat-input" type="text" placeholder="Nhập câu hỏi của bạn (ví dụ: 'Môn Giải tích K69 tương đương môn nào cũ?')..." autocomplete="off" required>
+                    <button id="chat-send-btn" type="submit" class="primary-button">
+                        <span>Gửi</span>
+                    </button>
+                </form>
+            </div>
+        </main>
+
+        <!-- VIEW 2: XẾP THỜI KHÓA BIỂU -->
+        <main id="view-scheduler" class="tab-view hidden main-layout">
             <!-- Control panel -->
             <section class="card control-panel">
                 <h2>Tùy chọn học kỳ</h2>

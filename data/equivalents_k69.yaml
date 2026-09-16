@@ -1,0 +1,699 @@
+cohort: K69
+reference_cohort: K68 về trước
+faculty: Khoa Công nghệ thông tin
+description: Danh sách học phần tương đương với Khóa 69 - Khoa CNTT
+total_rules: 63
+equivalents:
+- target_course:
+    code: TH91084
+    name: Công nghệ thông tin và chuyển đổi số
+    credits: 4
+    cohort: K69
+  source_course:
+    code: TH01009
+    name: Tin học đại cương (K68)
+    credits: 2
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH92023
+    name: Xác suất thống kê
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH01007
+    name: Xác suất thống kê
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH92025
+    name: Giải tích
+    credits: 4
+    cohort: K69
+  source_course:
+    code: TH01024
+    name: Toán Giải tích
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH92027
+    name: Đại số tuyến tính
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH01006
+    name: Đại số tuyến tính
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH92041
+    name: Vật lý đại cương A
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH01002
+    name: Vật lý đại cương A
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH92041
+    name: Vật lý đại cương A
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH01031
+    name: Vật lý điện quang
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH93001
+    name: Kiến trúc máy tính
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH02044
+    name: Kiến trúc máy tính
+    credits: 2
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH93001
+    name: Kiến trúc máy tính
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH01022
+    name: Kiến trúc máy tính và Vi xử lý
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH93059
+    name: Cơ sở dữ liệu
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH02001
+    name: Cơ sở dữ liệu
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH93060
+    name: Kỹ thuật lập trình
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH02034
+    name: Kỹ thuật lập trình
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH93061
+    name: Công nghệ phần mềm
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH02036
+    name: Nhập môn Công nghệ phần mềm
+    credits: 2
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH93062
+    name: Cấu trúc dữ liệu và giải thuật
+    credits: 4
+    cohort: K69
+  source_course:
+    code: TH02046
+    name: Cấu trúc dữ liệu và giải thuật
+    credits: 4
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH93085
+    name: An toàn hệ thống thông tin
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03324
+    name: An toàn hệ thống thông tin
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH93085
+    name: An toàn hệ thống thông tin
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH02039
+    name: An toàn thông tin
+    credits: 2
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH93086
+    name: Mạng máy tính
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH02038
+    name: Mạng máy tính
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH93087
+    name: Toán rời rạc
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH01023
+    name: Toán rời rạc
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94002
+    name: Nguyên lý hệ điều hành
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH02015
+    name: Nguyên lý hệ điều hành
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94003
+    name: Chương trình dịch
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03203
+    name: Chương trình dịch
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94004
+    name: Đồ họa máy tính
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03205
+    name: Đồ họa máy tính
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94006
+    name: Học sâu
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03231
+    name: Học sâu
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94007
+    name: Kỹ thuật dữ liệu
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03236
+    name: Kỹ thuật dữ liệu
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94008
+    name: Phân tích và thiết kế hướng đối tượng
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH02037
+    name: Phân tích và thiết kế hệ thống
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94009
+    name: Thị giác máy tính
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03232
+    name: Thị giác máy tính
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94010
+    name: Trí tuệ nhân tạo
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03206
+    name: Trí tuệ nhân tạo
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94011
+    name: Triển khai, tích hợp và vận hành hệ thống dữ liệu lớn
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03238
+    name: Triển khai, tích hợp và vận hành hệ thống dữ liệu lớn
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94012
+    name: Nhập môn Khoa học dữ liệu
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03229
+    name: Khoa học dữ liệu
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94013
+    name: Xử lý dữ liệu lớn
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03233
+    name: Phân tích dữ liệu lớn
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94014
+    name: Phân tích nghiệp vụ
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03230
+    name: Phân tích nghiệp vụ
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94031
+    name: Phân tích và Trực quan hóa dữ liệu
+    credits: 4
+    cohort: K69
+  source_course:
+    code: TH03322
+    name: Trực quan hóa dữ liệu
+    credits: 0
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94043
+    name: Định tuyến và chuyển mạch
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03501
+    name: Định tuyến và chuyển mạch
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94044
+    name: Nguyên lý Điện tử truyền thông
+    credits: 4
+    cohort: K69
+  source_course:
+    code: TH03401
+    name: Nguyên lý điện tử truyền thông
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94045
+    name: Truyền dữ liệu số
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH02042
+    name: Truyền dữ liệu
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94046
+    name: Truyền thông đa phương tiện
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03218
+    name: Truyền thông đa phương tiện
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94047
+    name: Truyền thông quang
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03404
+    name: Truyền thông quang
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94048
+    name: Truyền thông vệ tinh
+    credits: 4
+    cohort: K69
+  source_course:
+    code: TH03405
+    name: Truyền thông vệ tinh và vô tuyến
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94063
+    name: Hệ quản trị cơ sở dữ liệu
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03005
+    name: Hệ quản trị cơ sở dữ liệu
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94064
+    name: Kiểm thử và đảm bảo chất lượng phần mềm
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03137
+    name: Kiểm thử và đảm bảo chất lượng phần mềm
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94065
+    name: Kiến trúc và thiết kế phần mềm
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03103
+    name: Kiến trúc và thiết kế phần mềm
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94066
+    name: Lập trình hướng đối tượng
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03106
+    name: Lập trình hướng đối tượng
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94067
+    name: Phân tích yêu cầu phần mềm
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03102
+    name: Phân tích yêu cầu phần mềm
+    credits: 2
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94068
+    name: Phát triển ứng dụng di động
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03112
+    name: Phát triển ứng dụng di động
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94069
+    name: Phát triển ứng dụng GIS
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03115
+    name: Phát triển ứng dụng GIS
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94070
+    name: Phát triển ứng dụng web
+    credits: 4
+    cohort: K69
+  source_course:
+    code: TH03133
+    name: Phát triển ứng dụng web
+    credits: 4
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94071
+    name: Thương mại điện tử
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03116
+    name: Thương mại điện tử
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94074
+    name: Phát triển phần mềm ứng dụng
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03134
+    name: Phát triển phần mềm ứng dụng
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94088
+    name: Công nghệ IoT hiện đại
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03504
+    name: Công nghệ IoT hiện đại
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94089
+    name: Công nghệ mạng không dây
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03503
+    name: Công nghệ mạng không dây
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94090
+    name: Điện toán đám mây
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03329
+    name: Điện toán đám mây
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94091
+    name: Hệ thống hoạch định nguồn lực doanh nghiệp
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03117
+    name: Hệ thống hoạch định nguồn lực doanh nghiệp
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94092
+    name: Hệ thống thông tin quản lý
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03328
+    name: Hệ thống thông tin quản lý
+    credits: 2
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94093
+    name: Lập trình mạng
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03217
+    name: Lập trình mạng
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94094
+    name: Phát triển ứng dụng quản trị doanh nghiệp
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03326
+    name: Phát triển ứng dụng quản trị doanh nghiệp
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94095
+    name: Quản lý dự án CNTT
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03325
+    name: Quản lý dự án CNTT
+    credits: 2
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94096
+    name: Quản trị mạng
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03216
+    name: Quản trị mạng (Windows Server)
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94097
+    name: Thiết kế mạng máy tính dùng trí tuệ nhân tạo
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03215
+    name: Thiết kế mạng máy tính
+    credits: 3
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94099
+    name: Chuyển đổi số trong phát triển nông nghiệp bền vững
+    credits: 3
+    cohort: K69
+  source_course:
+    code: PTH03222
+    name: Ứng dụng CNTT và truyền thông trong quản lý và sản xuất nông nghiệp
+    credits: 2
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94371
+    name: Thực tập nghề nghiệp CNTT
+    credits: 10
+    cohort: K69
+  source_course:
+    code: TH03996
+    name: Thực tập chuyên ngành
+    credits: 10
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94491
+    name: Khoá luận tốt nghiệp CNTT
+    credits: 10
+    cohort: K69
+  source_course:
+    code: TH04996
+    name: Khóa luận tốt nghiệp
+    credits: 10
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94492
+    name: Khoá luận tốt nghiệp MMT&amp;TTDL
+    credits: 10
+    cohort: K69
+  source_course:
+    code: TH04599
+    name: Khóa luận tốt nghiệp
+    credits: 10
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94493
+    name: Khoá luận tốt nghiệp KHDL&amp;TTNT
+    credits: 10
+    cohort: K69
+  source_course:
+    code: TH04699
+    name: Khóa luận tốt nghiệp
+    credits: 10
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH92029
+    name: Cơ sở toán cho các nhà kinh tế
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH01027
+    name: Cơ sở toán cho các nhà kinh tế 1
+    credits: 2
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94072
+    name: Tối ưu hóa công cụ tìm kiếm (SEO)
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03128
+    name: Tối ưu hóa công cụ tìm kiếm (SEO)
+    credits: 2
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT
+- target_course:
+    code: TH94073
+    name: Truyền thông và mạng xã hội
+    credits: 3
+    cohort: K69
+  source_course:
+    code: TH03129
+    name: Truyền thông và mạng xã hội
+    credits: 2
+    cohort: K68 về trước
+  note: Học phần tương đương áp dụng cho Khóa 69 Khoa CNTT

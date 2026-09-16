@@ -1,0 +1,139 @@
+cohort: K68
+reference_cohort: K67 về trước
+faculty: Khoa Công nghệ thông tin
+description: Danh sách học phần tương đương với học phần Khóa 68 - Ngành Công nghệ
+  thông tin
+total_rules: 12
+equivalents:
+- target_course:
+    code: TH01002
+    name: Vật lý đại cương A
+    credits: 3
+    cohort: K68
+  source_course:
+    code: TH01029
+    name: Cơ sở Vật lý cho tin học
+    credits: 3
+    cohort: K67 về trước
+  note: Học phần thay thế / tương đương cho sinh viên K67 về trước học cùng K68
+- target_course:
+    code: TH02045
+    name: Kỹ thuật lập trình
+    credits: 4
+    cohort: K68
+  source_course:
+    code: TH02034
+    name: Kỹ thuật lập trình
+    credits: 3
+    cohort: K67 về trước
+  note: Học phần thay thế / tương đương cho sinh viên K67 về trước học cùng K68
+- target_course:
+    code: TH02046
+    name: Cấu trúc dữ liệu và giải thuật
+    credits: 4
+    cohort: K68
+  source_course:
+    code: TH02016
+    name: Cấu trúc dữ liệu và giải thuật
+    credits: 3
+    cohort: K67 về trước
+  note: Học phần thay thế / tương đương cho sinh viên K67 về trước học cùng K68
+- target_course:
+    code: TH02046
+    name: Cấu trúc dữ liệu và giải thuật
+    credits: 4
+    cohort: K68
+  source_course:
+    code: TH02035
+    name: Thực hành cấu trúc dữ liệu và giải thuật
+    credits: 1
+    cohort: K67 về trước
+  note: Học phần thay thế / tương đương cho sinh viên K67 về trước học cùng K68
+- target_course:
+    code: TH02046
+    name: Cấu trúc dữ liệu và giải thuật
+    credits: 4
+    cohort: K68
+  source_course:
+    code: TH02016;; TH02035
+    name: Cấu trúc dữ liệu và giải thuật;; Thực hành cấu trúc dữ liệu và giải thuật
+    credits: 4
+    cohort: K67 về trước
+  note: Học phần thay thế / tương đương cho sinh viên K67 về trước học cùng K68
+- target_course:
+    code: TH03005
+    name: Hệ quản trị cơ sở dữ liệu
+    credits: 3
+    cohort: K68
+  source_course:
+    code: TH03107
+    name: Hệ quản trị cơ sở dữ liệu
+    credits: 2
+    cohort: K67 về trước
+  note: Học phần thay thế / tương đương cho sinh viên K67 về trước học cùng K68
+- target_course:
+    code: TH03134
+    name: Phát triển phần mềm ứng dụng
+    credits: 3
+    cohort: K68
+  source_course:
+    code: TH03111
+    name: Lập trình Java
+    credits: 3
+    cohort: K67 về trước
+  note: Học phần thay thế / tương đương cho sinh viên K67 về trước học cùng K68
+- target_course:
+    code: TH03133
+    name: Phát triển ứng dụng web
+    credits: 4
+    cohort: K68
+  source_course:
+    code: TH03109
+    name: Phát triển ứng dụng web
+    credits: 3
+    cohort: K67 về trước
+  note: Học phần thay thế / tương đương cho sinh viên K67 về trước học cùng K68
+- target_course:
+    code: TH03324
+    name: An toàn hệ thống thông tin
+    credits: 3
+    cohort: K68
+  source_course:
+    code: TH03224
+    name: An ninh mạng và hệ điều hành
+    credits: 3
+    cohort: K67 về trước
+  note: Học phần thay thế / tương đương cho sinh viên K67 về trước học cùng K68
+- target_course:
+    code: TH03137
+    name: Kiểm thử và đảm bảo chất lượng phần mềm
+    credits: 3
+    cohort: K68
+  source_course:
+    code: TH03105
+    name: Kiểm thử và đảm bảo chất lượng phần mềm
+    credits: 2
+    cohort: K67 về trước
+  note: Học phần thay thế / tương đương cho sinh viên K67 về trước học cùng K68
+- target_course:
+    code: TH03325
+    name: Quản lý dự án CNTT
+    credits: 2
+    cohort: K68
+  source_course:
+    code: TH03303
+    name: Thiết kế và quản lý dự án CNTT
+    credits: 2
+    cohort: K67 về trước
+  note: Học phần thay thế / tương đương cho sinh viên K67 về trước học cùng K68
+- target_course:
+    code: TH03326
+    name: Phát triển ứng dụng quản trị doanh nghiệp
+    credits: 3
+    cohort: K68
+  source_course:
+    code: TH03117
+    name: Hệ thống hoạch định nguồn lực doanh nghiệp
+    credits: 3
+    cohort: K67 về trước
+  note: Học phần thay thế / tương đương cho sinh viên K67 về trước học cùng K68

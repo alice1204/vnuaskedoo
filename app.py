@@ -6,10 +6,13 @@ from fastapi import (
 
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
+from fastapi.staticfiles import StaticFiles
 
 from models.schemas import (
     ExplainScheduleRequest,
     ScheduleRequest,
+    ChatMessageRequest,
+    ChatResponse,
 )
 
 from services.academic_rules import (
@@ -24,6 +27,11 @@ from services.scheduler import (
 from services.ai_service import (
     explain_schedule,
     explain_schedule_stream,
+)
+
+from services.agent_service import (
+    chat_agent,
+    chat_agent_stream,
 )
 
 from services.student_service import (
@@ -41,11 +49,15 @@ app.add_middleware(
     allow_origins=[
         "http://127.0.0.1:5500",
         "http://localhost:5500",
+        "http://127.0.0.1:8000",
+        "http://localhost:8000",
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.mount("/ui", StaticFiles(directory="frontend", html=True), name="ui")
 
 @app.get("/")
 def root():
@@ -132,3 +144,27 @@ def explain_generated_schedule_stream(
         ),
         media_type="text/plain; charset=utf-8",
     )
+
+
+@app.post("/chat", response_model=ChatResponse)
+def handle_chat(request: ChatMessageRequest):
+    response_text = chat_agent(
+        message=request.message,
+        session_id=request.session_id or "default_session",
+    )
+    return {
+        "response": response_text,
+        "session_id": request.session_id or "default_session",
+        "tools_called": [],
+    }
+
+
+@app.post("/chat/stream")
+def handle_chat_stream(request: ChatMessageRequest):
+    return StreamingResponse(
+        chat_agent_stream(
+            message=request.message,
+            session_id=request.session_id or "default_session",
+        ),
+        media_type="text/plain; charset=utf-8",
+    )

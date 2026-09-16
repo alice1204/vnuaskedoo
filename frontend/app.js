@@ -801,7 +801,7 @@ async function explainSchedule() {
 
 
 /* =========================
-   EVENTS
+   EVENTS & TAB SWITCHING
 ========================= */
 
 tabListView.addEventListener("click", () => {
@@ -829,13 +829,144 @@ explainButton.addEventListener(
     explainSchedule
 );
 
+// MAIN NAVIGATION TABS
+const tabNavChat = document.getElementById("tab-nav-chat");
+const tabNavScheduler = document.getElementById("tab-nav-scheduler");
+const viewChat = document.getElementById("view-chat");
+const viewScheduler = document.getElementById("view-scheduler");
+
+tabNavChat.addEventListener("click", () => {
+    tabNavChat.classList.add("active");
+    tabNavScheduler.classList.remove("active");
+    viewChat.classList.remove("hidden");
+    viewScheduler.classList.add("hidden");
+});
+
+tabNavScheduler.addEventListener("click", () => {
+    tabNavScheduler.classList.add("active");
+    tabNavChat.classList.remove("active");
+    viewScheduler.classList.remove("hidden");
+    viewChat.classList.add("hidden");
+});
+
+/* =========================================================
+   CHATBOT CONTROLLER (STEP 4 AGENT HARNESS)
+========================================================= */
+
+const chatForm = document.getElementById("chat-form");
+const chatInput = document.getElementById("chat-input");
+const chatSendBtn = document.getElementById("chat-send-btn");
+const chatMessages = document.getElementById("chat-messages");
+
+let chatSessionId = sessionStorage.getItem("chat_session_id");
+if (!chatSessionId) {
+    chatSessionId = "session_" + Math.random().toString(36).substring(2, 10);
+    sessionStorage.setItem("chat_session_id", chatSessionId);
+}
+
+function appendUserMessage(text) {
+    const row = document.createElement("div");
+    row.className = "message-row user-row";
+    row.innerHTML = `
+        <div class="avatar">👤</div>
+        <div class="message-bubble user-bubble">${text}</div>
+    `;
+    chatMessages.appendChild(row);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function appendBotPlaceholder() {
+    const row = document.createElement("div");
+    row.className = "message-row bot-row";
+    row.innerHTML = `
+        <div class="avatar">🤖</div>
+        <div class="message-bubble bot-bubble">
+            <span class="loading-dots">Đang tra cứu dữ liệu...</span>
+        </div>
+    `;
+    chatMessages.appendChild(row);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    return row.querySelector(".message-bubble");
+}
+
+async function sendChatMessage(message) {
+    if (!message || !message.trim()) return;
+
+    appendUserMessage(message);
+    chatInput.value = "";
+    chatInput.disabled = true;
+    chatSendBtn.disabled = true;
+
+    const botBubble = appendBotPlaceholder();
+    let accumulatedText = "";
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/chat/stream`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: message,
+                session_id: chatSessionId
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: Lỗi máy chủ`);
+        }
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder("utf-8");
+
+        botBubble.innerHTML = "";
+
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            const chunk = decoder.decode(value, { stream: true });
+            accumulatedText += chunk;
+            if (window.marked) {
+                botBubble.innerHTML = marked.parse(accumulatedText);
+            } else {
+                botBubble.innerText = accumulatedText;
+            }
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+    } catch (err) {
+        console.error("Chat error:", err);
+        botBubble.innerHTML = `<p style="color: #ef4444;">⚠️ Không thể kết nối tới Trợ lý AI: ${err.message}. Vui lòng thử lại.</p>`;
+    } finally {
+        chatInput.disabled = false;
+        chatSendBtn.disabled = false;
+        chatInput.focus();
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+}
+
+chatForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const query = chatInput.value.trim();
+    if (query) {
+        sendChatMessage(query);
+    }
+});
+
+// Quick prompts chips
+document.querySelectorAll(".chip-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+        const query = btn.getAttribute("data-query");
+        if (query) {
+            sendChatMessage(query);
+        }
+    });
+});
 
 document.addEventListener(
     "DOMContentLoaded",
     () => {
-
         explainButton.disabled = true;
-
         loadCurrentStudent();
     }
-);
+);

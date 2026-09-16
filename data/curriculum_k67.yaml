@@ -1,0 +1,548 @@
+cohort: K67
+major: Công nghệ thông tin
+faculty: Khoa Công nghệ thông tin
+total_compulsory_credits: 119
+total_elective_credits: 12
+total_credits_required: 131
+courses:
+  ML01020:
+    name: Triết học Mác Lênin
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 1
+    type: compulsory
+    prerequisites: []
+  ML01009:
+    name: Pháp luật đại cương
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 1
+    type: compulsory
+    prerequisites: []
+  TH01001:
+    name: Tin học cơ sở
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 1
+    type: compulsory
+    prerequisites: []
+  TH01029:
+    name: Cơ sở vật lý cho tin học
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 1
+    type: compulsory
+    prerequisites: []
+  TH01006:
+    name: Đại số tuyến tính
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 1
+    type: compulsory
+    prerequisites: []
+  TH01024:
+    name: Toán giải tích
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 1
+    type: compulsory
+    prerequisites: []
+  SN00010:
+    name: Tiếng Anh bổ trợ
+    credits: 1
+    theory_credits: 1.0
+    practice_credits: 0.0
+    semester: 1
+    type: conditional
+    prerequisites: []
+  GT01016:
+    name: Giáo dục thể chất đại cương
+    credits: 1
+    theory_credits: 0.5
+    practice_credits: 0.5
+    semester: 1
+    type: conditional
+    prerequisites: []
+  ML01021:
+    name: Kinh tế chính trị Mác - Lênin
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 2
+    type: compulsory
+    prerequisites:
+    - ML01020
+  TH01007:
+    name: Xác suất thống kê
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 2
+    type: compulsory
+    prerequisites:
+    - TH01024
+  TH01023:
+    name: Toán rời rạc
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 2
+    type: compulsory
+    prerequisites:
+    - TH01006
+  TH01022:
+    name: Kiến trúc máy tính và Vi xử lý
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 2
+    type: compulsory
+    prerequisites:
+    - TH01001
+  TH02001:
+    name: Cơ sở dữ liệu
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 2
+    type: compulsory
+    prerequisites:
+    - TH01001
+  TH02034:
+    name: Kỹ thuật lập trình
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 2
+    type: compulsory
+    prerequisites:
+    - TH01001
+  SN00011:
+    name: Tiếng Anh 0
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 2
+    type: conditional
+    prerequisites: []
+  SN01032:
+    name: Tiếng Anh 1
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 3
+    type: compulsory
+    prerequisites:
+    - SN00011
+  ML01022:
+    name: Chủ nghĩa xã hội khoa học
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 3
+    type: compulsory
+    prerequisites: []
+  TH02037:
+    name: Phân tích và thiết kế hệ thống
+    credits: 3
+    theory_credits: 2.5
+    practice_credits: 0.5
+    semester: 3
+    type: compulsory
+    prerequisites:
+    - TH02001
+  TH02015:
+    name: Nguyên lý hệ điều hành
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 3
+    type: compulsory
+    prerequisites:
+    - TH01022
+  TH02016:
+    name: Cấu trúc dữ liệu và giải thuật
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 3
+    type: compulsory
+    prerequisites:
+    - TH02034
+  TH02035:
+    name: Thực hành Cấu trúc dữ liệu và giải thuật
+    credits: 1
+    theory_credits: 0.0
+    practice_credits: 1.0
+    semester: 3
+    type: compulsory
+    prerequisites:
+    - TH02016
+  TH02036:
+    name: Nhập môn Công nghệ phần mềm
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 3
+    type: compulsory
+    prerequisites:
+    - TH01001
+  TH03202:
+    name: Quản lý phiên bản phần mềm
+    credits: 2
+    theory_credits: 1.5
+    practice_credits: 0.5
+    semester: 3
+    type: elective
+    prerequisites:
+    - TH02036
+  TH03209:
+    name: Thiết kế giao diện web
+    credits: 2
+    theory_credits: 1.0
+    practice_credits: 1.0
+    semester: 3
+    type: elective
+    prerequisites: []
+  TH01025:
+    name: Phương pháp tính
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 3
+    type: elective
+    prerequisites:
+    - TH01024
+  SN01033:
+    name: Tiếng Anh 2
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 4
+    type: compulsory
+    prerequisites:
+    - SN01032
+  TH02041:
+    name: Độ phức tạp thuật toán
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 4
+    type: compulsory
+    prerequisites:
+    - TH02016
+  TH02038:
+    name: Mạng máy tính
+    credits: 3
+    theory_credits: 2.5
+    practice_credits: 0.5
+    semester: 4
+    type: compulsory
+    prerequisites:
+    - TH01001
+  TH02039:
+    name: An toàn thông tin
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 4
+    type: compulsory
+    prerequisites:
+    - TH02016
+  TH03106:
+    name: Lập trình hướng đối tượng
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 4
+    type: compulsory
+    prerequisites:
+    - TH02016
+  TH03210:
+    name: Phát triển web front-end
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 4
+    type: compulsory
+    prerequisites:
+    - TH01001
+  TH03201:
+    name: Phân tích và thiết kế hệ thống hướng đối tượng
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 4
+    type: elective
+    prerequisites:
+    - TH02037
+  TH03214:
+    name: Kỹ thuật truyền số liệu
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 4
+    type: elective
+    prerequisites:
+    - TH01029
+  TH03107:
+    name: Hệ quản trị cơ sở dữ liệu
+    credits: 2
+    theory_credits: 1.0
+    practice_credits: 1.0
+    semester: 4
+    type: elective
+    prerequisites:
+    - TH02001
+  SN03039:
+    name: Tiếng Anh chuyên ngành CNTT&amp;TT
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 5
+    type: compulsory
+    prerequisites:
+    - SN01033
+  ML01005:
+    name: Tư tưởng Hồ Chí Minh
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 5
+    type: compulsory
+    prerequisites:
+    - ML01022
+  TH03215:
+    name: Thiết kế mạng máy tính
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 5
+    type: compulsory
+    prerequisites:
+    - TH02038
+  TH03206:
+    name: Trí tuệ nhân tạo
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 5
+    type: compulsory
+    prerequisites:
+    - TH02016
+  TH03212:
+    name: Phát triển web back-end
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 5
+    type: compulsory
+    prerequisites:
+    - TH03106
+  TH03203:
+    name: Chương trình dịch
+    credits: 3
+    theory_credits: 2.5
+    practice_credits: 0.5
+    semester: 5
+    type: compulsory
+    prerequisites:
+    - TH01023
+  TH03211:
+    name: Phát triển web front-end 2
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 5
+    type: elective
+    prerequisites:
+    - TH03210
+  TH03111:
+    name: Lập trình Java
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 5
+    type: elective
+    prerequisites:
+    - TH03106
+  TH03205:
+    name: Đồ họa máy tính
+    credits: 3
+    theory_credits: 2.5
+    practice_credits: 0.5
+    semester: 5
+    type: elective
+    prerequisites:
+    - TH02016
+  TH03298:
+    name: Thực tập chuyên ngành CNTT 1
+    credits: 6
+    theory_credits: 0.0
+    practice_credits: 6.0
+    semester: 6
+    type: compulsory
+    prerequisites: []
+  TH03216:
+    name: Quản trị mạng
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 6
+    type: compulsory
+    prerequisites:
+    - TH02038
+  TH03312:
+    name: Khai phá dữ liệu
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 6
+    type: compulsory
+    prerequisites:
+    - TH01007
+  TH03213:
+    name: Phát triển web back-end 2
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 6
+    type: elective
+    prerequisites:
+    - TH03212
+  TH03217:
+    name: Lập trình mạng
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 6
+    type: elective
+    prerequisites:
+    - TH02038
+  TH03207:
+    name: Học máy
+    credits: 3
+    theory_credits: 3.0
+    practice_credits: 0.0
+    semester: 6
+    type: elective
+    prerequisites:
+    - TH02016
+  TH03299:
+    name: Thực tập chuyên ngành CNTT 2
+    credits: 6
+    theory_credits: 0.0
+    practice_credits: 6.0
+    semester: 7
+    type: compulsory
+    prerequisites: []
+  CD03909:
+    name: Các phần mềm trong điều khiển
+    credits: 2
+    theory_credits: 1.0
+    practice_credits: 1.0
+    semester: 7
+    type: compulsory
+    prerequisites: []
+  ML01023:
+    name: Lịch sử Đảng Cộng sản Việt Nam
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 7
+    type: compulsory
+    prerequisites:
+    - ML01005
+  KT03024:
+    name: Kinh tế thương mại, dịch vụ
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 7
+    type: compulsory
+    prerequisites: []
+  MT02011:
+    name: Quản lý môi trường
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 7
+    type: compulsory
+    prerequisites: []
+  TH03208:
+    name: 'Chuyên đề: Phân tích và xử lý dữ liệu'
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 7
+    type: elective
+    prerequisites:
+    - TH03312
+  TH03204:
+    name: Xử lý ảnh
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 7
+    type: elective
+    prerequisites:
+    - TH02016
+  KQ03212:
+    name: Quản trị học 1
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 7
+    type: elective
+    prerequisites: []
+  TH04299:
+    name: Khóa luận tốt nghiệp
+    credits: 10
+    theory_credits: 0.0
+    practice_credits: 10.0
+    semester: 8
+    type: compulsory
+    prerequisites:
+    - TH03299
+  TH03218:
+    name: Truyền thông đa phương tiện
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 8
+    type: elective
+    prerequisites:
+    - TH02038
+  TH03219:
+    name: Nguyên lý truyền thông không dây
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 8
+    type: elective
+    prerequisites:
+    - TH02038
+  TH03120:
+    name: Hệ quản trị cơ sở dữ liệu 2
+    credits: 3
+    theory_credits: 2.0
+    practice_credits: 1.0
+    semester: 8
+    type: elective
+    prerequisites:
+    - TH03107
+  TH03310:
+    name: Phân tích dữ liệu lớn
+    credits: 2
+    theory_credits: 1.5
+    practice_credits: 0.5
+    semester: 8
+    type: elective
+    prerequisites:
+    - TH03312
