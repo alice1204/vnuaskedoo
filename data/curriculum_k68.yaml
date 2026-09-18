@@ -4,6 +4,61 @@ faculty: Khoa Công nghệ thông tin
 total_compulsory_credits: 109
 total_elective_credits: 17
 total_credits_required: 126
+
+elective_rules:
+  required_by_semester:
+    2: 2
+  specializations:
+    required_credits: 10
+    required_specializations_count: 1
+    groups:
+      cong_nghe_phan_mem:
+        name: "Công nghệ phần mềm"
+        courses: ["TH03327", "TH03101", "TH03102", "TH03103", "TH03137", "TH03112", "TH03116", "TH03136"]
+      mang_va_he_thong_thong_tin:
+        name: "Mạng và hệ thống thông tin"
+        courses: ["TH03327", "TH03325", "TH03328", "TH03326", "TH03117", "TH03329", "TH03216", "TH03217"]
+      khoa_hoc_may_tinh:
+        name: "Khoa học máy tính"
+        courses: ["TH03327", "TH03236", "TH03237", "TH03238", "TH03203", "TH03204", "TH03205", "TH03207"]
+  thesis_substitution:
+    enabled: true
+    substitute_for_course: "TH04996" # Lưu ý: Kiểm tra lại mã môn KLTN của K68 nếu có thay đổi
+    required_credits: 10
+    semester: 8
+    condition: "Chỉ được học để thay thế trong trường hợp trượt Khóa luận tốt nghiệp, bình thường không được học."
+
+group_requirements:
+  physical_education:
+    name: "Thể chất"
+    required_passed_courses: 2
+    total_options: 9
+    courses:
+      - GT01017
+      - GT01018
+      - GT01019
+      - GT01020
+      - GT01021
+      - GT01022
+      - GT01023
+      - GT01014
+      - GT01015
+  skills:
+    name: "Kỹ năng"
+    required_passed_courses: 3
+    total_options: 10
+    courses:
+      - KN01001
+      - KN01002
+      - KN01003
+      - KN01004
+      - KN01005
+      - KN01006
+      - KN01007
+      - KN01008
+      - KN01009
+      - KN01010
+
 courses:
   ML01020:
     name: Triết học Mác Lênin

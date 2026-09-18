@@ -4,6 +4,48 @@ faculty: Khoa Công nghệ thông tin
 total_compulsory_credits: 119
 total_elective_credits: 12
 total_credits_required: 131
+elective_rules:
+  required_by_semester:
+    3: 2
+    4: 2
+    5: 3
+    6: 3
+    7: 2
+  thesis_substitution:
+    enabled: true
+    substitute_for_course: "TH04299"
+    required_credits: 10
+    semester: 8
+    condition: "Chỉ được học để thay thế trong trường hợp trượt Khóa luận tốt nghiệp, bình thường không được học."
+
+group_requirements:
+  physical_education:
+    name: "Thể dục - Thể chất"
+    required_passed_courses: 2
+    total_options: 9
+    courses:
+      - GT01017
+      - GT01018
+      - GT01019
+      - GT01020
+      - GT01021
+      - GT01022
+      - GT01023
+      - GT01014
+      - GT01015
+  skills:
+    name: "Kỹ năng"
+    required_passed_courses: 3
+    total_options: 7
+    courses:
+      - KN01001
+      - KN01002
+      - KN01003
+      - KN01004
+      - KN01005
+      - KN01006
+      - KN01007
+
 courses:
   ML01020:
     name: Triết học Mác Lênin
@@ -476,7 +518,7 @@ courses:
     type: compulsory
     prerequisites: []
   TH03208:
-    name: 'Chuyên đề: Phân tích và xử lý dữ liệu'
+    name: Chuyên đề: Phân tích và xử lý dữ liệu
     credits: 2
     theory_credits: 2.0
     practice_credits: 0.0
