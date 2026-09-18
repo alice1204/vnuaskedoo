@@ -22,12 +22,10 @@ client = genai.Client(
     api_key=GEMINI_API_KEY
 )
 
-
 def _build_prompt(schedule_result: dict) -> str:
     schedule = schedule_result.get("schedule", [])
     total_credits = schedule_result.get("total_credits", 0)
 
-    # 1. Dùng Python lọc và gom nhóm sẵn
     retake_courses = [
         f"{item['course_name']} ({item['credits']} TC)"
         for item in schedule if item.get("reason") == "retake"
@@ -41,7 +39,6 @@ def _build_prompt(schedule_result: dict) -> str:
         for item in schedule if item.get("reason") == "early"
     ]
 
-    # 2. Tạo bản tóm tắt siêu ngắn gọn
     summary_text = f"""
 Tổng số tín chỉ đăng ký: {total_credits}
 - Môn học lại: {', '.join(retake_courses) if retake_courses else 'Không có'}
@@ -49,7 +46,6 @@ Tổng số tín chỉ đăng ký: {total_credits}
 - Môn học trước: {', '.join(early_courses) if early_courses else 'Không có'}
 """.strip()
 
-    # 3. Prompt mới: ngắn gọn, rõ ràng
     return f"""
 Bạn là trợ lý học vụ. Hãy viết một đoạn nhận xét ngắn gọn (dưới 150 từ), giọng điệu thân thiện dành cho sinh viên về thời khóa biểu kỳ này dựa trên dữ liệu sau:
 
@@ -57,7 +53,6 @@ Bạn là trợ lý học vụ. Hãy viết một đoạn nhận xét ngắn g�
 
 Lưu ý: Nêu rõ môn nào được ưu tiên học lại, môn nào đúng tiến độ hoặc học trước. Trả lời bằng tiếng Việt.
 """
-
 
 def explain_schedule(schedule_result: dict):
     prompt = _build_prompt(schedule_result)
@@ -69,7 +64,6 @@ def explain_schedule(schedule_result: dict):
         )
     )
     return response.text
-
 
 def explain_schedule_stream(schedule_result: dict):
     prompt = _build_prompt(schedule_result)
