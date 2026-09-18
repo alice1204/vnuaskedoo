@@ -301,7 +301,7 @@ courses:
     prerequisites:
     - TH02001
   SN03039:
-    name: Tiếng Anh chuyên ngành CNTT&amp;TT
+    name: Tiếng Anh chuyên ngành CNTT
     credits: 2
     theory_credits: 2.0
     practice_credits: 0.0

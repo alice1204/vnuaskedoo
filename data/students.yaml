@@ -18,3 +18,58 @@ students:
       - TH01002
       - TH01007
     failed: []
+
+  "671236":
+    name: "Nguyễn Văn C"
+    major: "Công nghệ thông tin"
+    current_semester: 7
+    completed:
+      # Học kỳ 1
+      - ML01020  # Triết học Mác Lênin
+      - ML01009  # Pháp luật đại cương
+      - TH01001  # Tin học cơ sở
+      - TH01029  # Cơ sở vật lý cho tin học
+      - TH01006  # Đại số tuyến tính
+      - TH01024  # Toán giải tích
+      - SN00010  # Tiếng Anh bổ trợ
+      - GT01016  # Giáo dục thể chất đại cương
+
+      # Học kỳ 2
+      - ML01021  # Kinh tế chính trị Mác - Lênin
+      - TH01007  # Xác suất thống kê
+      - TH01023  # Toán rời rạc
+      - TH01022  # Kiến trúc máy tính và Vi xử lý
+      - TH02001  # Cơ sở dữ liệu
+      - SN00011  # Tiếng Anh 0
+
+      # Học kỳ 3
+      - SN01032  # Tiếng Anh 1
+      - ML01022  # Chủ nghĩa xã hội khoa học
+      - TH02037  # Phân tích và thiết kế hệ thống
+      - TH02015  # Nguyên lý hệ điều hành
+      - TH02035  # Thực hành Cấu trúc dữ liệu và giải thuật
+      - TH02036  # Nhập môn Công nghệ phần mềm
+
+      # Học kỳ 4
+      - SN01033  # Tiếng Anh 2
+      - TH02041  # Độ phức tạp thuật toán
+      - TH02038  # Mạng máy tính
+      - TH02039  # An toàn thông tin
+      - TH03210  # Phát triển web front-end
+
+      # Học kỳ 5
+      - SN03039  # Tiếng Anh chuyên ngành CNTT&TT
+      - ML01005  # Tư tưởng Hồ Chí Minh
+      - TH03215  # Thiết kế mạng máy tính
+      - TH03206  # Trí tuệ nhân tạo
+      - TH03212  # Phát triển web back-end
+      - TH03203  # Chương trình dịch
+
+      # Học kỳ 6
+      - TH03298  # Thực tập chuyên ngành CNTT 1
+      - TH03216  # Quản trị mạng
+      - TH03312  # Khai phá dữ liệu
+    failed:
+      - TH02034  # Kỹ thuật lập trình (Học kỳ 2)
+      - TH02016  # Cấu trúc dữ liệu và giải thuật (Học kỳ 3)
+      - TH03106  # Lập trình hướng đối tượng (Học kỳ 4)
