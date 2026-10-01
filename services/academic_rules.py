@@ -39,7 +39,8 @@ def get_candidate_courses(
             f"Không tìm thấy sinh viên {student_id}"
         )
 
-    curriculum = load_curriculum()["courses"]
+    cohort = student.get("cohort", "K68")
+    curriculum = load_curriculum(cohort)["courses"]
     opened_courses = load_opened_courses()["courses"]
 
     completed = set(

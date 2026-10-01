@@ -1,49 +1,622 @@
-semester: "2026-2027-1"
-
+semester: 2026-2027-1
 courses:
-
-  TH01007:
+  TH03102:
     classes:
-      - id: "501"
-        times:
-          - "T2(4-5)"
-
-  TH02001:
+    - id: '303'
+      times:
+      - T7(4-5)
+    - id: '103'
+      times:
+      - T2(4-5)
+    - id: '304'
+      times:
+      - T7(6-8)
+  TH03201:
     classes:
-      - id: "801"
-        times:
-          - "T2(9-10)"
-
-      - id: "802"
-        times:
-          - "T6(4-5)"
-
-  TH02002:
+    - id: '407'
+      times:
+      - T5(4-5)
+    - id: '408'
+      times:
+      - T7(1-3)
+    - id: '703'
+      times:
+      - T2(4-5)
+  KQ03331:
     classes:
-      - id: "901"
-        times:
-          - "T4(4-5)"
-
-  TH02003:
+    - id: '707'
+      times:
+      - T7(6-8)
+  SN00010:
     classes:
-      - id: "701"
-        times:
-          - "T3(1-3)"
-
-  TH02004:
+    - id: '304'
+      times:
+      - T4(6-8)
+  TH02037:
     classes:
-      - id: "601"
-        times:
-          - "T5(6-8)"
-
-  TH02005:
+    - id: '102'
+      times:
+      - T2(4-5)
+    - id: '905'
+      times:
+      - T5(6-8)
+    - id: '505'
+      times:
+      - T4(6-8)
+  SN01016:
     classes:
-      - id: "1501"
-        times:
-          - "T3(6-8)"
-
-  TH03001:
+    - id: '901'
+      times:
+      - T6(6-8)
+    - id: '605'
+      times:
+      - T5(4-5)
+    - id: '308'
+      times:
+      - T6(1-3)
+  KQ02209:
     classes:
-      - id: "1201"
-        times:
-          - "T6(1-3)"
+    - id: '407'
+      times:
+      - T6(6-8)
+    - id: '904'
+      times:
+      - T7(6-8)
+    - id: '407'
+      times:
+      - T7(4-5)
+  KN01010:
+    classes:
+    - id: '103'
+      times:
+      - T3(6-8)
+    - id: '202'
+      times:
+      - T4(1-3)
+    - id: '302'
+      times:
+      - T3(1-3)
+  TH01025:
+    classes:
+    - id: '407'
+      times:
+      - T6(6-8)
+    - id: '606'
+      times:
+      - T4(1-3)
+  TH03236:
+    classes:
+    - id: '204'
+      times:
+      - T3(6-8)
+    - id: '205'
+      times:
+      - T3(1-3)
+  KT02003:
+    classes:
+    - id: '701'
+      times:
+      - T4(4-5)
+  MT01008:
+    classes:
+    - id: '201'
+      times:
+      - T7(1-3)
+    - id: '202'
+      times:
+      - T7(1-3)
+  TH03115:
+    classes:
+    - id: '502'
+      times:
+      - T3(6-8)
+    - id: '701'
+      times:
+      - T7(1-3)
+  GT01017:
+    classes:
+    - id: '105'
+      times:
+      - T4(9-10)
+  KN01002:
+    classes:
+    - id: '806'
+      times:
+      - T7(1-3)
+    - id: '204'
+      times:
+      - T2(9-10)
+    - id: '502'
+      times:
+      - T5(6-8)
+  TH03996:
+    classes:
+    - id: '109'
+      times:
+      - T7(9-10)
+    - id: '106'
+      times:
+      - T3(6-8)
+  KN01008:
+    classes:
+    - id: '902'
+      times:
+      - T6(6-8)
+    - id: '809'
+      times:
+      - T4(1-3)
+  GT01022:
+    classes:
+    - id: '609'
+      times:
+      - T3(1-3)
+  QS01011:
+    classes:
+    - id: '909'
+      times:
+      - T2(9-10)
+    - id: '104'
+      times:
+      - T6(1-3)
+  TH03217:
+    classes:
+    - id: '505'
+      times:
+      - T3(9-10)
+    - id: '307'
+      times:
+      - T4(1-3)
+  KN01001:
+    classes:
+    - id: '509'
+      times:
+      - T2(4-5)
+    - id: '104'
+      times:
+      - T2(4-5)
+  TH03207:
+    classes:
+    - id: '501'
+      times:
+      - T2(6-8)
+  MT01001:
+    classes:
+    - id: '807'
+      times:
+      - T4(4-5)
+  TH03110:
+    classes:
+    - id: '805'
+      times:
+      - T2(9-10)
+    - id: '904'
+      times:
+      - T7(9-10)
+  TH03204:
+    classes:
+    - id: '605'
+      times:
+      - T6(6-8)
+  TH03203:
+    classes:
+    - id: '303'
+      times:
+      - T4(6-8)
+    - id: '408'
+      times:
+      - T5(4-5)
+  GT01023:
+    classes:
+    - id: '704'
+      times:
+      - T3(6-8)
+    - id: '606'
+      times:
+      - T5(6-8)
+  KN01005:
+    classes:
+    - id: '107'
+      times:
+      - T4(9-10)
+  GT01018:
+    classes:
+    - id: '702'
+      times:
+      - T3(9-10)
+    - id: '601'
+      times:
+      - T2(9-10)
+  CD03913:
+    classes:
+    - id: '501'
+      times:
+      - T5(1-3)
+    - id: '108'
+      times:
+      - T5(4-5)
+  TH03325:
+    classes:
+    - id: '708'
+      times:
+      - T7(4-5)
+  TH02046:
+    classes:
+    - id: '306'
+      times:
+      - T7(9-10)
+    - id: '501'
+      times:
+      - T2(6-8)
+    - id: '104'
+      times:
+      - T5(4-5)
+  PTH03222:
+    classes:
+    - id: '109'
+      times:
+      - T6(6-8)
+  ML01009:
+    classes:
+    - id: '701'
+      times:
+      - T4(1-3)
+    - id: '505'
+      times:
+      - T4(6-8)
+  TH03507:
+    classes:
+    - id: '809'
+      times:
+      - T6(9-10)
+  GT01021:
+    classes:
+    - id: '707'
+      times:
+      - T6(1-3)
+  SN00011:
+    classes:
+    - id: '509'
+      times:
+      - T5(6-8)
+    - id: '404'
+      times:
+      - T7(6-8)
+    - id: '906'
+      times:
+      - T2(4-5)
+  TH02032:
+    classes:
+    - id: '701'
+      times:
+      - T2(6-8)
+    - id: '202'
+      times:
+      - T2(9-10)
+    - id: '501'
+      times:
+      - T6(4-5)
+  TH03137:
+    classes:
+    - id: '304'
+      times:
+      - T3(1-3)
+    - id: '504'
+      times:
+      - T5(4-5)
+  TH01002:
+    classes:
+    - id: '802'
+      times:
+      - T6(9-10)
+  TH03117:
+    classes:
+    - id: '606'
+      times:
+      - T4(9-10)
+  CD02148:
+    classes:
+    - id: '403'
+      times:
+      - T6(1-3)
+    - id: '602'
+      times:
+      - T5(6-8)
+    - id: '403'
+      times:
+      - T3(6-8)
+  ML01020:
+    classes:
+    - id: '504'
+      times:
+      - T7(4-5)
+  TH03238:
+    classes:
+    - id: '602'
+      times:
+      - T6(6-8)
+  TH02038:
+    classes:
+    - id: '307'
+      times:
+      - T7(9-10)
+  KN01009:
+    classes:
+    - id: '802'
+      times:
+      - T4(4-5)
+  TH03101:
+    classes:
+    - id: '802'
+      times:
+      - T6(9-10)
+    - id: '603'
+      times:
+      - T3(6-8)
+    - id: '702'
+      times:
+      - T6(1-3)
+  TH03133:
+    classes:
+    - id: '602'
+      times:
+      - T4(9-10)
+  KT01020:
+    classes:
+    - id: '607'
+      times:
+      - T5(9-10)
+    - id: '106'
+      times:
+      - T3(6-8)
+    - id: '901'
+      times:
+      - T4(9-10)
+  KN01003:
+    classes:
+    - id: '302'
+      times:
+      - T5(9-10)
+  TH03136:
+    classes:
+    - id: '102'
+      times:
+      - T3(4-5)
+  SN01032:
+    classes:
+    - id: '807'
+      times:
+      - T4(6-8)
+  KN01007:
+    classes:
+    - id: '104'
+      times:
+      - T7(1-3)
+    - id: '902'
+      times:
+      - T6(6-8)
+    - id: '301'
+      times:
+      - T3(9-10)
+  TH03329:
+    classes:
+    - id: '702'
+      times:
+      - T5(4-5)
+    - id: '204'
+      times:
+      - T4(6-8)
+  TH03103:
+    classes:
+    - id: '806'
+      times:
+      - T5(4-5)
+    - id: '709'
+      times:
+      - T6(6-8)
+  GT01019:
+    classes:
+    - id: '301'
+      times:
+      - T2(4-5)
+    - id: '208'
+      times:
+      - T2(6-8)
+    - id: '905'
+      times:
+      - T3(9-10)
+  QS01014:
+    classes:
+    - id: '701'
+      times:
+      - T4(4-5)
+  TH01009:
+    classes:
+    - id: '601'
+      times:
+      - T3(4-5)
+    - id: '802'
+      times:
+      - T7(1-3)
+  ML01005:
+    classes:
+    - id: '701'
+      times:
+      - T5(9-10)
+  KN01006:
+    classes:
+    - id: '205'
+      times:
+      - T4(6-8)
+    - id: '707'
+      times:
+      - T2(6-8)
+    - id: '806'
+      times:
+      - T5(9-10)
+  GT01016:
+    classes:
+    - id: '704'
+      times:
+      - T7(9-10)
+  SN03039:
+    classes:
+    - id: '105'
+      times:
+      - T7(6-8)
+  TH03237:
+    classes:
+    - id: '909'
+      times:
+      - T5(4-5)
+    - id: '409'
+      times:
+      - T6(1-3)
+    - id: '206'
+      times:
+      - T5(9-10)
+  GT01015:
+    classes:
+    - id: '807'
+      times:
+      - T7(6-8)
+    - id: '308'
+      times:
+      - T3(9-10)
+    - id: '504'
+      times:
+      - T3(6-8)
+  TH03316:
+    classes:
+    - id: '401'
+      times:
+      - T2(6-8)
+  KN01004:
+    classes:
+    - id: '505'
+      times:
+      - T3(6-8)
+    - id: '606'
+      times:
+      - T7(4-5)
+  TH02036:
+    classes:
+    - id: '107'
+      times:
+      - T2(9-10)
+    - id: '808'
+      times:
+      - T6(4-5)
+  TH03005:
+    classes:
+    - id: '108'
+      times:
+      - T5(6-8)
+  TH01024:
+    classes:
+    - id: '404'
+      times:
+      - T3(6-8)
+  QS01012:
+    classes:
+    - id: '306'
+      times:
+      - T5(6-8)
+  KQ01211:
+    classes:
+    - id: '105'
+      times:
+      - T3(4-5)
+    - id: '708'
+      times:
+      - T4(1-3)
+  TH03327:
+    classes:
+    - id: '706'
+      times:
+      - T2(4-5)
+  TH03112:
+    classes:
+    - id: '108'
+      times:
+      - T2(9-10)
+    - id: '309'
+      times:
+      - T4(4-5)
+  TH03216:
+    classes:
+    - id: '102'
+      times:
+      - T7(6-8)
+    - id: '306'
+      times:
+      - T6(6-8)
+    - id: '607'
+      times:
+      - T5(4-5)
+  TH03116:
+    classes:
+    - id: '703'
+      times:
+      - T6(9-10)
+    - id: '708'
+      times:
+      - T3(9-10)
+    - id: '907'
+      times:
+      - T5(6-8)
+  GT01014:
+    classes:
+    - id: '303'
+      times:
+      - T7(4-5)
+  TH03205:
+    classes:
+    - id: '604'
+      times:
+      - T2(9-10)
+    - id: '908'
+      times:
+      - T5(4-5)
+  TH01006:
+    classes:
+    - id: '408'
+      times:
+      - T6(9-10)
+  QS01013:
+    classes:
+    - id: '304'
+      times:
+      - T2(4-5)
+    - id: '602'
+      times:
+      - T4(9-10)
+  TH03326:
+    classes:
+    - id: '605'
+      times:
+      - T3(6-8)
+    - id: '504'
+      times:
+      - T2(9-10)
+  TH03328:
+    classes:
+    - id: '106'
+      times:
+      - T7(9-10)
+    - id: '501'
+      times:
+      - T3(1-3)
+    - id: '503'
+      times:
+      - T4(9-10)
+  GT01020:
+    classes:
+    - id: '406'
+      times:
+      - T7(1-3)
+    - id: '202'
+      times:
+      - T4(9-10)
+    - id: '404'
+      times:
+      - T3(1-3)

@@ -19,6 +19,11 @@ elective_rules:
     condition: "Chỉ được học để thay thế trong trường hợp trượt Khóa luận tốt nghiệp, bình thường không được học."
 
 group_requirements:
+  national_defense:
+    name: "Giáo dục quốc phòng"
+    required_passed_courses: 4
+    total_options: 4
+    courses: ["QS01011", "QS01012", "QS01013", "QS01014"]
   physical_education:
     name: "Thể dục - Thể chất"
     required_passed_courses: 2
@@ -47,6 +52,166 @@ group_requirements:
       - KN01007
 
 courses:
+  KN01001:
+    name: Kỹ năng giao tiếp
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 2
+    type: conditional
+    prerequisites: []
+  KN01002:
+    name: Kỹ năng lãnh đạo
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 2
+    type: conditional
+    prerequisites: []
+  KN01003:
+    name: Kỹ năng quản lý bản thân
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 2
+    type: conditional
+    prerequisites: []
+  KN01004:
+    name: Kỹ năng tìm kiếm việc làm
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 2
+    type: conditional
+    prerequisites: []
+  KN01005:
+    name: Kỹ năng làm việc nhóm
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 2
+    type: conditional
+    prerequisites: []
+  KN01006:
+    name: Kỹ năng hội nhập quốc tế
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 2
+    type: conditional
+    prerequisites: []
+  KN01007:
+    name: Kỹ năng khởi nghiệp
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 2
+    type: conditional
+    prerequisites: []
+  GT01017:
+    name: Điền kinh
+    credits: 1
+    theory_credits: 0.0
+    practice_credits: 1.0
+    semester: 2
+    type: conditional
+    prerequisites: []
+  GT01018:
+    name: Thể dục Aerobic
+    credits: 1
+    theory_credits: 0.0
+    practice_credits: 1.0
+    semester: 2
+    type: conditional
+    prerequisites: []
+  GT01019:
+    name: Bóng đá
+    credits: 1
+    theory_credits: 0.0
+    practice_credits: 1.0
+    semester: 2
+    type: conditional
+    prerequisites: []
+  GT01020:
+    name: Bóng chuyền
+    credits: 1
+    theory_credits: 0.0
+    practice_credits: 1.0
+    semester: 2
+    type: conditional
+    prerequisites: []
+  GT01021:
+    name: Bóng rổ
+    credits: 1
+    theory_credits: 0.0
+    practice_credits: 1.0
+    semester: 2
+    type: conditional
+    prerequisites: []
+  GT01022:
+    name: Cầu lông
+    credits: 1
+    theory_credits: 0.0
+    practice_credits: 1.0
+    semester: 2
+    type: conditional
+    prerequisites: []
+  GT01023:
+    name: Cờ vua
+    credits: 1
+    theory_credits: 0.0
+    practice_credits: 1.0
+    semester: 2
+    type: conditional
+    prerequisites: []
+  GT01014:
+    name: Khiêu vũ thể thao
+    credits: 1
+    theory_credits: 0.0
+    practice_credits: 1.0
+    semester: 2
+    type: conditional
+    prerequisites: []
+  GT01015:
+    name: Bơi
+    credits: 1
+    theory_credits: 0.0
+    practice_credits: 1.0
+    semester: 2
+    type: conditional
+    prerequisites: []
+  QS01011:
+    name: Đường lối quốc phòng và an ninh của ĐCSVN
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 1
+    type: conditional
+    prerequisites: []
+  QS01012:
+    name: Công tác quốc phòng và an ninh
+    credits: 2
+    theory_credits: 2.0
+    practice_credits: 0.0
+    semester: 1
+    type: conditional
+    prerequisites: []
+  QS01013:
+    name: Quân sự chung, chiến thuật, kỹ thuật bắn súng ngắn và sử dụng lựu đạn
+    credits: 6
+    theory_credits: 6.0
+    practice_credits: 0.0
+    semester: 1
+    type: conditional
+    prerequisites: []
+  QS01014:
+    name: Hiểu biết chung về quân, binh chủng
+    credits: 1
+    theory_credits: 1.0
+    practice_credits: 0.0
+    semester: 1
+    type: conditional
+    prerequisites: []
   ML01020:
     name: Triết học Mác Lênin
     credits: 3
@@ -518,7 +683,7 @@ courses:
     type: compulsory
     prerequisites: []
   TH03208:
-    name: Chuyên đề: Phân tích và xử lý dữ liệu
+    name: "Chuyên đề: Phân tích và xử lý dữ liệu"
     credits: 2
     theory_credits: 2.0
     practice_credits: 0.0
