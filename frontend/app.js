@@ -1,6 +1,41 @@
 const API_BASE_URL =
     "http://127.0.0.1:8000";
 
+const mathRule = /^(?:\$\$([\s\S]+?)\$\$|\$([^\s$](?:[\s\S]*?[^\s$])?)\$)/;
+const customKatexExtension = {
+    name: 'math',
+    level: 'inline',
+    start(src) { return src.indexOf('$'); },
+    tokenizer(src, tokens) {
+        const match = src.match(mathRule);
+        if (match) {
+            const isBlock = !!match[1];
+            const text = isBlock ? match[1] : match[2];
+            return {
+                type: 'math',
+                raw: match[0],
+                text: text,
+                displayMode: isBlock
+            };
+        }
+    },
+    renderer(token) {
+        if (window.katex) {
+            try {
+                return katex.renderToString(token.text, { displayMode: token.displayMode, throwOnError: false });
+            } catch (e) {
+                return token.raw;
+            }
+        }
+        return token.raw;
+    }
+};
+
+if (window.marked) {
+    marked.use({ extensions: [customKatexExtension] });
+}
+
+
 
 const generateButton =
     document.getElementById(
