@@ -12,7 +12,8 @@ from services.knowledge_service import (
     lookup_equivalent_courses,
 )
 from services.regulation_service import search_regulations
-from services.academic_rules import get_candidate_courses
+from services.academic_rules import get_candidate_courses, get_student
+from services.student_service import get_current_student_id
 from services.scheduler import create_schedule
 
 load_dotenv()
@@ -75,20 +76,20 @@ def tool_search_regulations(query: str) -> str:
     """
     Tra cứu các điều khoản trong Quy chế đào tạo đại học và Sổ tay sinh viên của Học viện Nông nghiệp Việt Nam.
     Dùng để trả lời các câu hỏi về: điều kiện cảnh báo học tập, buộc thôi học, thang điểm, điều kiện xét tốt nghiệp,
-    rút học phần, học lại, học cải thiện, nghỉ học tạm thời, điểm rèn luyện, học bổng, miễn giảm học phí.
+    rút học phần, học lại, học cải thiện, nghỉ học tạm thời, điểm rèn luyện, học bổng, miễn giảm học phí, quy đổi tiếng Anh.
     Args:
-        query: Từ khóa hoặc câu hỏi cần tra cứu quy chế (ví dụ: 'cảnh báo học tập', 'buộc thôi học', 'thang điểm 4', 'xét tốt nghiệp').
+        query: Từ khóa hoặc câu hỏi cần tra cứu quy chế (ví dụ: 'cảnh báo học tập', 'học bổng khuyến khích', 'quy đổi tiếng Anh', 'miễn giảm học phí').
     """
-    results = search_regulations(query=query, top_k=2)
+    results = search_regulations(query=query, top_k=3)
     compact_chunks = []
     for art in results:
         if "error" in art or "message" in art:
             compact_chunks.append(art)
             continue
         content = art.get("content", "")
-        # Rút gọn nội dung nếu quá dài (tối đa 1200 ký tự)
-        if len(content) > 1200:
-            content = content[:1200] + "... [xem tiếp trong quy chế]"
+        # Rút gọn nội dung nếu quá dài (tối đa 1400 ký tự - vừa khít với kích thước chunk mới)
+        if len(content) > 1400:
+            content = content[:1400] + "... [xem tiếp trong quy chế]"
         compact_chunks.append({
             "title": art.get("title"),
             "content": content
@@ -100,7 +101,7 @@ def tool_generate_schedule(student_id: str = "671234", target_credits: int = 18,
     """
     Tự động xếp lịch học đề xuất cho sinh viên dựa trên tình trạng học tập thực tế, các môn đã học, nợ môn và môn mở.
     Args:
-        student_id: Mã sinh viên (mặc định '671234' hoặc '671235').
+        student_id: Mã sinh viên (mặc định lấy mã sinh viên đang đăng nhập).
         target_credits: Số tín chỉ mong muốn đăng ký (từ 15 đến 25 tín chỉ).
         allow_early: Cho phép đề xuất học vượt môn kỳ tiếp theo nếu thỏa mãn điều kiện tiên quyết.
     """
@@ -116,11 +117,12 @@ Bạn là Cố vấn Học vụ AI của Học viện Nông nghiệp Việt Nam 
 Nhiệm vụ của bạn là hỗ trợ sinh viên giải đáp thắc mắc về:
 1. Tiến trình chương trình đào tạo của các khóa K67, K68, K69, K70.
 2. Danh mục học phần tương đương và thay thế của K68 và K69.
-3. Quy chế đào tạo theo tín chỉ (cảnh báo học tập, buộc thôi học, thang điểm, rút môn, xét tốt nghiệp...) và chính sách sinh viên.
+3. Quy chế đào tạo theo tín chỉ (cảnh báo học tập, buộc thôi học, thang điểm, rút môn, xét tốt nghiệp...) và chính sách sinh viên (học bổng, điểm rèn luyện, miễn giảm học phí, quy đổi tiếng Anh).
 4. Tự động xếp và gợi ý kế hoạch học tập/thời khóa biểu khi sinh viên yêu cầu.
 
 NGUYÊN TẮC HOẠT ĐỘNG:
 - Luôn sử dụng CÔNG CỤ (TOOLS) được cung cấp để tra cứu dữ liệu chính xác trước khi trả lời. Tuyệt đối không tự bịa đặt mã môn, số tín chỉ hoặc điều khoản quy chế.
+- ƯU TIÊN NGỮ CẢNH SINH VIÊN ĐĂNG NHẬP: Khi sinh viên đặt câu hỏi mà KHÔNG nêu rõ khóa học (K67, K68, K69, K70) hoặc mã sinh viên, hãy MẶC ĐỊNH sử dụng thông tin Khóa (cohort), Ngành (major), Học kỳ hiện tại và Mã sinh viên của người dùng đang đăng nhập bên dưới để gọi công cụ tra cứu ngay lập tức (không cần hỏi lại sinh viên thuộc khóa nào). Chỉ khi sinh viên chỉ đích danh một khóa/ngành khác thì mới tra cứu theo khóa/ngành được chỉ định đó.
 - Trình bày câu trả lời bằng Markdown rõ ràng, thân thiện, dễ đọc:
   + Dùng BẢNG (Markdown Table) khi liệt kê môn học hoặc so sánh môn tương đương.
   + Ghi rõ nguồn trích dẫn ở cuối (Ví dụ: [Nguồn: Điều 18 - Quy chế đào tạo Học viện] hoặc [Nguồn: CTĐT K68 Khoa CNTT]).
@@ -130,6 +132,24 @@ NGUYÊN TẮC HOẠT ĐỘNG:
 # In-memory session store (RAM)
 _SESSIONS: Dict[str, Any] = {}
 
+def build_student_context_instruction() -> str:
+    """Lấy thông tin sinh viên đang đăng nhập để nhúng tự động (Context Injection) vào System Instruction."""
+    try:
+        student_id = get_current_student_id()
+        student = get_student(student_id)
+        if student:
+            return (
+                f"\n[THÔNG TIN SINH VIÊN ĐANG ĐĂNG NHẬP]\n"
+                f"- Mã sinh viên (student_id): {student_id}\n"
+                f"- Họ và tên: {student.get('name', 'Không rõ')}\n"
+                f"- Khóa (cohort): {student.get('cohort', 'K68')}\n"
+                f"- Ngành/Chuyên ngành: {student.get('major', 'Công nghệ thông tin')}\n"
+                f"- Học kỳ hiện tại: {student.get('current_semester', 1)}\n"
+            )
+    except Exception:
+        pass
+    return ""
+
 def create_chat_session(model_name: str):
     tools = [
         tool_lookup_curriculum,
@@ -137,10 +157,11 @@ def create_chat_session(model_name: str):
         tool_search_regulations,
         tool_generate_schedule,
     ]
+    full_system_instruction = SYSTEM_INSTRUCTION + build_student_context_instruction()
     return client.chats.create(
         model=model_name,
         config=types.GenerateContentConfig(
-            system_instruction=SYSTEM_INSTRUCTION,
+            system_instruction=full_system_instruction,
             temperature=0.2,
             tools=tools,
         ),
