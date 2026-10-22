@@ -36,25 +36,43 @@ client = genai.Client(api_key=GEMINI_API_KEY)
 def tool_lookup_curriculum(cohort: str, semester: Optional[int] = None, search_term: Optional[str] = None) -> str:
     """
     Tra cứu tiến trình chương trình đào tạo của Khoa CNTT cho các khóa K67, K68, K69, K70.
+    Dùng để kiểm tra thông tin môn học, số tín chỉ, học kỳ, điều kiện tiên quyết, và phân loại đặc thù
+    (ví dụ: phân biệt môn tự chọn thường ở kỳ 1-7 với môn tự chọn chỉ dùng để thay thế Khóa luận tốt nghiệp ở kỳ 8).
     Args:
         cohort: Khóa sinh viên cần tra cứu, ví dụ 'K67', 'K68', 'K69', 'K70'.
         semester: Học kỳ dự kiến (từ 1 đến 8), có thể để None nếu muốn xem toàn khóa hoặc tìm theo tên môn.
-        search_term: Tên môn học hoặc mã học phần cần tìm kiếm (ví dụ: 'Toán giải tích', 'TH02046').
+        search_term: Tên môn học hoặc mã học phần cần tìm kiếm (ví dụ: 'Toán giải tích', 'Truyền thông đa phương tiện', 'TH02046').
     """
     results = get_curriculum_courses(cohort=cohort, semester=semester, search_term=search_term)
     if not results:
         return f"Không tìm thấy học phần nào phù hợp trong CTĐT khóa {cohort}."
-    # Giới hạn thông tin gọn nhẹ để tiết kiệm token
+    # Giới hạn thông tin gọn nhẹ nhưng giữ đầy đủ quy tắc đặc thù của học phần bằng tiếng Việt
+    type_map = {
+        "compulsory": "Bắt buộc",
+        "elective": "Tự chọn",
+        "conditional": "Điều kiện",
+    }
     compact_results = []
     for r in results[:10]:
-        compact_results.append({
+        item = {
             "code": r.get("code"),
+            "ma_mon": r.get("code"),
             "name": r.get("name"),
+            "ten_mon": r.get("name"),
             "credits": r.get("credits"),
+            "so_tin_chi": r.get("credits"),
             "semester": r.get("semester"),
+            "hoc_ky": r.get("semester"),
             "type": r.get("type"),
-            "prerequisites": r.get("prerequisites", [])
-        })
+            "phan_loai": r.get("category", type_map.get(r.get("type"), "Tự chọn")),
+            "prerequisites": r.get("prerequisites", []),
+            "mon_tien_quyet": r.get("prerequisites", []),
+        }
+        if "specialization_group" in r:
+            item["dinh_huong_chuyen_sau"] = r["specialization_group"]
+        if "note" in r:
+            item["ghi_chu_quy_dinh"] = r["note"]
+        compact_results.append(item)
     return json.dumps(compact_results, ensure_ascii=False)
 
 # Tool 2: Tra cứu học phần tương đương và thay thế K68, K69
@@ -80,7 +98,7 @@ def tool_search_regulations(query: str) -> str:
     Args:
         query: Từ khóa hoặc câu hỏi cần tra cứu quy chế (ví dụ: 'cảnh báo học tập', 'học bổng khuyến khích', 'quy đổi tiếng Anh', 'miễn giảm học phí').
     """
-    results = search_regulations(query=query, top_k=3)
+    results = search_regulations(query=query, top_k=4)
     compact_chunks = []
     for art in results:
         if "error" in art or "message" in art:
@@ -122,6 +140,10 @@ Nhiệm vụ của bạn là hỗ trợ sinh viên giải đáp thắc mắc v�
 
 NGUYÊN TẮC HOẠT ĐỘNG:
 - Luôn sử dụng CÔNG CỤ (TOOLS) được cung cấp để tra cứu dữ liệu chính xác trước khi trả lời. Tuyệt đối không tự bịa đặt mã môn, số tín chỉ hoặc điều khoản quy chế.
+- NGÔN TỪ PHẢN HỒI: Luôn sử dụng 100% tiếng Việt tự nhiên và chuyên nghiệp của Cố vấn học vụ. Tuyệt đối KHÔNG viết hoặc để lộ bất kỳ tên biến, mã kỹ thuật tiếng Anh hay tên hàm code nào (như `elective_thesis_substitution`, `regular_elective`, `compulsory`, `elective`, `tool_lookup_curriculum`...) trong câu trả lời cho sinh viên.
+- LƯU Ý ĐẶC BIỆT KHI TƯ VẤN HỌC THAY THẾ MÔN TỰ CHỌN: Khi sinh viên hỏi có thể lấy môn tự chọn B để học thay thế cho môn tự chọn A bị trượt hay không, BẮT BUỘC phải gọi `tool_lookup_curriculum` để tra cứu cả môn A và môn B trong CTĐT:
+  1. Nếu môn B thuộc nhóm "Học phần tự chọn thay thế Khóa luận tốt nghiệp" (các môn tự chọn ở học kỳ 8 như Truyền thông đa phương tiện, Hệ quản trị CSDL 2, Phân tích dữ liệu lớn...), tuyệt đối KHÔNG được dùng để học thay thế cho các môn tự chọn thông thường ở các học kỳ 1-7.
+  2. Nếu sinh viên trượt một môn tự chọn thông thường, sinh viên có thể đăng ký học lại chính môn đó HOẶC chọn học đổi sang BẤT KỲ môn tự chọn thông thường nào khác (chưa từng học) thuộc các học kỳ từ kỳ 1 đến kỳ 7 (KHÔNG bắt buộc phải cùng học kỳ với môn bị trượt), miễn là môn thay thế PHẢI CÓ CÙNG SỐ TÍN CHỈ với môn bị trượt.
 - ƯU TIÊN NGỮ CẢNH SINH VIÊN ĐĂNG NHẬP: Khi sinh viên đặt câu hỏi mà KHÔNG nêu rõ khóa học (K67, K68, K69, K70) hoặc mã sinh viên, hãy MẶC ĐỊNH sử dụng thông tin Khóa (cohort), Ngành (major), Học kỳ hiện tại và Mã sinh viên của người dùng đang đăng nhập bên dưới để gọi công cụ tra cứu ngay lập tức (không cần hỏi lại sinh viên thuộc khóa nào). Chỉ khi sinh viên chỉ đích danh một khóa/ngành khác thì mới tra cứu theo khóa/ngành được chỉ định đó.
 - Trình bày câu trả lời bằng Markdown rõ ràng, thân thiện, dễ đọc:
   + Dùng BẢNG (Markdown Table) khi liệt kê môn học hoặc so sánh môn tương đương.

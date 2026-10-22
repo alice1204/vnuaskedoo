@@ -14,8 +14,16 @@ GEMINI_API_KEY = os.getenv(
 
 GEMINI_MODEL = os.getenv(
     "GEMINI_MODEL",
-    "gemini-3.5-flash-lite",
+    "gemini-3.1-flash-lite",
 )
+
+FALLBACK_MODELS = [
+    GEMINI_MODEL,
+    "gemini-3.1-flash-lite",
+    "gemini-flash-lite-latest",
+    "gemini-3.5-flash-lite",
+]
+FALLBACK_MODELS = list(dict.fromkeys(FALLBACK_MODELS))
 
 
 client = genai.Client(
@@ -47,33 +55,54 @@ Tổng số tín chỉ đăng ký: {total_credits}
 """.strip()
 
     return f"""
-Bạn là trợ lý học vụ. Hãy viết một đoạn nhận xét ngắn gọn (dưới 150 từ), giọng điệu thân thiện dành cho sinh viên về thời khóa biểu kỳ này dựa trên dữ liệu sau:
+Bạn là trợ lý học vụ AI. Hãy viết một đoạn nhận xét ngắn gọn (khoảng 80-120 từ), giọng điệu thân thiện, tích cực dành cho sinh viên về thời khóa biểu kỳ này dựa trên dữ liệu sau:
 
 {summary_text}
 
-Lưu ý: Nêu rõ môn nào được ưu tiên học lại, môn nào đúng tiến độ hoặc học trước. Trả lời bằng tiếng Việt.
+Lưu ý: Nêu rõ môn nào được ưu tiên học lại, môn nào đúng tiến độ hoặc học trước, và đưa ra một lời động viên ngắn. Trả lời bằng tiếng Việt.
 """
 
-def explain_schedule(schedule_result: dict):
+def explain_schedule(schedule_result: dict) -> str:
     prompt = _build_prompt(schedule_result)
-    response = client.models.generate_content(
-        model=GEMINI_MODEL,
-        contents=prompt,
-        config=types.GenerateContentConfig(
-            thinking_config=types.ThinkingConfig(thinking_level="minimal")
-        )
-    )
-    return response.text
+    for model_name in FALLBACK_MODELS:
+        try:
+            response = client.models.generate_content(
+                model=model_name,
+                contents=prompt,
+            )
+            return response.text
+        except Exception as e:
+            err_str = str(e)
+            if any(k in err_str for k in ["429", "503", "UNAVAILABLE", "RESOURCE_EXHAUSTED"]):
+                continue
+            return f"Không thể tạo giải thích AI lúc này: {err_str}"
+    total_credits = schedule_result.get("total_credits", 0)
+    return f"Thời khóa biểu của bạn đã được xếp tối ưu với {total_credits} tín chỉ. Hiện tại AI đang bận, bạn vui lòng tham khảo bảng môn học phía trên nhé!"
 
 def explain_schedule_stream(schedule_result: dict):
     prompt = _build_prompt(schedule_result)
-    response_stream = client.models.generate_content_stream(
-        model=GEMINI_MODEL,
-        contents=prompt,
-        config=types.GenerateContentConfig(
-            thinking_config=types.ThinkingConfig(thinking_level="minimal")
-        )
-    )
-    for chunk in response_stream:
-        if chunk.text:
-            yield chunk.text
+    for model_name in FALLBACK_MODELS:
+        try:
+            response_stream = client.models.generate_content_stream(
+                model=model_name,
+                contents=prompt,
+            )
+            has_yielded = False
+            for chunk in response_stream:
+                try:
+                    if chunk.text:
+                        yield chunk.text
+                        has_yielded = True
+                except Exception:
+                    continue
+            if has_yielded:
+                return
+        except Exception as e:
+            err_str = str(e)
+            if any(k in err_str for k in ["429", "503", "UNAVAILABLE", "RESOURCE_EXHAUSTED"]):
+                continue
+            yield f"Không thể tạo giải thích AI lúc này: {err_str}"
+            return
+
+    total_credits = schedule_result.get("total_credits", 0)
+    yield f"Thời khóa biểu của bạn đã được xếp tối ưu với {total_credits} tín chỉ. Hiện tại AI đang bận, bạn vui lòng tham khảo bảng môn học phía trên nhé!"

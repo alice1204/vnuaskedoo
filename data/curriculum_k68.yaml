@@ -23,7 +23,7 @@ elective_rules:
         courses: ["TH03327", "TH03236", "TH03237", "TH03238", "TH03203", "TH03204", "TH03205", "TH03207"]
   thesis_substitution:
     enabled: true
-    substitute_for_course: "TH04996" # Lưu ý: Kiểm tra lại mã môn KLTN của K68 nếu có thay đổi
+    substitute_for_course: "TH04996"
     required_credits: 10
     semester: 8
     condition: "Chỉ được học để thay thế trong trường hợp trượt Khóa luận tốt nghiệp, bình thường không được học."

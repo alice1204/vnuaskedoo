@@ -7,7 +7,9 @@ with open("data/curriculum_k68.yaml", "r", encoding="utf8") as f:
 with open("data/students.yaml", "r", encoding="utf8") as f:
     students_data = yaml.safe_load(f)
 
-failed_courses = students_data["students"]["680001"]["failed"]
+failed_courses = []
+for s in students_data.get("students", {}).values():
+    failed_courses.extend(s.get("failed", []))
 
 opened = {}
 
@@ -15,6 +17,7 @@ days = ["T2", "T3", "T4", "T5", "T6", "T7"]
 shifts = ["1-3", "4-5", "6-8", "9-10"]
 
 courses_to_open = set(failed_courses)
+courses_to_open.update(["ML01022", "TH02015"])
 for code, info in curriculum.get("courses", {}).items():
     sem = info.get("semester")
     if sem in [1, 3, 5, 7]:
