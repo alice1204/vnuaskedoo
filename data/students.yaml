@@ -1,6 +1,7 @@
 students:
   "671234":
     name: "Nguyễn Văn A"
+    cohort: K68
     major: "Khoa học dữ liệu và Trí tuệ nhân tạo"
     current_semester: 4
     completed:
@@ -11,6 +12,7 @@ students:
 
   "671235":
     name: "Trần Văn B"
+    cohort: K68
     major: "Khoa học dữ liệu và Trí tuệ nhân tạo"
     current_semester: 4
     completed:
@@ -21,6 +23,7 @@ students:
 
   "671236":
     name: "Nguyễn Văn C"
+    cohort: K67
     major: "Công nghệ thông tin"
     current_semester: 7
     completed:

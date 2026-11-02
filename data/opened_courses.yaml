@@ -635,3 +635,38 @@ courses:
     - id: '404'
       times:
       - T3(1-3)
+  TH02034:
+    classes:
+    - id: '201'
+      times:
+      - T2(1-3)
+  TH03299:
+    classes:
+    - id: '200'
+      times:
+      - T2(6-8)
+  ML01023:
+    classes:
+    - id: '202'
+      times:
+      - T3(1-2)
+  KT03024:
+    classes:
+    - id: '203'
+      times:
+      - T4(1-2)
+  MT02011:
+    classes:
+    - id: '204'
+      times:
+      - T5(1-2)
+  CD03909:
+    classes:
+    - id: '205'
+      times:
+      - T6(1-2)
+  KQ03212:
+    classes:
+    - id: '206'
+      times:
+      - T7(1-3)

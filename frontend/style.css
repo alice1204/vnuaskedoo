@@ -1,3 +1,98 @@
+:root {
+    --bg-page: #f5f7fb;
+    --bg-card: #ffffff;
+    --bg-topbar: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-hover: #f1f5f9;
+    --border-color: #e5e7eb;
+    --border-light: #f3f4f6;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --text-muted: #94a3b8;
+    --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    
+    /* Input & Controls */
+    --input-bg: #ffffff;
+    --input-border: #d1d5db;
+    --input-text: #1f2937;
+    --input-placeholder: #9ca3af;
+    
+    /* Chat & AI */
+    --chat-bot-bg: #f8fafc;
+    --chat-bot-border: #e2e8f0;
+    --chat-bot-text: #1e293b;
+    --table-header-bg: #e2e8f0;
+    --table-stripe-bg: #f1f5f9;
+    --code-bg: #e2e8f0;
+    --chip-bg: #ffffff;
+    --chip-border: #cbd5e1;
+    --chip-text: #1e293b;
+    --chip-hover-bg: #f1f5f9;
+    
+    /* Timetable Grid */
+    --tt-grid-border: #e5e7eb;
+    --tt-header-bg: #f8fafc;
+    --tt-header-text: #475569;
+    --tt-cell-bg: #ffffff;
+    --tt-cell-hover: #f8fafc;
+    --tt-period-text: #94a3b8;
+    --tt-session-line: #cbd5e1;
+
+    /* Theme Toggle Button */
+    --toggle-btn-bg: #ffffff;
+    --toggle-btn-border: #cbd5e1;
+    --toggle-btn-color: #4b5563;
+    --toggle-btn-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+html.dark-mode,
+body.dark-mode {
+    --bg-page: #0b0f19;
+    --bg-card: #151d2f;
+    --bg-topbar: #151d2f;
+    --bg-secondary: #111827;
+    --bg-hover: #1e293b;
+    --border-color: #283548;
+    --border-light: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+    
+    /* Input & Controls */
+    --input-bg: #0b0f19;
+    --input-border: #334155;
+    --input-text: #f8fafc;
+    --input-placeholder: #64748b;
+    
+    /* Chat & AI */
+    --chat-bot-bg: #111827;
+    --chat-bot-border: #283548;
+    --chat-bot-text: #f1f5f9;
+    --table-header-bg: #1e293b;
+    --table-stripe-bg: #151d2f;
+    --code-bg: #1e293b;
+    --chip-bg: #111827;
+    --chip-border: #283548;
+    --chip-text: #e2e8f0;
+    --chip-hover-bg: #1e293b;
+    
+    /* Timetable Grid */
+    --tt-grid-border: #283548;
+    --tt-header-bg: #111827;
+    --tt-header-text: #cbd5e1;
+    --tt-cell-bg: #0b0f19;
+    --tt-cell-hover: #151d2f;
+    --tt-period-text: #64748b;
+    --tt-session-line: #334155;
+
+    /* Theme Toggle Button */
+    --toggle-btn-bg: #151d2f;
+    --toggle-btn-border: #334155;
+    --toggle-btn-color: #fbbf24;
+    --toggle-btn-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
 * {
     box-sizing: border-box;
 }
@@ -5,8 +100,9 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background: #f5f7fb;
-    color: #1f2937;
+    background: var(--bg-page);
+    color: var(--text-primary);
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 .app {
@@ -14,23 +110,25 @@ body {
 }
 
 .topbar {
-    background: white;
-    border-bottom: 1px solid #e5e7eb;
+    background: var(--bg-topbar);
+    border-bottom: 1px solid var(--border-color);
     padding: 22px max(30px, calc((100vw - 1400px) / 2));
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 30px;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .topbar h1 {
     margin: 0 0 6px;
     font-size: 25px;
+    color: var(--text-primary);
 }
 
 .topbar p {
     margin: 0;
-    color: #6b7280;
+    color: var(--text-secondary);
 }
 
 .student-info {
@@ -40,9 +138,13 @@ body {
     gap: 4px;
 }
 
+.student-info strong {
+    color: var(--text-primary);
+}
+
 .student-info span {
     font-size: 14px;
-    color: #6b7280;
+    color: var(--text-secondary);
 }
 
 .main-layout {
@@ -54,13 +156,12 @@ body {
 }
 
 .card {
-    background: white;
-    border: 1px solid #e5e7eb;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
     border-radius: 14px;
     padding: 24px;
-    box-shadow:
-        0 4px 16px
-        rgba(0, 0, 0, 0.04);
+    box-shadow: var(--card-shadow);
+    transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .card h2 {
@@ -76,20 +177,28 @@ body {
 
 .form-group label {
     font-weight: 600;
+    color: var(--text-primary);
 }
 
 .form-group input[type="number"] {
     width: 100%;
     padding: 12px;
-    border:
-        1px solid
-        #d1d5db;
+    border: 1px solid var(--input-border);
     border-radius: 8px;
     font-size: 16px;
+    background: var(--input-bg);
+    color: var(--input-text);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input[type="number"]:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
 .form-group small {
-    color: #6b7280;
+    color: var(--text-secondary);
     line-height: 1.5;
 }
 
@@ -97,11 +206,13 @@ body {
     display: flex;
     align-items: center;
     gap: 9px;
+    color: var(--text-primary);
 }
 
 .checkbox-group input {
     width: 18px;
     height: 18px;
+    accent-color: #2563eb;
 }
 
 button {
@@ -132,15 +243,15 @@ button:disabled {
 .secondary-button {
     margin-top: 24px;
     padding: 11px 17px;
-    border:
-        1px solid
-        #d1d5db;
-    background: white;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-primary);
     font-weight: 600;
+    transition: background-color 0.2s, border-color 0.2s;
 }
 
 .secondary-button:hover {
-    background: #f9fafb;
+    background: var(--bg-hover);
 }
 
 .schedule-header {
@@ -153,12 +264,12 @@ button:disabled {
 
 .schedule-header h2 {
     margin-bottom: 6px;
+    color: var(--text-primary);
 }
 
 .schedule-header p {
     margin: 0;
-
-    color: #6b7280;
+    color: var(--text-secondary);
 }
 
 .credit-badge {
@@ -167,6 +278,7 @@ button:disabled {
     border-radius: 12px;
     padding: 12px;
     text-align: center;
+    transition: background-color 0.2s;
 }
 
 .credit-badge span {
@@ -177,7 +289,7 @@ button:disabled {
 }
 
 .credit-badge small {
-    color: #6b7280;
+    color: var(--text-secondary);
 }
 
 .empty-state {
@@ -187,11 +299,11 @@ button:disabled {
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #6b7280;
+    color: var(--text-secondary);
 }
 
 .empty-state h3 {
-    color: #374151;
+    color: var(--text-primary);
     margin-bottom: 5px;
 }
 
@@ -201,9 +313,8 @@ button:disabled {
 }
 
 .schedule-item {
-    border:
-        1px solid
-        #e5e7eb;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
     border-radius: 10px;
     padding: 16px;
     display: grid;
@@ -214,6 +325,7 @@ button:disabled {
         110px;
     gap: 15px;
     align-items: center;
+    transition: background-color 0.2s, border-color 0.2s;
 }
 
 .course-code {
@@ -223,26 +335,27 @@ button:disabled {
 
 .course-name {
     font-weight: 600;
+    color: var(--text-primary);
 }
 
 .course-detail {
     margin-top: 4px;
     font-size: 13px;
-    color: #6b7280;
+    color: var(--text-secondary);
 }
 
 .course-time {
     font-weight: 600;
+    color: var(--text-primary);
 }
 
 .reason-badge {
     width: fit-content;
-    padding:
-        5px
-        9px;
+    padding: 5px 9px;
     border-radius: 999px;
     font-size: 12px;
-    background: #f3f4f6;
+    background: var(--bg-hover);
+    color: var(--text-primary);
 }
 
 .reason-retake {
@@ -262,30 +375,34 @@ button:disabled {
 
 .status-box {
     margin-top: 18px;
-    padding: 12px;
+    padding: 12px 14px;
     border-radius: 8px;
     font-size: 14px;
+    line-height: 1.45;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .status-error {
     background: #fef2f2;
     color: #b91c1c;
+    border: 1px solid #fecaca;
 }
 
 .status-success {
     background: #ecfdf5;
     color: #047857;
+    border: 1px solid #a7f3d0;
 }
 
 .ai-box {
     margin-top: 18px;
     padding: 18px;
-    background: #f9fafb;
-    border:
-        1px solid
-        #e5e7eb;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
     border-radius: 10px;
     line-height: 1.6;
+    transition: background-color 0.2s, border-color 0.2s;
 }
 
 .ai-box p {
@@ -308,7 +425,6 @@ button:disabled {
     margin-bottom: 6px;
 }
 
-
 .hidden {
     display: none !important;
 }
@@ -321,15 +437,15 @@ button:disabled {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid var(--border-color);
     padding-bottom: 12px;
 }
 
 .tab-button {
     padding: 9px 18px;
-    background: #f3f4f6;
-    color: #4b5563;
-    border: 1px solid #e5e7eb;
+    background: var(--bg-hover);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     font-size: 14px;
     font-weight: 600;
@@ -338,8 +454,8 @@ button:disabled {
 }
 
 .tab-button:hover {
-    background: #e5e7eb;
-    color: #1f2937;
+    background: var(--border-color);
+    color: var(--text-primary);
 }
 
 .tab-button.active {
@@ -352,10 +468,11 @@ button:disabled {
 .schedule-grid-container {
     width: 100%;
     overflow-x: auto;
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--border-color);
     border-radius: 10px;
-    background: #ffffff;
+    background: var(--bg-card);
     margin-bottom: 20px;
+    transition: background-color 0.2s, border-color 0.2s;
 }
 
 .timetable-grid {
@@ -364,41 +481,42 @@ button:disabled {
     grid-template-rows: 42px repeat(12, 44px);
     min-width: 780px;
     gap: 1px;
-    background-color: #e5e7eb;
+    background-color: var(--tt-grid-border);
     position: relative;
 }
 
 .timetable-header,
 .timetable-period {
-    background: #f8fafc;
+    background: var(--tt-header-bg);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-weight: 600;
     font-size: 13px;
-    color: #475569;
+    color: var(--tt-header-text);
     user-select: none;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 .timetable-period small {
     font-size: 10px;
-    color: #94a3b8;
+    color: var(--tt-period-text);
     font-weight: normal;
 }
 
 .timetable-cell {
-    background: #ffffff;
+    background: var(--tt-cell-bg);
     transition: background-color 0.15s ease;
 }
 
 .timetable-cell:hover {
-    background-color: #f8fafc;
+    background-color: var(--tt-cell-hover);
 }
 
 /* Phân chia buổi sáng / chiều */
 .timetable-cell.session-border {
-    border-bottom: 2px dashed #cbd5e1;
+    border-bottom: 2px dashed var(--tt-session-line);
 }
 
 .timetable-event {
@@ -482,20 +600,21 @@ button:disabled {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
         border-radius: 12px;
         padding: 10px 14px;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        transition: background-color 0.2s, border-color 0.2s;
     }
 
     .stepper-btn {
         width: 38px;
         height: 38px;
         border-radius: 50%;
-        border: 1px solid #cbd5e1;
-        background: #f8fafc;
-        color: #1e293b;
+        border: 1px solid var(--border-color);
+        background: var(--bg-secondary);
+        color: var(--text-primary);
         font-size: 20px;
         line-height: 1;
         font-weight: 600;
@@ -508,15 +627,15 @@ button:disabled {
     }
 
     .stepper-btn:hover:not(:disabled) {
-        background: #e2e8f0;
-        color: #0f172a;
+        background: var(--bg-hover);
+        color: var(--text-primary);
     }
 
     .stepper-btn:disabled {
         opacity: 0.3;
         cursor: not-allowed;
-        background: #f1f5f9;
-        border-color: #e2e8f0;
+        background: var(--bg-secondary);
+        border-color: var(--border-color);
     }
 
     .stepper-info {
@@ -529,12 +648,12 @@ button:disabled {
     .stepper-day-title {
         font-size: 16px;
         font-weight: 700;
-        color: #1e293b;
+        color: var(--text-primary);
     }
 
     .stepper-day-meta {
         font-size: 12px;
-        color: #64748b;
+        color: var(--text-secondary);
         margin-top: 2px;
         font-weight: 500;
     }
@@ -556,9 +675,9 @@ button:disabled {
         border-radius: 14px;
         font-size: 11px;
         font-weight: 600;
-        background: #f1f5f9;
-        color: #64748b;
-        border: 1px solid #e2e8f0;
+        background: var(--bg-hover);
+        color: var(--text-secondary);
+        border: 1px solid var(--border-color);
         cursor: pointer;
         transition: all 0.15s ease;
         display: inline-flex;
@@ -567,7 +686,8 @@ button:disabled {
     }
 
     .stepper-dot:hover {
-        background: #e2e8f0;
+        background: var(--border-color);
+        color: var(--text-primary);
     }
 
     .stepper-dot.active {
@@ -671,8 +791,9 @@ button:disabled {
     display: flex;
     gap: 12px;
     padding: 14px max(30px, calc((100vw - 1400px) / 2));
-    background: #ffffff;
-    border-bottom: 2px solid #e5e7eb;
+    background: var(--bg-topbar);
+    border-bottom: 2px solid var(--border-color);
+    transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .main-tab-btn {
@@ -682,7 +803,7 @@ button:disabled {
     padding: 10px 20px;
     font-size: 15px;
     font-weight: 600;
-    color: #4b5563;
+    color: var(--text-secondary);
     background: transparent;
     border: none;
     border-radius: 10px;
@@ -691,8 +812,8 @@ button:disabled {
 }
 
 .main-tab-btn:hover {
-    background: #f3f4f6;
-    color: #1f2937;
+    background: var(--bg-hover);
+    color: var(--text-primary);
 }
 
 .main-tab-btn.active {
@@ -729,8 +850,9 @@ button:disabled {
     align-items: center;
     gap: 14px;
     padding: 18px 24px;
-    border-bottom: 1px solid #e5e7eb;
-    background: #f9fafb;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .bot-avatar {
@@ -743,18 +865,19 @@ button:disabled {
     justify-content: center;
     font-size: 22px;
     flex-shrink: 0;
+    transition: background-color 0.25s ease;
 }
 
 .bot-meta h2 {
     margin: 0 0 4px;
     font-size: 17px;
-    color: #111827;
+    color: var(--text-primary);
 }
 
 .status-indicator {
     margin: 0;
     font-size: 13px;
-    color: #4b5563;
+    color: var(--text-secondary);
     display: flex;
     align-items: center;
     gap: 6px;
@@ -775,15 +898,16 @@ button:disabled {
     align-items: center;
     gap: 10px;
     padding: 10px 24px;
-    background: #f8fafc;
-    border-bottom: 1px solid #e2e8f0;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
     flex-wrap: wrap;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .quick-title {
     font-size: 13px;
     font-weight: 600;
-    color: #64748b;
+    color: var(--text-secondary);
 }
 
 .chips-list {
@@ -793,19 +917,19 @@ button:disabled {
 }
 
 .chip-btn {
-    background: #ffffff;
-    border: 1px solid #cbd5e1;
+    background: var(--chip-bg);
+    border: 1px solid var(--chip-border);
     border-radius: 20px;
     padding: 5px 12px;
     font-size: 12.5px;
-    color: #1e293b;
+    color: var(--chip-text);
     cursor: pointer;
     transition: all 0.2s;
 }
 
 .chip-btn:hover {
-    background: #f1f5f9;
-    border-color: #94a3b8;
+    background: var(--chip-hover-bg);
+    border-color: #2563eb;
     color: #2563eb;
 }
 
@@ -817,7 +941,7 @@ button:disabled {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    background: #ffffff;
+    background: transparent;
 }
 
 .message-row {
@@ -839,7 +963,9 @@ button:disabled {
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    background: #e2e8f0;
+    background: var(--bg-hover);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -850,6 +976,7 @@ button:disabled {
 .user-row .avatar {
     background: #2563eb;
     color: white;
+    border: none;
 }
 
 .message-bubble {
@@ -861,10 +988,11 @@ button:disabled {
 }
 
 .bot-bubble {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    color: #1e293b;
+    background: var(--chat-bot-bg);
+    border: 1px solid var(--chat-bot-border);
+    color: var(--chat-bot-text);
     border-top-left-radius: 4px;
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 
 .user-bubble {
@@ -891,28 +1019,28 @@ button:disabled {
 
 .bot-bubble th,
 .bot-bubble td {
-    border: 1px solid #cbd5e1;
+    border: 1px solid var(--border-color);
     padding: 8px 12px;
     text-align: left;
 }
 
 .bot-bubble th {
-    background: #e2e8f0;
-    color: #0f172a;
+    background: var(--table-header-bg);
+    color: var(--text-primary);
     font-weight: 600;
 }
 
 .bot-bubble tr:nth-child(even) td {
-    background: #f1f5f9;
+    background: var(--table-stripe-bg);
 }
 
 .bot-bubble code {
-    background: #e2e8f0;
+    background: var(--code-bg);
     padding: 2px 6px;
     border-radius: 4px;
     font-family: Consolas, monospace;
     font-size: 13px;
-    color: #0f172a;
+    color: var(--text-primary);
 }
 
 .bot-bubble ul, .bot-bubble ol {
@@ -926,8 +1054,9 @@ button:disabled {
     align-items: center;
     gap: 12px;
     padding: 16px 24px;
-    border-top: 1px solid #e5e7eb;
-    background: #ffffff;
+    border-top: 1px solid var(--border-color);
+    background: transparent;
+    transition: border-color 0.25s ease;
 }
 
 .chat-input-container input {
@@ -937,16 +1066,21 @@ button:disabled {
     box-sizing: border-box;
     padding: 0 16px;
     font-size: 14.5px;
-    border: 1px solid #cbd5e1;
+    border: 1px solid var(--input-border);
     border-radius: 10px;
     outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    background: #ffffff;
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s, color 0.2s;
+    background: var(--input-bg);
+    color: var(--input-text);
+}
+
+.chat-input-container input::placeholder {
+    color: var(--input-placeholder);
 }
 
 .chat-input-container input:focus {
     border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
 .chat-send-btn,
@@ -987,5 +1121,170 @@ button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
     transform: none;
+}
+
+/* =========================================================
+   DARK MODE COMPONENT OVERRIDES & BADGES
+========================================================= */
+
+html.dark-mode .credit-badge,
+body.dark-mode .credit-badge {
+    background: rgba(37, 99, 235, 0.2);
+}
+
+html.dark-mode .credit-badge span,
+body.dark-mode .credit-badge span {
+    color: #60a5fa;
+}
+
+html.dark-mode .bot-avatar,
+body.dark-mode .bot-avatar {
+    background: rgba(37, 99, 235, 0.25);
+}
+
+html.dark-mode .main-tab-btn.active,
+body.dark-mode .main-tab-btn.active {
+    background: rgba(37, 99, 235, 0.2);
+    color: #60a5fa;
+    box-shadow: inset 0 -2px 0 #3b82f6;
+}
+
+/* Thẻ môn học trên lưới thời khóa biểu trong dark mode */
+html.dark-mode .timetable-event.normal,
+body.dark-mode .timetable-event.normal {
+    background: #1e3a5f;
+    color: #bfdbfe;
+    border-left: 4px solid #3b82f6;
+}
+
+html.dark-mode .timetable-event.retake,
+body.dark-mode .timetable-event.retake {
+    background: #451a1a;
+    color: #fca5a5;
+    border-left: 4px solid #ef4444;
+}
+
+html.dark-mode .timetable-event.early,
+body.dark-mode .timetable-event.early {
+    background: #452b14;
+    color: #fde68a;
+    border-left: 4px solid #f59e0b;
+}
+
+/* Huy hiệu lý do trong Dark Mode */
+html.dark-mode .reason-retake,
+body.dark-mode .reason-retake {
+    background: #451a1a;
+    color: #fca5a5;
+}
+
+html.dark-mode .reason-normal,
+body.dark-mode .reason-normal {
+    background: #064e3b;
+    color: #a7f3d0;
+}
+
+html.dark-mode .reason-early,
+body.dark-mode .reason-early {
+    background: #452b14;
+    color: #fde68a;
+}
+
+/* Hộp thông báo trạng thái trong Dark Mode */
+html.dark-mode .status-success,
+body.dark-mode .status-success {
+    background: #064e3b;
+    color: #a7f3d0;
+    border: 1px solid #059669;
+}
+
+html.dark-mode .status-error,
+body.dark-mode .status-error {
+    background: #451a1a;
+    color: #fca5a5;
+    border: 1px solid #dc2626;
+}
+
+/* =========================================================
+   FLOATING THEME TOGGLE BUTTON
+========================================================= */
+
+.theme-toggle-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1.5px solid var(--toggle-btn-border);
+    background: var(--toggle-btn-bg);
+    color: var(--toggle-btn-color);
+    box-shadow: var(--toggle-btn-shadow);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 0;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.25s ease,
+                background-color 0.25s ease,
+                border-color 0.25s ease,
+                color 0.25s ease;
+    outline: none;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+.theme-toggle-btn:active {
+    transform: scale(0.94);
+}
+
+.theme-toggle-btn:focus-visible {
+    box-shadow: 0 0 0 3px #2563eb, var(--toggle-btn-shadow);
+}
+
+.theme-toggle-btn .theme-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.35s ease, opacity 0.25s ease;
+}
+
+/* Biểu tượng hiển thị theo Theme */
+.theme-toggle-btn .dark-icon {
+    display: flex;
+    color: #4b5563;
+}
+
+.theme-toggle-btn .light-icon {
+    display: none;
+}
+
+html.dark-mode .theme-toggle-btn .dark-icon,
+body.dark-mode .theme-toggle-btn .dark-icon {
+    display: none;
+}
+
+html.dark-mode .theme-toggle-btn .light-icon,
+body.dark-mode .theme-toggle-btn .light-icon {
+    display: flex;
+    color: #fbbf24;
+}
+
+@media (max-width: 550px) {
+    .theme-toggle-btn {
+        bottom: 18px;
+        right: 18px;
+        width: 44px;
+        height: 44px;
+    }
+    .theme-toggle-btn svg {
+        width: 19px;
+        height: 19px;
+    }
 }
 

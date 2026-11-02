@@ -1,5 +1,7 @@
 const API_BASE_URL =
-    "http://127.0.0.1:8000";
+    (window.location.port === "5500" || window.location.protocol === "file:")
+        ? "http://127.0.0.1:8000"
+        : window.location.origin;
 
 const mathRule = /^(?:\$\$([\s\S]+?)\$\$|\$([^\s$](?:[\s\S]*?[^\s$])?)\$)/;
 const customKatexExtension = {
@@ -998,9 +1000,55 @@ document.querySelectorAll(".chip-btn").forEach((btn) => {
     });
 });
 
+// ==========================================
+// DARK / LIGHT MODE CONTROLLER
+// ==========================================
+function initThemeToggle() {
+    const themeToggleBtn = document.getElementById("theme-toggle");
+    if (!themeToggleBtn) return;
+
+    function applyTheme(isDark) {
+        if (isDark) {
+            document.documentElement.classList.add("dark-mode");
+            document.body.classList.add("dark-mode");
+            themeToggleBtn.setAttribute("aria-label", "Chuyển sang giao diện Sáng");
+            themeToggleBtn.setAttribute("title", "Chuyển sang giao diện Sáng");
+        } else {
+            document.documentElement.classList.remove("dark-mode");
+            document.body.classList.remove("dark-mode");
+            themeToggleBtn.setAttribute("aria-label", "Chuyển sang giao diện Tối");
+            themeToggleBtn.setAttribute("title", "Chuyển sang giao diện Tối");
+        }
+    }
+
+    // 1. Initial State check
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = savedTheme ? savedTheme === "dark" : prefersDark;
+    applyTheme(isDark);
+
+    // 2. Click Handler
+    themeToggleBtn.addEventListener("click", () => {
+        const currentlyDark = document.body.classList.contains("dark-mode");
+        const nextDark = !currentlyDark;
+        applyTheme(nextDark);
+        localStorage.setItem("theme", nextDark ? "dark" : "light");
+    });
+
+    // 3. Listen for OS theme changes if user hasn't explicitly set a preference
+    if (window.matchMedia) {
+        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+            if (!localStorage.getItem("theme")) {
+                applyTheme(e.matches);
+            }
+        });
+    }
+}
+
 document.addEventListener(
     "DOMContentLoaded",
     () => {
+        initThemeToggle();
         explainButton.disabled = true;
         loadCurrentStudent();
     }
