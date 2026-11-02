@@ -18,40 +18,54 @@ def test_root():
 
 def test_schedule_endpoint():
 
-    response = client.post(
-        "/schedule",
-        json={
-            "target_credits": 18,
-            "allow_early": True,
-        },
-    )
+    app.dependency_overrides[
+        get_current_student_id
+    ] = lambda: "671234"
 
-    assert response.status_code == 200
+    try:
+        response = client.post(
+            "/schedule",
+            json={
+                "target_credits": 18,
+                "allow_early": True,
+            },
+        )
 
-    data = response.json()
+        assert response.status_code == 200
 
-    assert data["success"] is True
-    assert data["total_credits"] == 18
+        data = response.json()
+
+        assert data["success"] is True
+        assert data["total_credits"] == 18
+    finally:
+        app.dependency_overrides.clear()
 
 def test_me_endpoint():
 
-    response = client.get(
-        "/me"
-    )
+    app.dependency_overrides[
+        get_current_student_id
+    ] = lambda: "671234"
 
-    assert response.status_code == 200
+    try:
+        response = client.get(
+            "/me"
+        )
 
-    data = response.json()
+        assert response.status_code == 200
 
-    assert (
-        data["student_id"]
-        == "671234"
-    )
+        data = response.json()
 
-    assert (
-        data["current_semester"]
-        == 4
-    )
+        assert (
+            data["student_id"]
+            == "671234"
+        )
+
+        assert (
+            data["current_semester"]
+            == 4
+        )
+    finally:
+        app.dependency_overrides.clear()
 
 def test_unknown_logged_in_student_returns_404():
 

@@ -39,7 +39,14 @@ def get_candidate_courses(
             f"Không tìm thấy sinh viên {student_id}"
         )
 
-    curriculum = load_curriculum()["courses"]
+    cohort = student.get("cohort", "K68")
+    curr_data = load_curriculum(cohort)
+    curriculum = curr_data["courses"]
+    thesis_sub = curr_data.get("elective_rules", {}).get("thesis_substitution", {})
+    thesis_sub_sem = thesis_sub.get("semester", 8)
+    thesis_course_code = thesis_sub.get("substitute_for_course", "TH04299")
+    thesis_sub_list = set(thesis_sub.get("substitution_courses", []))
+
     opened_courses = load_opened_courses()["courses"]
 
     completed = set(
@@ -58,6 +65,14 @@ def get_candidate_courses(
 
         # 1. Môn đã học xong -> bỏ
         if course_code in completed:
+            continue
+
+        # 1b. Môn tự chọn thay thế Khóa luận tốt nghiệp (Kỳ 8) -> chỉ được học nếu trượt KLTN
+        if (
+            course.get("type") == "elective"
+            and (course.get("semester") == thesis_sub_sem or course_code in thesis_sub_list)
+            and thesis_course_code not in failed
+        ):
             continue
 
         # 2. Không có lớp mở -> bỏ

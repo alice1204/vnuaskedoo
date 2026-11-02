@@ -1,4 +1,4 @@
-﻿import os
+import os
 import yaml
 from typing import Dict, List, Optional, Any
 
@@ -45,8 +45,27 @@ def get_curriculum_courses(cohort: str, semester: Optional[int] = None, search_t
 
     curr_data = curriculums[cohort_upper]
     courses_dict = curr_data.get("courses", {})
-    results = []
+    elective_rules = curr_data.get("elective_rules", {})
+    thesis_sub = elective_rules.get("thesis_substitution", {})
+    spec_groups = elective_rules.get("specializations", {}).get("groups", {})
+    req_by_sem = elective_rules.get("required_by_semester", {})
 
+    # Map mã môn sang nhóm chuyên sâu (nếu có)
+    course_to_spec = {}
+    for g_key, g_info in spec_groups.items():
+        g_name = g_info.get("name", g_key)
+        for c_code in g_info.get("courses", []):
+            course_to_spec[c_code] = g_name
+
+    # Xác định học kỳ hoặc danh sách môn tự chọn thay thế KLTN
+    thesis_sub_sem = thesis_sub.get("semester", 8)
+    thesis_sub_list = set(thesis_sub.get("substitution_courses", []))
+    thesis_sub_condition = thesis_sub.get(
+        "condition",
+        "Chỉ được học để thay thế trong trường hợp trượt Khóa luận tốt nghiệp, bình thường không được học."
+    )
+
+    results = []
     search_lower = search_term.strip().lower() if search_term else None
 
     for code, info in courses_dict.items():
@@ -58,18 +77,44 @@ def get_curriculum_courses(cohort: str, semester: Optional[int] = None, search_t
             if search_lower not in code.lower() and search_lower not in name:
                 continue
 
+        c_sem = info.get("semester")
+        c_type = info.get("type")
+
         item = {
             "code": code,
             "name": info.get("name"),
             "credits": info.get("credits"),
             "theory_credits": info.get("theory_credits"),
             "practice_credits": info.get("practice_credits"),
-            "semester": info.get("semester"),
-            "type": info.get("type"),
+            "semester": c_sem,
+            "type": c_type,
             "prerequisites": info.get("prerequisites", [])
         }
         if "track" in info:
             item["track"] = info["track"]
+        if code in course_to_spec:
+            item["specialization_group"] = course_to_spec[code]
+
+        # Phân biệt rõ môn tự chọn thay thế KLTN (Học kỳ 8) và môn tự chọn thường (Học kỳ 1-7)
+        if c_type == "elective" and (c_sem == thesis_sub_sem or code in thesis_sub_list):
+            item["category"] = "Học phần tự chọn thay thế Khóa luận tốt nghiệp"
+            item["note"] = (
+                f"Học phần tự chọn thay thế Khóa luận tốt nghiệp (Học kỳ {c_sem}). "
+                f"{thesis_sub_condition} "
+                f"TUYỆT ĐỐI KHÔNG được học môn này để thay thế cho các môn tự chọn thông thường ở các học kỳ 1-7."
+            )
+        elif c_type == "elective":
+            item["category"] = "Học phần tự chọn thông thường"
+            c_credits = info.get("credits")
+            item["note"] = (
+                f"Học phần tự chọn thông thường (dự kiến học kỳ {c_sem}, {c_credits} tín chỉ). "
+                f"Nếu bị điểm F (trượt), sinh viên có thể học lại chính môn này HOẶC học đổi sang BẤT KỲ môn tự chọn thông thường nào khác (chưa từng học) từ học kỳ 1 đến học kỳ 7 (không bắt buộc phải cùng học kỳ {c_sem}), nhưng BẮT BUỘC phải có CÙNG SỐ TÍN CHỈ ({c_credits} tín chỉ) và tuyệt đối không được lấy môn tự chọn thay thế KLTN ở học kỳ 8."
+            )
+        elif c_type == "compulsory":
+            item["category"] = "Học phần bắt buộc"
+        elif c_type == "conditional":
+            item["category"] = "Học phần điều kiện"
+
         results.append(item)
 
     # Sort by semester then code

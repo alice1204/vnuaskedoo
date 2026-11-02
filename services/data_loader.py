@@ -18,8 +18,9 @@ def load_students():
     return load_yaml("students.yaml")
 
 
-def load_curriculum():
-    return load_yaml("curriculum.yaml")
+def load_curriculum(cohort: str = "K68"):
+    filename = f"curriculum_{cohort.lower()}.yaml"
+    return load_yaml(filename)
 
 
 def load_opened_courses():

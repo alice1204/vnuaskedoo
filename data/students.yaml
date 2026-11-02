@@ -72,4 +72,68 @@ students:
     failed:
       - TH02034  # Kỹ thuật lập trình (Học kỳ 2)
       - TH02016  # Cấu trúc dữ liệu và giải thuật (Học kỳ 3)
-      - TH03106  # Lập trình hướng đối tượng (Học kỳ 4)
+      - TH03106  # Lập trình hướng đối tượng (Học kỳ 4)
+
+
+  "680001":
+    name: "Nguyễn Văn D"
+    cohort: K68
+    major: "Công nghệ thông tin"
+    current_semester: 4
+    completed:
+      - TH01002
+      - ML01020
+      - TH01006
+      - TH03106
+      - ML01009
+      - TH02036
+      - TH02045
+      - TH02001
+      - GT01015
+      - TH01007
+      - KN01005
+      - KN01008
+      - KN01006
+      - TH01023
+      - GT01017
+      - GT01020
+      - TH02015
+      - TH03134
+      - KN01004
+      - GT01019
+      - ML01022
+      - QS01014
+      - TH03206
+      - TH01009
+      - TH02032
+      - SN00010
+      - ML01021
+      - SN01033
+      - TH02044
+      - TH03005
+      - GT01023
+      - GT01016
+      - GT01018
+      - KN01009
+      - MT01001
+      - KN01007
+      - KN01010
+      - SN01032
+      - TH02046
+      - KN01002
+      - GT01022
+      - TH02038
+      - QS01011
+      - KT01020
+      - QS01013
+      - GT01014
+      - SN00011
+      - QS01012
+      - KN01003
+      - GT01021
+      - KN01001
+      - TH02037
+    failed:
+      - SN01016
+      - TH01025
+      - TH01024
