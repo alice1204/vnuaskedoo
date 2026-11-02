@@ -1,3 +1,4 @@
+from services.database import get_collection
 from services.data_loader import (
     load_students,
     load_curriculum,
@@ -6,9 +7,17 @@ from services.data_loader import (
 
 
 def get_student(student_id: str):
-    data = load_students()
+    col = get_collection("students")
+    if col is not None:
+        try:
+            student = col.find_one({"student_id": str(student_id)}, {"_id": 0})
+            if student:
+                return student
+        except Exception:
+            pass
 
-    return data["students"].get(student_id)
+    data = load_students()
+    return data.get("students", {}).get(str(student_id))
 
 
 def prerequisites_satisfied(

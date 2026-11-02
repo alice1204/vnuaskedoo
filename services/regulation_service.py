@@ -5,6 +5,8 @@ import math
 from collections import Counter
 from typing import List, Dict, Any
 
+from services.database import get_collection
+
 CHUNKS_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "quy_che_chunks.json"))
 
 _REGULATIONS: List[dict] = []
@@ -13,17 +15,27 @@ _LAST_MTIME: float = 0.0
 
 def load_regulations() -> List[dict]:
     global _REGULATIONS, _IDF, _LAST_MTIME
-    if not os.path.exists(CHUNKS_PATH):
-        return []
-
-    current_mtime = os.path.getmtime(CHUNKS_PATH)
-    if _REGULATIONS and current_mtime == _LAST_MTIME:
+    if _REGULATIONS:
         return _REGULATIONS
 
-    with open(CHUNKS_PATH, "r", encoding="utf-8") as f:
-        data = json.load(f)
-        _REGULATIONS = data.get("articles", [])
-    _LAST_MTIME = current_mtime
+    col = get_collection("regulations")
+    if col is not None:
+        try:
+            docs = list(col.find({}, {"_id": 0}))
+            if docs:
+                for d in docs:
+                    if "chunk_id" in d and "id" not in d:
+                        d["id"] = d["chunk_id"]
+                _REGULATIONS = docs
+        except Exception:
+            pass
+
+    if not _REGULATIONS:
+        if not os.path.exists(CHUNKS_PATH):
+            return []
+        with open(CHUNKS_PATH, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            _REGULATIONS = data.get("articles", [])
 
     # Build IDF dictionary
     doc_count = len(_REGULATIONS)

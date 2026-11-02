@@ -1,6 +1,7 @@
 import os
 import yaml
 from typing import Dict, List, Optional, Any
+from services.database import get_collection
 
 DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data"))
 
@@ -13,6 +14,20 @@ def load_curriculums():
     if _CURRICULUMS:
         return _CURRICULUMS
 
+    col = get_collection("curriculums")
+    if col is not None:
+        try:
+            docs = list(col.find({}, {"_id": 0}))
+            if docs:
+                for doc in docs:
+                    cohort = doc.get("cohort")
+                    if cohort:
+                        _CURRICULUMS[cohort.strip().upper()] = doc
+                if _CURRICULUMS:
+                    return _CURRICULUMS
+        except Exception:
+            pass
+
     for cohort in ["K67", "K68", "K69", "K70"]:
         file_path = os.path.join(DATA_DIR, f"curriculum_{cohort.lower()}.yaml")
         if os.path.exists(file_path):
@@ -24,6 +39,20 @@ def load_equivalents():
     global _EQUIVALENTS
     if _EQUIVALENTS:
         return _EQUIVALENTS
+
+    col = get_collection("course_equivalents")
+    if col is not None:
+        try:
+            docs = list(col.find({}, {"_id": 0}))
+            if docs:
+                for doc in docs:
+                    cohort = doc.get("cohort")
+                    if cohort:
+                        _EQUIVALENTS[cohort.strip().upper()] = doc
+                if _EQUIVALENTS:
+                    return _EQUIVALENTS
+        except Exception:
+            pass
 
     for cohort in ["K68", "K69"]:
         file_path = os.path.join(DATA_DIR, f"equivalents_{cohort.lower()}.yaml")
