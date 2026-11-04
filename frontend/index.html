@@ -36,14 +36,16 @@
 
         <nav class="main-nav-tabs">
             <button id="tab-nav-chat" class="main-tab-btn active" type="button">
-                💬 Cố vấn Học vụ AI
+                Cố vấn Học vụ AI
             </button>
             <button id="tab-nav-scheduler" class="main-tab-btn" type="button">
-                📅 Xếp Thời Khóa Biểu
+                Xếp Thời Khóa Biểu
             </button>
+            <!-- Ẩn tạm thời cho buổi báo cáo
             <button id="tab-nav-teacher" class="main-tab-btn" type="button">
-                👨‍🏫 Quản Lý Lớp Học (Giảng Viên)
+                Quản Lý Lớp Học (Giảng Viên)
             </button>
+            -->
         </nav>
 
 
@@ -61,10 +63,10 @@
                 <div class="quick-prompts">
                     <span class="quick-title">Gợi ý câu hỏi nhanh:</span>
                     <div class="chips-list">
-                        <button class="chip-btn" data-query="Điểm các môn kỳ này của mình thế nào?">📊 Điểm môn kỳ này</button>
-                        <button class="chip-btn" data-query="Môn Cơ sở dữ liệu mình muốn được điểm A thì cuối kỳ cần thi mấy điểm?">🎯 Điểm thi CSDL để được A</button>
-                        <button class="chip-btn" data-query="Kỳ này mình có môn nào có nguy cơ bị cấm thi hay rớt môn không?">⚠️ Kiểm tra nguy cơ cấm thi</button>
-                        <button class="chip-btn" data-query="Tư vấn giúp mình chiến lược ôn thi cuối kỳ dựa trên điểm thành phần hiện tại">💡 Chiến lược ôn thi</button>
+                        <button class="chip-btn" data-query="Điểm các môn kỳ này của mình thế nào?">Điểm môn kỳ này</button>
+                        <button class="chip-btn" data-query="Môn Cơ sở dữ liệu mình muốn được điểm A thì cuối kỳ cần thi mấy điểm?">Điểm thi CSDL để được A</button>
+                        <button class="chip-btn" data-query="Kỳ này mình có môn nào có nguy cơ bị cấm thi hay rớt môn không?">Kiểm tra nguy cơ cấm thi</button>
+                        <button class="chip-btn" data-query="Tư vấn giúp mình chiến lược ôn thi cuối kỳ dựa trên điểm thành phần hiện tại">Chiến lược ôn thi</button>
                         <button class="chip-btn" data-query="Môn Xác suất thống kê K68 tương đương môn nào của K67?">Môn tương đương K68</button>
                         <button class="chip-btn" data-query="Xếp giúp mình lịch học 18 tín chỉ kỳ này">Xếp lịch học 18 tín chỉ</button>
                     </div>
@@ -164,9 +166,8 @@
             </section>
         </main>
 
-        <!-- VIEW 3: QUẢN LÝ LỚP HỌC PHẦN & SỔ ĐIỂM (GIẢNG VIÊN) -->
+        <!-- TẠM ẨN VIEW 3: QUẢN LÝ LỚP HỌC PHẦN (GIẢNG VIÊN) CHO BUỔI BÁO CÁO (Bỏ comment để kích hoạt lại)
         <main id="view-teacher" class="tab-view hidden teacher-layout">
-            <!-- Header Chọn Lớp & Thông tin tổng quan -->
             <section class="card teacher-header-card">
                 <div class="teacher-select-row">
                     <div class="select-class-group">
@@ -176,11 +177,9 @@
                         </select>
                     </div>
                     <div id="teacher-class-meta" class="teacher-class-meta">
-                        <!-- Sẽ được điền động bằng JS -->
                     </div>
                 </div>
 
-                <!-- Thống kê nhanh lớp học phần -->
                 <div id="teacher-stats-grid" class="teacher-stats-grid hidden">
                     <div class="t-stat-card">
                         <span class="t-stat-label">Sĩ số sinh viên</span>
@@ -201,20 +200,16 @@
                 </div>
             </section>
 
-            <!-- Khối Phổ điểm & Cảnh báo cấm thi -->
             <div class="teacher-analytics-grid">
-                <!-- Phổ điểm chữ lớp học phần -->
                 <section class="card">
                     <h2>Phân tích phổ điểm lớp học phần</h2>
                     <p class="section-desc">Tỷ lệ phân bố các mức điểm chữ theo Quy chế Đào tạo Học viện (Điều 21).</p>
                     <div id="teacher-distribution-chart" class="distribution-chart">
-                        <!-- Sẽ được render động bằng JS -->
                     </div>
                 </section>
 
-                <!-- Cảnh báo sinh viên có nguy cơ cấm thi -->
                 <section class="card">
-                    <h2>⚠️ Danh sách sinh viên cần lưu ý</h2>
+                    <h2>Danh sách sinh viên cần lưu ý</h2>
                     <p class="section-desc">Sinh viên có điểm chuyên cần &lt; 5.0 (nguy cơ cấm thi) hoặc điểm giữa kỳ quá thấp.</p>
                     <div id="teacher-risk-list" class="risk-list">
                         <p class="text-muted">Đang phân tích dữ liệu lớp...</p>
@@ -222,14 +217,13 @@
                 </section>
             </div>
 
-            <!-- Bảng theo dõi điểm số lớp học phần -->
             <section class="card gradebook-card">
                 <div class="card-header-row">
                     <div>
                         <h2>Danh sách điểm lớp học phần</h2>
                         <p>Theo dõi kết quả học tập và các đầu điểm thành phần của sinh viên trong lớp.</p>
                     </div>
-                    <button id="refresh-gradebook-btn" class="secondary-button" type="button">🔄 Làm mới dữ liệu</button>
+                    <button id="refresh-gradebook-btn" class="secondary-button" type="button">Làm mới dữ liệu</button>
                 </div>
 
                 <div class="table-responsive">
@@ -254,6 +248,7 @@
                 </div>
             </section>
         </main>
+        -->
     </div>
 
 

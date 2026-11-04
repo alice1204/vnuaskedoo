@@ -875,8 +875,8 @@ const viewChat = document.getElementById("view-chat");
 const viewScheduler = document.getElementById("view-scheduler");
 const viewTeacher = document.getElementById("view-teacher");
 
-const allTabBtns = [tabNavChat, tabNavScheduler, tabNavTeacher];
-const allViews = [viewChat, viewScheduler, viewTeacher];
+const allTabBtns = [tabNavChat, tabNavScheduler, tabNavTeacher].filter(Boolean);
+const allViews = [viewChat, viewScheduler, viewTeacher].filter(Boolean);
 
 function switchMainTab(targetBtn, targetView) {
     allTabBtns.forEach(b => b && b.classList.remove("active"));
@@ -990,7 +990,7 @@ async function sendChatMessage(message) {
 
     } catch (err) {
         console.error("Chat error:", err);
-        botBubble.innerHTML = `<p style="color: #ef4444;">⚠️ Không thể kết nối tới Trợ lý AI: ${err.message}. Vui lòng thử lại.</p>`;
+        botBubble.innerHTML = `<p style="color: #ef4444;">Không thể kết nối tới Trợ lý AI: ${err.message}. Vui lòng thử lại.</p>`;
     } finally {
         chatInput.disabled = false;
         chatSendBtn.disabled = false;
@@ -1126,9 +1126,9 @@ async function loadClassGradebook(classCode) {
     const currentCls = cachedTeacherClasses.find(c => c.class_code === classCode);
     if (currentCls) {
         classMeta.innerHTML = `
-            <span>📍 Phòng: <strong>${currentCls.room || 'ND201'}</strong></span>
-            <span>⏰ Lịch: <strong>${currentCls.schedule || 'T2(1-3)'}</strong></span>
-            <span>📚 Số TC: <strong>${currentCls.credits} TC</strong></span>
+            <span>Phòng: <strong>${currentCls.room || 'ND201'}</strong></span>
+            <span>Lịch: <strong>${currentCls.schedule || 'T2(1-3)'}</strong></span>
+            <span>Số TC: <strong>${currentCls.credits} TC</strong></span>
         `;
     }
 
@@ -1188,7 +1188,7 @@ async function loadClassGradebook(classCode) {
                 </div>
             `).join("");
         } else {
-            riskList.innerHTML = `<p class="text-muted" style="color: #10b981;">🎉 Toàn bộ sinh viên trong lớp đều có điểm thành phần an toàn!</p>`;
+            riskList.innerHTML = `<p class="text-muted" style="color: #10b981;">Toàn bộ sinh viên trong lớp đều có điểm thành phần an toàn!</p>`;
         }
 
         // 4. Render Bảng danh sách điểm (chỉ xem, không sửa điểm)

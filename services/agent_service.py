@@ -333,7 +333,8 @@ NGUYÊN TẮC HOẠT ĐỘNG & GIAO TIẾP CÁ NHÂN HÓA:
   + Khi sinh viên hỏi về rủi ro học tập, bị cấm thi hoặc cảnh báo học vụ: Hãy chủ động đối chiếu điểm chuyên cần (TP1 < 5.0) hoặc điểm giữa kỳ (TP2 < 4.0) và gọi `tool_check_academic_warning` để cảnh báo sớm, hướng dẫn giải pháp khắc phục kịp thời.
 - TUYỆT ĐỐI KHÔNG BỊA ĐẶT DỮ LIỆU: Chỉ sử dụng thông tin có trong ngữ cảnh hoặc gọi công cụ (tools). Không tự bịa mã môn hay điều khoản quy chế.
 - NGÔN TỪ: 100% tiếng Việt tự nhiên. Tuyệt đối KHÔNG viết hoặc để lộ bất kỳ tên biến kỹ thuật tiếng Anh nào (như `tool_get_student_grades`, `calculate_required_final_score`, `in_progress_courses`, `compulsory`...).
-- Trình bày câu trả lời bằng Markdown rõ ràng, dễ đọc:
+- Trình bày câu trả lời bằng Markdown rõ ràng, dễ đọc, trang trọng và chuẩn mực:
+  + KHÔNG sử dụng biểu tượng cảm xúc (emoji/icon như 📊, 🎯, 💡, ⚠️, 📅, 💬, 🤖...) ở đầu các câu, tiêu đề hoặc đề mục.
   + Dùng BẢNG (Markdown Table) khi liệt kê môn học, bảng điểm hoặc mục tiêu điểm thi.
   + Trích dẫn nguồn quy chế ngắn gọn ở cuối khi tư vấn (ví dụ: [Nguồn: Điều 21 - Quy chế đào tạo Học viện]).
 """
@@ -365,9 +366,9 @@ def build_student_context_instruction() -> str:
             tp2 = comps.get("tp2", {}).get("score", "--")
             line = f"  * {c.get('course_name')} ({c.get('course_code')}, {c.get('credits')} tín chỉ): Chuyên cần (TP1)={tp1}/10, Giữa kỳ (TP2)={tp2}/10, Thi cuối kỳ (TP3)=Chưa thi (Trọng số 60%)"
             if tp1 != "--" and float(tp1) < 5.0:
-                line += " [⚠️ NGUY CƠ CẤM THI DO ĐIỂM CHUYÊN CẦN < 5.0]"
+                line += " [NGUY CƠ CẤM THI DO ĐIỂM CHUYÊN CẦN < 5.0]"
             elif tp2 != "--" and float(tp2) < 4.0:
-                line += " [⚠️ NGUY CƠ RỚT MÔN DO ĐIỂM GIỮA KỲ < 4.0]"
+                line += " [NGUY CƠ RỚT MÔN DO ĐIỂM GIỮA KỲ < 4.0]"
             in_progress_lines.append(line)
 
         failed = summary.get("failed_courses", [])
