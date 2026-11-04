@@ -13,7 +13,11 @@ from services.agent_service import (
     tool_lookup_equivalent_course,
     tool_search_regulations,
     tool_generate_schedule,
+    tool_get_student_grades,
+    tool_calculate_target_exam_score,
+    tool_check_academic_warning,
 )
+
 
 client = TestClient(app)
 
@@ -88,6 +92,29 @@ def test_tools():
     t4 = tool_generate_schedule("671234", target_credits=18)
     assert "schedule" in t4
 
+
+def test_grade_advising_tools():
+    # Tool 5: Lấy bảng điểm
+    t5 = tool_get_student_grades("671234")
+    assert "ma_sinh_vien" in t5
+    assert "mon_dang_hoc_ky_nay" in t5
+    assert "gpa_he_4" in t5
+
+    # Tool 6: Tính điểm thi cuối kỳ cần đạt bằng tên môn học
+    t6_name = tool_calculate_target_exam_score("Cơ sở dữ liệu", target_letter="A", student_id="671234")
+    assert "diem_thi_cuoi_ky_can_dat" in t6_name
+    assert "Cơ sở dữ liệu" in t6_name
+
+    # Tool 6: Tính bằng mã môn học
+    t6_code = tool_calculate_target_exam_score("TH02001", target_letter="B", student_id="671234")
+    assert "TH02001" in t6_code
+
+    # Tool 7: Cảnh báo học vụ
+    t7 = tool_check_academic_warning("671234")
+    assert "ma_sinh_vien" in t7
+    assert "tong_so_canh_bao" in t7
+
+
 def test_chat_stream_endpoint():
     # Test that /chat/stream accepts POST and streams content
     response = client.post(
@@ -100,3 +127,4 @@ def test_chat_stream_endpoint():
     assert response.status_code == 200
     content = response.text
     assert len(content) > 0
+

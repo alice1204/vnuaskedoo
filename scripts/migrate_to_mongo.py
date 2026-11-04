@@ -184,12 +184,48 @@ def migrate_regulations(db):
     print(f"    Tổng số điều khoản trong collection 'regulations': {col.count_documents({})}")
 
 
+def migrate_grades(db):
+    print("\n--- 6. Di chuyển Bảng điểm sinh viên (grades) ---")
+    file_path = DATA_DIR / "grades.yaml"
+    if not file_path.exists():
+        print(f"[-] Không tìm thấy {file_path}")
+        return
+
+    with open(file_path, "r", encoding="utf-8") as f:
+        data = yaml.safe_load(f)
+
+    grades_list = data.get("grades", [])
+    col = db["grades"]
+    col.create_index([("student_id", ASCENDING), ("course_code", ASCENDING)], unique=True)
+    col.create_index([("class_code", ASCENDING)])
+
+    ops = []
+    for g in grades_list:
+        clean_g = stringify_keys(g)
+        s_id = str(clean_g.get("student_id"))
+        c_code = str(clean_g.get("course_code")).upper()
+        clean_g["student_id"] = s_id
+        clean_g["course_code"] = c_code
+        ops.append(
+            UpdateOne(
+                {"student_id": s_id, "course_code": c_code},
+                {"$set": clean_g},
+                upsert=True
+            )
+        )
+
+    if ops:
+        result = col.bulk_write(ops)
+        print(f"[+] Đã xử lý {len(ops)} bản ghi điểm (Thêm mới: {result.upserted_count}, Cập nhật: {result.modified_count})")
+    print(f"    Tổng số bản ghi điểm trong collection 'grades': {col.count_documents({})}")
+
+
 def verify_migration(db):
     print("\n================ KIỂM TRA DỮ LIỆU ĐÃ NẠP ================")
     collections = db.list_collection_names()
     print(f"Các collections hiện có trong database '{db.name}': {collections}")
 
-    for c_name in ["students", "curriculums", "course_equivalents", "opened_courses", "regulations"]:
+    for c_name in ["students", "curriculums", "course_equivalents", "opened_courses", "regulations", "grades"]:
         if c_name in collections:
             cnt = db[c_name].count_documents({})
             print(f" - {c_name:20s}: {cnt:>5d} documents")
@@ -199,10 +235,19 @@ def verify_migration(db):
     if sample_student:
         print(f"\n[Test truy vấn] Sinh viên 671234: {sample_student.get('name')} | Khóa: {sample_student.get('cohort')} | Đã học: {len(sample_student.get('completed', []))} môn")
 
+    # Thử truy vấn bảng điểm của sinh viên 671234
+    sample_grades = list(db["grades"].find({"student_id": "671234"}, {"_id": 0}))
+    if sample_grades:
+        print(f"[Test truy vấn Điểm] Sinh viên 671234 có {len(sample_grades)} học phần trong bảng điểm:")
+        for g in sample_grades:
+            status = g.get("status")
+            score = g.get("total_score_10")
+            print(f"   * {g.get('course_code')} ({g.get('course_name')}): {score if score is not None else 'Chưa thi'} | Trạng thái: {status}")
+
     # Thử full-text search quy chế
     sample_regulation = list(db["regulations"].find({"$text": {"$search": "cảnh báo học tập"}}, {"_id": 0, "title": 1, "article_number": 1}).limit(2))
     if sample_regulation:
-        print(f"[Test Text Search] Tìm kiếm quy chế 'cảnh báo học tập':")
+        print(f"\n[Test Text Search] Tìm kiếm quy chế 'cảnh báo học tập':")
         for reg in sample_regulation:
             print(f"   * {reg.get('title')} (Điều {reg.get('article_number')})")
 
@@ -216,8 +261,10 @@ def main():
     migrate_equivalents(db)
     migrate_opened_courses(db)
     migrate_regulations(db)
+    migrate_grades(db)
     verify_migration(db)
 
 
 if __name__ == "__main__":
     main()
+

@@ -866,25 +866,42 @@ explainButton.addEventListener(
     explainSchedule
 );
 
-// MAIN NAVIGATION TABS
+// MAIN NAVIGATION TABS (3 TABS)
 const tabNavChat = document.getElementById("tab-nav-chat");
 const tabNavScheduler = document.getElementById("tab-nav-scheduler");
+const tabNavTeacher = document.getElementById("tab-nav-teacher");
+
 const viewChat = document.getElementById("view-chat");
 const viewScheduler = document.getElementById("view-scheduler");
+const viewTeacher = document.getElementById("view-teacher");
+
+const allTabBtns = [tabNavChat, tabNavScheduler, tabNavTeacher];
+const allViews = [viewChat, viewScheduler, viewTeacher];
+
+function switchMainTab(targetBtn, targetView) {
+    allTabBtns.forEach(b => b && b.classList.remove("active"));
+    allViews.forEach(v => v && v.classList.add("hidden"));
+
+    if (targetBtn) targetBtn.classList.add("active");
+    if (targetView) targetView.classList.remove("hidden");
+}
 
 tabNavChat.addEventListener("click", () => {
-    tabNavChat.classList.add("active");
-    tabNavScheduler.classList.remove("active");
-    viewChat.classList.remove("hidden");
-    viewScheduler.classList.add("hidden");
+    switchMainTab(tabNavChat, viewChat);
 });
 
 tabNavScheduler.addEventListener("click", () => {
-    tabNavScheduler.classList.add("active");
-    tabNavChat.classList.remove("active");
-    viewScheduler.classList.remove("hidden");
-    viewChat.classList.add("hidden");
+    switchMainTab(tabNavScheduler, viewScheduler);
 });
+
+if (tabNavTeacher) {
+    tabNavTeacher.addEventListener("click", () => {
+        switchMainTab(tabNavTeacher, viewTeacher);
+        loadTeacherClasses();
+    });
+}
+
+
 
 /* =========================================================
    CHATBOT CONTROLLER (STEP 4 AGENT HARNESS)
@@ -1051,5 +1068,180 @@ document.addEventListener(
         initThemeToggle();
         explainButton.disabled = true;
         loadCurrentStudent();
+        initTeacherEventListeners();
     }
-);
+);
+
+/* ==========================================================================
+   HELPER & TEACHER GRADEBOOK CONTROLLER
+   ========================================================================== */
+
+function getGradeBadgeHtml(letter) {
+    if (!letter) return '<span class="text-muted">--</span>';
+    const clean = letter.toLowerCase().replace("+", "-plus");
+    return `<span class="grade-badge ${clean}">${letter}</span>`;
+}
+
+
+let cachedTeacherClasses = [];
+
+async function loadTeacherClasses() {
+    const classSelect = document.getElementById("teacher-class-select");
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/teacher/classes`);
+        if (!response.ok) throw new Error("Không thể tải danh sách lớp học phần của giảng viên.");
+
+        const data = await response.json();
+        cachedTeacherClasses = data.classes || [];
+
+        if (cachedTeacherClasses.length === 0) {
+            classSelect.innerHTML = `<option value="">Giảng viên chưa được phân công lớp nào.</option>`;
+            return;
+        }
+
+        classSelect.innerHTML = cachedTeacherClasses.map(c => `
+            <option value="${c.class_code}">${c.class_code} - ${c.course_name} (Học kỳ: ${c.semester})</option>
+        `).join("");
+
+        // Tự động nạp lớp đầu tiên
+        const firstClass = cachedTeacherClasses[0];
+        loadClassGradebook(firstClass.class_code);
+
+    } catch (error) {
+        console.error("Lỗi khi tải lớp giảng viên:", error);
+        classSelect.innerHTML = `<option value="">Lỗi: ${error.message}</option>`;
+    }
+}
+
+async function loadClassGradebook(classCode) {
+    if (!classCode) return;
+
+    const classMeta = document.getElementById("teacher-class-meta");
+    const statsGrid = document.getElementById("teacher-stats-grid");
+    const distChart = document.getElementById("teacher-distribution-chart");
+    const riskList = document.getElementById("teacher-risk-list");
+    const tbody = document.getElementById("gradebook-tbody");
+
+    // Tìm thông tin lớp trong cache
+    const currentCls = cachedTeacherClasses.find(c => c.class_code === classCode);
+    if (currentCls) {
+        classMeta.innerHTML = `
+            <span>📍 Phòng: <strong>${currentCls.room || 'ND201'}</strong></span>
+            <span>⏰ Lịch: <strong>${currentCls.schedule || 'T2(1-3)'}</strong></span>
+            <span>📚 Số TC: <strong>${currentCls.credits} TC</strong></span>
+        `;
+    }
+
+    try {
+        tbody.innerHTML = `<tr><td colspan="9" class="text-center">Đang tải danh sách điểm lớp ${classCode}...</td></tr>`;
+
+        const [gradesRes, statsRes] = await Promise.all([
+            fetch(`${API_BASE_URL}/api/teacher/classes/${classCode}/grades`),
+            fetch(`${API_BASE_URL}/api/teacher/classes/${classCode}/stats`)
+        ]);
+
+        if (!gradesRes.ok) throw new Error("Không thể tải danh sách điểm của lớp.");
+
+        const gradesData = await gradesRes.json();
+        const statsData = statsRes.ok ? await statsRes.json() : null;
+
+        // 1. Cập nhật thống kê nhanh
+        statsGrid.classList.remove("hidden");
+        document.getElementById("t-stat-total").textContent = statsData?.total_students ?? gradesData.total_students;
+        document.getElementById("t-stat-avg").textContent = statsData?.average_score_10 ? `${statsData.average_score_10}/10` : 'Đang học';
+        document.getElementById("t-stat-pass-rate").textContent = statsData?.pass_rate_percentage !== undefined ? `${statsData.pass_rate_percentage}%` : '--';
+        document.getElementById("t-stat-risk").textContent = statsData?.at_risk_students ? statsData.at_risk_students.length : 0;
+
+        // 2. Render Biểu đồ phổ điểm chữ
+        if (statsData && statsData.letter_distribution) {
+            distChart.innerHTML = statsData.letter_distribution.map(item => {
+                let barClass = 'bar-c';
+                if (item.letter === 'A') barClass = 'bar-a';
+                else if (item.letter === 'B+' || item.letter === 'B') barClass = 'bar-b';
+                else if (item.letter === 'F') barClass = 'bar-f';
+
+                return `
+                    <div class="chart-bar-row">
+                        <span class="chart-bar-label">${item.letter}</span>
+                        <div class="chart-bar-track">
+                            <div class="chart-bar-fill ${barClass}" style="width: ${item.percentage}%;"></div>
+                        </div>
+                        <span class="chart-bar-count">${item.count} SV (${item.percentage}%)</span>
+                    </div>
+                `;
+            }).join("");
+        } else {
+            distChart.innerHTML = `<p class="text-muted">Chưa có dữ liệu phổ điểm.</p>`;
+        }
+
+        // 3. Render Danh sách sinh viên nguy cơ
+        if (statsData && statsData.at_risk_students && statsData.at_risk_students.length > 0) {
+            riskList.innerHTML = statsData.at_risk_students.map(r => `
+                <div class="risk-item">
+                    <div>
+                        <strong>${r.student_name} (${r.student_id})</strong>
+                        <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 2px;">
+                            ${r.reason}
+                        </div>
+                    </div>
+                    <span class="grade-badge f">Cảnh báo</span>
+                </div>
+            `).join("");
+        } else {
+            riskList.innerHTML = `<p class="text-muted" style="color: #10b981;">🎉 Toàn bộ sinh viên trong lớp đều có điểm thành phần an toàn!</p>`;
+        }
+
+        // 4. Render Bảng danh sách điểm (chỉ xem, không sửa điểm)
+        const records = gradesData.grades || [];
+        if (records.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="9" class="text-center text-muted">Lớp học phần hiện chưa có sinh viên đăng ký.</td></tr>`;
+            return;
+        }
+
+        tbody.innerHTML = records.map((r, index) => {
+            const comps = r.components || {};
+            const tp1Score = comps.tp1?.score !== null && comps.tp1?.score !== undefined ? comps.tp1.score : null;
+            const tp2Score = comps.tp2?.score !== null && comps.tp2?.score !== undefined ? comps.tp2.score : null;
+            const tp3Score = comps.tp3?.score !== null && comps.tp3?.score !== undefined ? comps.tp3.score : null;
+
+            return `
+                <tr>
+                    <td class="text-center">${index + 1}</td>
+                    <td><strong>${r.student_id}</strong></td>
+                    <td>${r.student_name || '--'}</td>
+                    <td><small>${r.cohort || ''} ${r.major || ''}</small></td>
+                    <td class="text-center"><strong>${tp1Score !== null ? tp1Score : '<span class="text-muted">--</span>'}</strong></td>
+                    <td class="text-center"><strong>${tp2Score !== null ? tp2Score : '<span class="text-muted">--</span>'}</strong></td>
+                    <td class="text-center"><strong>${tp3Score !== null ? tp3Score : '<span class="text-muted">--</span>'}</strong></td>
+                    <td class="text-center"><strong>${r.total_score_10 !== null ? r.total_score_10 : '--'}</strong></td>
+                    <td class="text-center">${getGradeBadgeHtml(r.letter_grade)}</td>
+                </tr>
+            `;
+        }).join("");
+
+    } catch (error) {
+        console.error("Lỗi khi tải danh sách điểm:", error);
+        tbody.innerHTML = `<tr><td colspan="9" class="text-center text-muted" style="color: #ef4444;">Không thể nạp dữ liệu: ${error.message}</td></tr>`;
+    }
+}
+
+function initTeacherEventListeners() {
+    // Chọn lớp học phần giảng viên
+    const classSelect = document.getElementById("teacher-class-select");
+    if (classSelect) {
+        classSelect.addEventListener("change", (e) => {
+            loadClassGradebook(e.target.value);
+        });
+    }
+
+    // Nút làm mới sổ điểm
+    const refreshBtn = document.getElementById("refresh-gradebook-btn");
+    if (refreshBtn) {
+        refreshBtn.addEventListener("click", () => {
+            const classCode = document.getElementById("teacher-class-select").value;
+            if (classCode) loadClassGradebook(classCode);
+        });
+    }
+}
+
+

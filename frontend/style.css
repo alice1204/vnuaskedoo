@@ -1288,3 +1288,507 @@ body.dark-mode .theme-toggle-btn .light-icon {
     }
 }
 
+/* ==========================================================================
+   VIEW 3: BẢNG ĐIỂM CÁ NHÂN & CỐ VẤN ĐIỂM THI (GRADES VIEW)
+   ========================================================================== */
+
+.grades-layout,
+.teacher-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.gpa-summary-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: var(--card-shadow);
+}
+
+.gpa-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.gpa-stat-box {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.gpa-stat-box.primary {
+    border-color: #3b82f6;
+    background: rgba(59, 130, 246, 0.08);
+}
+
+.gpa-stat-box .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.gpa-stat-box .stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.gpa-stat-box.primary .stat-value {
+    color: #2563eb;
+}
+
+html.dark-mode .gpa-stat-box.primary .stat-value {
+    color: #60a5fa;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    width: fit-content;
+}
+
+.status-badge.normal {
+    background: rgba(16, 185, 129, 0.15);
+    color: #059669;
+}
+
+html.dark-mode .status-badge.normal {
+    background: rgba(16, 185, 129, 0.25);
+    color: #34d399;
+}
+
+.status-badge.danger {
+    background: rgba(239, 68, 68, 0.15);
+    color: #dc2626;
+}
+
+html.dark-mode .status-badge.danger {
+    background: rgba(239, 68, 68, 0.25);
+    color: #f87171;
+}
+
+/* Hộp Cảnh báo Học vụ */
+.warning-container {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.alert-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.alert-box.danger {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #b91c1c;
+}
+
+html.dark-mode .alert-box.danger {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #fca5a5;
+}
+
+.alert-box.warning {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    color: #b45309;
+}
+
+html.dark-mode .alert-box.warning {
+    background: rgba(245, 158, 11, 0.2);
+    border-color: rgba(245, 158, 11, 0.4);
+    color: #fcd34d;
+}
+
+/* Grids */
+.grades-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 20px;
+}
+
+@media (max-width: 992px) {
+    .grades-content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.grades-history-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 850px) {
+    .grades-history-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tables */
+.table-responsive {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    text-align: left;
+}
+
+.styled-table th {
+    background: var(--table-header-bg);
+    color: var(--text-primary);
+    padding: 12px 14px;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color);
+    white-space: nowrap;
+}
+
+.styled-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    vertical-align: middle;
+}
+
+.styled-table tbody tr:hover {
+    background: var(--bg-hover);
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Badges điểm chữ */
+.grade-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-align: center;
+    min-width: 32px;
+}
+
+.grade-badge.a { background: #dcfce7; color: #15803d; }
+.grade-badge.b-plus { background: #e0f2fe; color: #0369a1; }
+.grade-badge.b { background: #e0e7ff; color: #4338ca; }
+.grade-badge.c-plus { background: #fef3c7; color: #b45309; }
+.grade-badge.c { background: #ffedd5; color: #c2410c; }
+.grade-badge.d-plus, .grade-badge.d { background: #f3f4f6; color: #4b5563; }
+.grade-badge.f { background: #fee2e2; color: #b91c1c; }
+
+html.dark-mode .grade-badge.a { background: rgba(34, 197, 94, 0.25); color: #86efac; }
+html.dark-mode .grade-badge.b-plus { background: rgba(56, 189, 248, 0.25); color: #7dd3fc; }
+html.dark-mode .grade-badge.b { background: rgba(99, 102, 241, 0.25); color: #a5b4fc; }
+html.dark-mode .grade-badge.c-plus { background: rgba(245, 158, 11, 0.25); color: #fde047; }
+html.dark-mode .grade-badge.c { background: rgba(249, 115, 22, 0.25); color: #fdba74; }
+html.dark-mode .grade-badge.d-plus, html.dark-mode .grade-badge.d { background: rgba(148, 163, 184, 0.25); color: #cbd5e1; }
+html.dark-mode .grade-badge.f { background: rgba(239, 68, 68, 0.25); color: #fca5a5; }
+
+/* Buttons & Small Actions */
+.btn-calc-sm {
+    background: #3b82f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+.btn-calc-sm:hover {
+    background: #2563eb;
+}
+
+.form-select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    background: var(--input-bg);
+    color: var(--input-text);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-select:focus {
+    border-color: #3b82f6;
+}
+
+.full-width {
+    width: 100%;
+}
+
+/* Máy tính điểm thi mục tiêu */
+.calc-result-box {
+    margin-top: 18px;
+    padding: 16px;
+    border-radius: 10px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.calc-highlight {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.calc-score-display {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #2563eb;
+}
+
+html.dark-mode .calc-score-display {
+    color: #60a5fa;
+}
+
+/* ==========================================================================
+   VIEW 4: QUẢN LÝ LỚP HỌC & SỔ ĐIỂM (TEACHER VIEW)
+   ========================================================================== */
+
+.teacher-select-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.select-class-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 320px;
+}
+
+.class-dropdown {
+    font-weight: 600;
+}
+
+.teacher-class-meta {
+    display: flex;
+    gap: 16px;
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    flex-wrap: wrap;
+}
+
+.teacher-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin-top: 10px;
+}
+
+.t-stat-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.t-stat-card.risk {
+    border-color: rgba(239, 68, 68, 0.4);
+    background: rgba(239, 68, 68, 0.06);
+}
+
+.t-stat-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.t-stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.t-stat-card.risk .t-stat-value {
+    color: #dc2626;
+}
+
+html.dark-mode .t-stat-card.risk .t-stat-value {
+    color: #f87171;
+}
+
+.teacher-analytics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 900px) {
+    .teacher-analytics-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.section-desc {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    margin-top: -6px;
+    margin-bottom: 14px;
+}
+
+/* Distribution Chart */
+.distribution-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chart-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.88rem;
+}
+
+.chart-bar-label {
+    width: 32px;
+    font-weight: 700;
+}
+
+.chart-bar-track {
+    flex: 1;
+    height: 18px;
+    background: var(--bg-secondary);
+    border-radius: 9px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--border-color);
+}
+
+.chart-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    border-radius: 9px;
+    transition: width 0.4s ease;
+}
+
+.chart-bar-fill.bar-a { background: linear-gradient(90deg, #16a34a, #4ade80); }
+.chart-bar-fill.bar-b { background: linear-gradient(90deg, #2563eb, #60a5fa); }
+.chart-bar-fill.bar-c { background: linear-gradient(90deg, #d97706, #fbbf24); }
+.chart-bar-fill.bar-d { background: linear-gradient(90deg, #64748b, #94a3b8); }
+.chart-bar-fill.bar-f { background: linear-gradient(90deg, #dc2626, #f87171); }
+
+.chart-bar-count {
+    width: 70px;
+    text-align: right;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+/* Danh sách sinh viên nguy cơ */
+.risk-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.risk-item {
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.risk-item strong {
+    color: #dc2626;
+}
+
+html.dark-mode .risk-item strong {
+    color: #f87171;
+}
+
+/* Sổ điểm Gradebook inputs */
+.grade-input-box {
+    width: 70px;
+    padding: 6px 8px;
+    border: 1px solid var(--input-border);
+    border-radius: 6px;
+    background: var(--input-bg);
+    color: var(--input-text);
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-align: center;
+    outline: none;
+}
+
+.grade-input-box:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.btn-save-sm {
+    background: #10b981;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-save-sm:hover {
+    background: #059669;
+}
+
+

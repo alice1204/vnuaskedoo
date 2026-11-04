@@ -1,0 +1,313 @@
+grades:
+- student_id: '671234'
+  course_code: TH01001
+  course_name: Tin học cơ sở
+  class_code: TH01001_02
+  semester: 1
+  academic_year: 2023-2024
+  credits: 2
+  components:
+    tp1:
+      name: Chuyên cần
+      weight: 0.1
+      score: 9.0
+    tp2:
+      name: Giữa kỳ
+      weight: 0.3
+      score: 8.0
+    tp3:
+      name: Thi kết thúc
+      weight: 0.6
+      score: 7.5
+  total_score_10: 7.8
+  gpa_4: 3.0
+  letter_grade: B
+  status: passed
+- student_id: '671234'
+  course_code: TH01002
+  course_name: Lập trình cơ bản
+  class_code: TH01002_01
+  semester: 1
+  academic_year: 2023-2024
+  credits: 2
+  components:
+    tp1:
+      name: Chuyên cần
+      weight: 0.1
+      score: 8.5
+    tp2:
+      name: Giữa kỳ
+      weight: 0.3
+      score: 7.5
+    tp3:
+      name: Thi kết thúc
+      weight: 0.6
+      score: 8.5
+  total_score_10: 8.2
+  gpa_4: 3.5
+  letter_grade: B+
+  status: passed
+- student_id: '671234'
+  course_code: TH01007
+  course_name: Xác suất thống kê
+  class_code: TH01007_03
+  semester: 2
+  academic_year: 2023-2024
+  credits: 3
+  components:
+    tp1:
+      name: Chuyên cần
+      weight: 0.1
+      score: 7.0
+    tp2:
+      name: Giữa kỳ
+      weight: 0.3
+      score: 4.5
+    tp3:
+      name: Thi kết thúc
+      weight: 0.6
+      score: 2.5
+  total_score_10: 3.6
+  gpa_4: 0.0
+  letter_grade: F
+  status: failed
+- student_id: '671234'
+  course_code: TH02001
+  course_name: Cơ sở dữ liệu
+  class_code: TH02001_01
+  semester: 4
+  academic_year: 2024-2025
+  credits: 3
+  components:
+    tp1:
+      name: Chuyên cần
+      weight: 0.1
+      score: 8.5
+    tp2:
+      name: Giữa kỳ
+      weight: 0.3
+      score: 6.0
+    tp3:
+      name: Thi kết thúc
+      weight: 0.6
+      score: null
+  total_score_10: null
+  gpa_4: null
+  letter_grade: null
+  status: in_progress
+- student_id: '671234'
+  course_code: ML01022
+  course_name: Chủ nghĩa xã hội khoa học
+  class_code: ML01022_201
+  semester: 4
+  academic_year: 2024-2025
+  credits: 2
+  components:
+    tp1:
+      name: Chuyên cần
+      weight: 0.1
+      score: 9.0
+    tp2:
+      name: Giữa kỳ
+      weight: 0.3
+      score: 7.5
+    tp3:
+      name: Thi kết thúc
+      weight: 0.6
+      score: null
+  total_score_10: null
+  gpa_4: null
+  letter_grade: null
+  status: in_progress
+- student_id: '671234'
+  course_code: TH02015
+  course_name: Nguyên lý hệ điều hành
+  class_code: TH02015_301
+  semester: 4
+  academic_year: 2024-2025
+  credits: 3
+  components:
+    tp1:
+      name: Chuyên cần
+      weight: 0.1
+      score: 6.0
+    tp2:
+      name: Giữa kỳ
+      weight: 0.3
+      score: 5.0
+    tp3:
+      name: Thi kết thúc
+      weight: 0.6
+      score: null
+  total_score_10: null
+  gpa_4: null
+  letter_grade: null
+  status: in_progress
+- student_id: '671235'
+  course_code: TH01001
+  course_name: Tin học cơ sở
+  class_code: TH01001_02
+  semester: 1
+  academic_year: 2023-2024
+  credits: 2
+  components:
+    tp1:
+      name: Chuyên cần
+      weight: 0.1
+      score: 9.5
+    tp2:
+      name: Giữa kỳ
+      weight: 0.3
+      score: 8.5
+    tp3:
+      name: Thi kết thúc
+      weight: 0.6
+      score: 8.5
+  total_score_10: 8.6
+  gpa_4: 4.0
+  letter_grade: A
+  status: passed
+- student_id: '671235'
+  course_code: TH01002
+  course_name: Lập trình cơ bản
+  class_code: TH01002_01
+  semester: 1
+  academic_year: 2023-2024
+  credits: 2
+  components:
+    tp1:
+      name: Chuyên cần
+      weight: 0.1
+      score: 8.0
+    tp2:
+      name: Giữa kỳ
+      weight: 0.3
+      score: 7.0
+    tp3:
+      name: Thi kết thúc
+      weight: 0.6
+      score: 7.5
+  total_score_10: 7.4
+  gpa_4: 3.0
+  letter_grade: B
+  status: passed
+- student_id: '671235'
+  course_code: TH01007
+  course_name: Xác suất thống kê
+  class_code: TH01007_03
+  semester: 2
+  academic_year: 2023-2024
+  credits: 3
+  components:
+    tp1:
+      name: Chuyên cần
+      weight: 0.1
+      score: 8.0
+    tp2:
+      name: Giữa kỳ
+      weight: 0.3
+      score: 6.5
+    tp3:
+      name: Thi kết thúc
+      weight: 0.6
+      score: 6.5
+  total_score_10: 6.7
+  gpa_4: 2.5
+  letter_grade: C+
+  status: passed
+- student_id: '671235'
+  course_code: TH02001
+  course_name: Cơ sở dữ liệu
+  class_code: TH02001_01
+  semester: 4
+  academic_year: 2024-2025
+  credits: 3
+  components:
+    tp1:
+      name: Chuyên cần
+      weight: 0.1
+      score: 1.0
+    tp2:
+      name: Giữa kỳ
+      weight: 0.3
+      score: 8.5
+    tp3:
+      name: Thi kết thúc
+      weight: 0.6
+      score: null
+  total_score_10: null
+  gpa_4: null
+  letter_grade: null
+  status: in_progress
+- student_id: '680001'
+  course_code: TH01002
+  course_name: Lập trình cơ bản
+  class_code: TH01002_01
+  semester: 1
+  academic_year: 2023-2024
+  credits: 2
+  components:
+    tp1:
+      name: Chuyên cần
+      weight: 0.1
+      score: 8.0
+    tp2:
+      name: Giữa kỳ
+      weight: 0.3
+      score: 7.0
+    tp3:
+      name: Thi kết thúc
+      weight: 0.6
+      score: 7.0
+  total_score_10: 7.1
+  gpa_4: 3.0
+  letter_grade: B
+  status: passed
+- student_id: '680001'
+  course_code: ML01020
+  course_name: Triết học Mác - Lênin
+  class_code: ML01020_01
+  semester: 1
+  academic_year: 2023-2024
+  credits: 3
+  components:
+    tp1:
+      name: Chuyên cần
+      weight: 0.1
+      score: 9.0
+    tp2:
+      name: Giữa kỳ
+      weight: 0.3
+      score: 8.0
+    tp3:
+      name: Thi kết thúc
+      weight: 0.6
+      score: 8.0
+  total_score_10: 8.1
+  gpa_4: 3.5
+  letter_grade: B+
+  status: passed
+- student_id: '680001'
+  course_code: TH02001
+  course_name: Cơ sở dữ liệu
+  class_code: TH02001_01
+  semester: 4
+  academic_year: 2024-2025
+  credits: 3
+  components:
+    tp1:
+      name: Chuyên cần
+      weight: 0.1
+      score: 7.5
+    tp2:
+      name: Giữa kỳ
+      weight: 0.3
+      score: 8.5
+    tp3:
+      name: Thi kết thúc
+      weight: 0.6
+      score: null
+  total_score_10: null
+  gpa_4: null
+  letter_grade: null
+  status: in_progress

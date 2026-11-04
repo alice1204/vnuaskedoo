@@ -38,6 +38,8 @@ from services.student_service import (
     get_current_student_id,
 )
 
+from routers.grade_router import router as grade_router
+
 
 app = FastAPI(
     title="Student Scheduler API",
@@ -56,6 +58,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(grade_router)
 
 app.mount("/ui", StaticFiles(directory="frontend", html=True), name="ui")
 
